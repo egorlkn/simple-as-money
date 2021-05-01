@@ -1,0 +1,6 @@
+.idea
+.git
+
+docker/dev
+vendor
+var
