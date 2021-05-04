@@ -6,5 +6,8 @@ framework:
     cookie_secure: auto
     cookie_samesite: lax
 
+  csrf_protection:
+    enabled: true
+
   php_errors:
     log: true
