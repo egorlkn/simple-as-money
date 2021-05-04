@@ -1,0 +1,457 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@700&family=Roboto:wght@300;700&display=swap');
+
+html {
+    position: relative;
+    min-height: 100%;
+    background-color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    color: #000000;
+}
+
+body {
+    background-image: url('/images/bg-lines-834-min.png');
+    background-size: 145%;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant SC', serif;
+    font-weight: 700;
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #960202;
+}
+
+a:hover, a:focus {
+    color: #ffffff;
+    background-color: #960202;
+    text-decoration: underline;
+}
+
+#main_header {
+    overflow: hidden;
+}
+
+#main_header a {
+    display: block;
+    margin: 25px 50% 0 25px;
+    background-color: rgba(255, 255, 255, 0);
+    color: transparent;
+    text-decoration: none;
+}
+
+main {
+    padding: 10px 10px 0;
+}
+
+main#policy {
+    padding-bottom: 30px;
+}
+
+main article {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 15px 15px 0;
+}
+
+main article h1 {
+    font-size: 30px;
+}
+
+main article h2 {
+    font-size: 20px;
+    margin-top: 25px;
+}
+
+main article p {
+    margin-top: 25px;
+}
+
+main article #forbes_list {
+    display: block;
+    list-style: none;
+    padding: 0;
+    margin-top: 25px;
+}
+
+
+main article #forbes_list li {
+    display: inline-block;
+    margin: 3px 0;
+}
+
+main article #forbes_list li::after {
+    content: '|';
+    display: inline-block;
+    font-weight: 700;
+    width: 51px;
+    height: 17px;
+    background-image: url(/images/forbes.svg);
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: 2px;
+    background-size: 43px;
+}
+
+main article #forbes_list li a {
+    display: inline;
+    padding: 2px 0;
+    margin: 3px 0;
+}
+
+main #form {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 15px 15px 0;
+}
+
+main #form a {
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-image: url('/images/insta.svg');
+    background-size: 50px 50px;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-size: 0;
+    line-height: 0;
+    color: transparent;
+}
+
+main #form a:hover, main #form a:focus {
+    background-image: url('/images/insta-h.svg');
+    background-color: transparent;
+    color: transparent;
+    text-decoration: none;
+}
+
+main #vadim {
+    display: block;
+    max-width: 100%;
+    margin-top: 25px;
+}
+
+#main_footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.85);
+    font-size: 9px;
+    text-align: center;
+    padding: 5px 0;
+}
+
+@media (min-width: 576px) {
+    body {
+        background-image: url('/images/bg-lines-883-min.png');
+        background-size: 115%;
+    }
+
+    #main_header a {
+        margin-right: 60%;
+    }
+
+    main {
+        overflow: auto;
+    }
+
+    main #vadim {
+        float: right;
+    }
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 17px;
+    }
+
+    body {
+        background-image: url('/images/bg-lines-892-min.png');
+        background-size: 90%;
+    }
+
+    #main_header a {
+        margin: 50px 75% 0 50px;
+    }
+
+    main {
+        padding: 10px 35px 0;
+    }
+
+    main article {
+        padding: 15px;
+    }
+
+    main article h1 {
+        font-size: 45px;
+    }
+
+    main article h2 {
+        font-size: 25px;
+    }
+
+    main article p {
+        margin-top: 25px;
+    }
+
+    main article #forbes_list {
+        margin-top: 20px;
+    }
+
+    main article #forbes_list li::after {
+        width: 53px;
+        height: 19px;
+        background-position-y: 4px;
+        background-size: 45px;
+    }
+}
+
+@media (min-width: 992px) {
+    html {
+        font-size: 19px;
+    }
+
+    body {
+        background-image: url('/images/bg-lines-876-min.png');
+        background-size: 73%;
+    }
+
+    main article h1 {
+        font-size: 50px;
+    }
+
+    main article h2 {
+        font-size: 30px;
+    }
+
+    main article #forbes_list li::after {
+        width: 57px;
+        height: 21px;
+        background-position-y: 5px;
+        background-size: 48px;
+    }
+
+    main #form {
+        float: left;
+        max-width: 45%;
+    }
+
+    main #vadim {
+        float: right;
+        max-width: 50%;
+    }
+}
+
+@media (min-width: 1200px) {
+    html {
+        font-size: 22px;
+    }
+
+    body {
+        background-image: url('/images/bg-lines-1168-min.png');
+        background-size: 73%;
+    }
+
+    #main_header a {
+        margin: 50px 80% 0 75px;
+    }
+
+    main#policy {
+        padding-bottom: 35px;
+    }
+
+    main {
+        padding: 10px 60px 0;
+    }
+
+    main article h1 {
+        font-size: 60px;
+    }
+
+    main article h2 {
+        font-size: 35px;
+    }
+
+
+    main article #forbes_list li::after {
+        width: 66px;
+        height: 25px;
+        background-position-y: 6px;
+        background-size: 55px;
+    }
+
+    #main_footer {
+        font-size: 11px;
+    }
+}
+
+@media (min-width: 1600px) {
+    html {
+        line-height: 1.3;
+    }
+
+    body {
+        background-image: url('/images/bg-lines-1330-min.png');
+        background-size: 70%;
+    }
+
+    main#policy {
+        padding-bottom: 40px;
+    }
+
+    main article {
+        max-width: 60%;
+    }
+
+    main#policy article {
+        max-width: 100%;
+    }
+
+    main article h1 {
+        font-size: 65px;
+    }
+
+    main article h2 {
+        font-size: 40px;
+    }
+
+    main article #forbes_list li::after {
+        height: 28px;
+        background-position-y: 7px;
+    }
+
+    main #form {
+        max-width: 60%;
+    }
+
+    main#policy #form {
+        max-width: 100%;
+    }
+
+    main #form a {
+        width: 60px;
+        height: 60px;
+        background-size: 60px 60px;
+    }
+
+    main #vadim {
+        position: absolute;
+        max-width: 50%;
+        max-height: 100%;
+        bottom: 0;
+        right: 0;
+        float: none;
+    }
+
+    #main_footer {
+        font-size: 13px;
+    }
+}
+
+@media (min-width: 1900px) {
+    html {
+        font-size: 25px;
+        line-height: 1.5;
+    }
+
+    body {
+        background-image: url('/images/bg-lines-1440-min.png');
+        background-size: 60%;
+    }
+
+    main#policy {
+        padding-bottom: 50px;
+    }
+
+    main article {
+        max-width: 70%;
+    }
+
+    main article h1 {
+        font-size: 70px;
+    }
+
+    main article h2 {
+        font-size: 50px;
+    }
+
+    main article #forbes_list li::after {
+        width: 81px;
+        height: 37px;
+        background-position-y: 10px;
+        background-size: 68px;
+    }
+
+    main #form {
+        max-width: 70%;
+    }
+
+    main #form a {
+        width: 75px;
+        height: 75px;
+        background-size: 75px 75px;
+    }
+
+    main #vadim {
+        max-width: 40%;
+    }
+
+    #main_footer {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 2400px) {
+    html {
+        font-size: 30px;
+    }
+
+    body {
+        background-image: url('/images/bg-lines-2304-min.png');
+        background-size: 60%;
+    }
+
+    main#policy {
+        padding-bottom: 75px;
+    }
+
+    main article {
+        max-width: 72%;
+    }
+
+    main article h1 {
+        font-size: 80px;
+    }
+
+    main article h2 {
+        font-size: 60px;
+    }
+
+    main article #forbes_list li::after {
+        width: 93px;
+        height: 45px;
+        background-position-y: 15px;
+        background-size: 80px;
+    }
+
+    main #form {
+        max-width: 72%;
+    }
+
+    main #vadim {
+        max-width: 38%;
+    }
+
+    #main_footer {
+        font-size: 17px;
+    }
+}

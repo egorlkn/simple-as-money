@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block description %}{% endblock %}
+
+{% block keywords %}{% endblock %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block css %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/main.css?v=s1') }}">
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+    <script src="{{ asset('js/main.js?v=s1') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <header id="main_header">
+        <a tabindex="5" href="/">
+            <img src="{{ asset('images/logo.svg') }}" alt="Site logo">
+        </a>
+    </header>
+    <main>
+        <article>
+            <h1>Классификация инвестиций</h1>
+            <p>
+                Инвестиции — денежные средства, ценные бумаги, иное имущество, в том числе имущественные права, иные
+                права, имеющие денежную оценку, вкладываемые в объекты предпринимательской и (или) иной деятельности в
+                целях получения прибыли и (или) достижения иного полезного эффекта.
+            </p>
+            <p>
+                Грань между инвестицией и спекуляцией размыта. Обычно критерием разграничения указывают фактор времени.
+                Если операция длится более года — это инвестиция, и экономический эффект она даст через значительный срок
+                после вложения. Если до года — это спекуляция.
+            </p>
+            <ul id="forbes_list">
+                <li>
+                    <a tabindex="1"
+                       href="https://www.forbes.ru/finansy-i-investicii/425123-ipo-s-nulevoy-summoy-kto-platit-za-prazdnik-dohodnostey-na-rynke"
+                       target="_blank">
+                        IPO с нулевой суммой: кто платит за праздник доходностей на рынке первичных размещений
+                    </a>
+                </li>
+                <li>
+                    <a tabindex="2"
+                       href="https://www.forbes.ru/finansy-i-investicii/422651-cena-straha-pochemu-luchshe-vseh-investiruyut-mertvye-i-neaktivnye"
+                       target="_blank">
+                        Цена страха: почему лучше всех инвестируют мертвые и неактивные инвесторы
+                    </a>
+                </li>
+            </ul>
+        </article>
+        <!--    <div id="form">-->
+        <!--        <a tabindex="3" href="https://www.instagram.com/simpleasmoney/" target="_blank">-->
+        <!--            Vadim Pogosyan Instagram account-->
+        <!--        </a>-->
+        <!--    </div>-->
+        <img id="vadim"
+             srcset="{{ asset('images/vadim-886.png') }} 886w, {{ asset('images/vadim-575.png') }} 575w"
+             sizes="(min-width: 1200px) 886px, 575px"
+             src="{{ asset('images/vadim-886.png') }}"
+             alt="Vadim Pogosyan photo"
+        >
+    </main>
+    <footer id="main_footer">
+        <span>Copyright &copy; 2021 SimpleAsMoney · <a tabindex="4" href="/">Политика конфиденциальности</a></span>
+    </footer>
+{% endblock %}
