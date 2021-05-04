@@ -18,4 +18,12 @@ class RequestHandler extends AbstractController
     {
         return $this->render('homepage.html.twig');
     }
+
+    /**
+     * @Route(path="/policy", name="policy")
+     */
+    public function policy(Request $request): Response
+    {
+        return $this->render('policy.html.twig');
+    }
 }

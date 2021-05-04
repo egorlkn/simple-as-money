@@ -1,20 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'landing.html.twig' %}
 
 {% block description %}{% endblock %}
 
 {% block keywords %}{% endblock %}
 
 {% block title %}{{ parent() }}{% endblock %}
-
-{% block css %}
-    {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/main.css?v=s1') }}">
-{% endblock %}
-
-{% block js %}
-    {{ parent() }}
-    <script src="{{ asset('js/main.js?v=s1') }}"></script>
-{% endblock %}
 
 {% block body %}
     <header id="main_header">
@@ -65,6 +55,6 @@
         >
     </main>
     <footer id="main_footer">
-        <span>Copyright &copy; 2021 SimpleAsMoney · <a tabindex="4" href="/">Политика конфиденциальности</a></span>
+        <span>Copyright &copy; 2021 SimpleAsMoney · <a tabindex="4" href="{{ url('policy') }}">Политика конфиденциальности</a></span>
     </footer>
 {% endblock %}

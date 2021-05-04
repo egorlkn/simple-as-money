@@ -1,5 +1,3 @@
 frontend:
   resource: ../../src/Context/Frontend/
   type: annotation
-  prefix: /
-  name_prefix: frontend
