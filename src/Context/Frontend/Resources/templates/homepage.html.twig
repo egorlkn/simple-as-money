@@ -14,47 +14,62 @@
     </header>
     <main>
         <article>
-            <h1>Классификация инвестиций</h1>
+            <h1>
+                Личные финансы - это сильно проще,
+                <small>чем Вы можете себе представить</small>
+            </h1>
             <p>
-                Инвестиции — денежные средства, ценные бумаги, иное имущество, в том числе имущественные права, иные
-                права, имеющие денежную оценку, вкладываемые в объекты предпринимательской и (или) иной деятельности в
-                целях получения прибыли и (или) достижения иного полезного эффекта.
+                И для того, чтобы правильно управлять своими деньгами не нужно проводить дни напролет у
+                монитора или торговых терминалов. Весь зарубежный мир живёт по этим правилам и люди прекрасно
+                справляются со своими задачами, достигают целей. В России же этой культуры пока нет.
+                Мы решили исправить эту ситуацию и запускаем ресурс, на котором будем рассказывать о том,
+                как на самом деле все работает. Вы сможете легко отличать хороший финансовый продукт от плохого,
+                и понять во что вам вкладываться, а во что - нет.
             </p>
-            <p>
-                Грань между инвестицией и спекуляцией размыта. Обычно критерием разграничения указывают фактор времени.
-                Если операция длится более года — это инвестиция, и экономический эффект она даст через значительный срок
-                после вложения. Если до года — это спекуляция.
-            </p>
-            <ul id="forbes_list">
+        </article>
+        <div id="forbes_list">
+            <span>Читайте мои статьи на <i>Forbes</i></span>
+            <ul>
                 <li>
                     <a tabindex="1"
+                       href="https://www.forbes.ru/finansy-i-investicii/422651-cena-straha-pochemu-luchshe-vseh-investiruyut-mertvye-i-neaktivnye"
+                       target="_blank">
+                        Цена страха: почему лучше всех инвестируют мертвые и неактивные инвесторы
+                    </a>
+                </li>
+                <li>
+                    <a tabindex="2"
                        href="https://www.forbes.ru/finansy-i-investicii/425123-ipo-s-nulevoy-summoy-kto-platit-za-prazdnik-dohodnostey-na-rynke"
                        target="_blank">
                         IPO с нулевой суммой: кто платит за праздник доходностей на рынке первичных размещений
                     </a>
                 </li>
                 <li>
-                    <a tabindex="2"
-                       href="https://www.forbes.ru/finansy-i-investicii/422651-cena-straha-pochemu-luchshe-vseh-investiruyut-mertvye-i-neaktivnye"
+                    <a tabindex="3"
+                       href="https://www.forbes.ru/finansy-i-investicii/428267-glupost-ili-genialnost-pochemu-pokupka-kartinki-v-internete-za-693-mln"
                        target="_blank">
-                        Цена страха: почему лучше всех инвестируют мертвые и неактивные инвесторы
+                        Глупость или гениальность: почему покупка картинки в интернете за $69,3 млн может стать
+                        лучшей инвестиционной идеей
                     </a>
                 </li>
             </ul>
-        </article>
-        <!--    <div id="form">-->
-        <!--        <a tabindex="3" href="https://www.instagram.com/simpleasmoney/" target="_blank">-->
-        <!--            Vadim Pogosyan Instagram account-->
-        <!--        </a>-->
-        <!--    </div>-->
+        </div>
+        <address>
+            Финансовый консультант, кандидат экономических наук
+            <a tabindex="4" href="https://www.instagram.com/simpleasmoney/" rel="author" target="_blank">
+                Вадим Погосьян
+            </a>
+        </address>
         <img id="vadim"
              srcset="{{ asset('images/vadim-886.png') }} 886w, {{ asset('images/vadim-575.png') }} 575w"
-             sizes="(min-width: 1200px) 886px, 575px"
+             sizes="(min-width: 1600px) 886px, 575px"
              src="{{ asset('images/vadim-886.png') }}"
              alt="Vadim Pogosyan photo"
         >
     </main>
     <footer id="main_footer">
-        <span>Copyright &copy; 2021 SimpleAsMoney · <a tabindex="4" href="{{ url('policy') }}">Политика конфиденциальности</a></span>
+        <span>
+            Copyright &copy; 2021 SimpleAsMoney · <a tabindex="6" href="{{ url('policy') }}">Политика конфиденциальности</a>
+        </span>
     </footer>
 {% endblock %}
