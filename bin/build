@@ -1,5 +1,0 @@
-#!/bin/bash
-
-docker build --file=docker/prod/Dockerfile --tag=egorlkn/sam:latest --compress --force-rm .
-
-exit 0

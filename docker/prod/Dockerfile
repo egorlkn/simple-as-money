@@ -1,14 +1,14 @@
-FROM jelastic/nginxphp:1.18.0-php-8.0.3
 FROM composer:2.0.13 AS composer
-
-COPY ./ ./docker/prod/.env.local /var/www/webroot/ROOT/
+FROM jelastic/nginxphp:1.18.0-php-8.0.3
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
-WORKDIR /var/www/webroot/ROOT
+COPY ./ ./docker/prod/.env.local /var/www/webroot/
 
-RUN composer install --no-dev --optimize-autoloader --no-interaction && composer dump-env prod
+COPY ./docker/prod/nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 80
 
-CMD service php-fpm start && nginx -g "daemon off;"
+WORKDIR /var/www/webroot
+
+CMD ["bash", "bin/cmd.sh"]
