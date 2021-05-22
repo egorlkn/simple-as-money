@@ -1,0 +1,62 @@
+{% extends 'landing.html.twig' %}
+
+{% block description %}{% endblock %}
+
+{% block keywords %}{% endblock %}
+
+{% block title %}Калькулятор | {{ parent() }}{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+    <script src="{{ asset('js/calc.js?v=m3') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <header id="main_header">
+        <a href="/">
+            <img src="{{ asset('images/logo.svg') }}" alt="Site logo">
+        </a>
+    </header>
+    <main id="calc">
+        <div id="calculator_errors">
+            {{ form_errors(form)|nl2br }}
+        </div>
+
+        {{ form_start(form, {'attr': {'id': 'calculator'}}) }}
+            {{ form_row(form.initialAmount) }}
+            {{ form_row(form.initialAmountIsUnknown) }}
+            <br>
+            <br>
+            {{ form_row(form.regularPayment) }}
+            {{ form_row(form.regularPaymentIsUnknown) }}
+            <br>
+            {{ form_row(form.numberOfRegularPaymentsPerYear) }}
+            <br>
+            <br>
+            {{ form_row(form.numberOfYears) }}
+            {{ form_row(form.numberOfYearsIsUnknown) }}
+            <br>
+            <br>
+            {{ form_row(form.interestRatePerYear) }}
+            {{ form_row(form.interestRatePerYearIsUnknown) }}
+            <br>
+            <br>
+            {{ form_row(form.finalAmount) }}
+            {{ form_row(form.finalAmountIsUnknown) }}
+            <br>
+            <br>
+            {{ form_rest(form) }}
+        {{ form_end(form) }}
+
+        <div id="result">
+            {% if result is defined %}
+                {{ result|json_encode }}
+            {% endif %}
+        </div>
+    </main>
+    <footer id="main_footer">
+        <span>
+            Copyright &copy; 2021 SimpleAsMoney · <a href="{{ url('policy') }}">Политика конфиденциальности</a>
+        </span>
+    </footer>
+{% endblock %}

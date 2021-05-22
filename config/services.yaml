@@ -9,3 +9,5 @@ services:
     resource: '../src/'
     exclude:
       - '../src/Kernel.php'
+      - '../src/Context/Frontend/Forms/'
+      - '../src/Context/Backend/Calculator/Model/'
