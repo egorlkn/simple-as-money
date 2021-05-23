@@ -8,8 +8,17 @@ use JsonSerializable;
 
 class Result implements JsonSerializable
 {
+    private string $strategy;
+
+    public function __construct(string $strategy)
+    {
+        $this->strategy = $strategy;
+    }
+
     public function jsonSerialize(): array
     {
-        return [];
+        return [
+            $this->strategy,
+        ];
     }
 }

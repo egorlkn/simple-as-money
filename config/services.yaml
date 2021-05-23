@@ -10,4 +10,17 @@ services:
     exclude:
       - '../src/Kernel.php'
       - '../src/Context/Frontend/Forms/'
-      - '../src/Context/Backend/Calculator/Model/'
+      - '../src/Context/Backend/Calculator/{Exception,Model}'
+
+  App\Context\Backend\Calculator\Service:
+    arguments:
+      $strategies:
+        - '@App\Context\Backend\Calculator\CalculateStrategy\RegularPayment'
+        - '@App\Context\Backend\Calculator\CalculateStrategy\FinalAmountWithRegularPayments'
+        - '@App\Context\Backend\Calculator\CalculateStrategy\FinalAmountWithoutRegularPayments'
+        - '@App\Context\Backend\Calculator\CalculateStrategy\NumberOfYearsWithRegularPayments'
+        - '@App\Context\Backend\Calculator\CalculateStrategy\NumberOfYearsWithoutRegularPayments'
+        - '@App\Context\Backend\Calculator\CalculateStrategy\InterestRatePerYearWithRegularPayments'
+        - '@App\Context\Backend\Calculator\CalculateStrategy\InterestRatePerYearWithoutRegularPayments'
+        - '@App\Context\Backend\Calculator\CalculateStrategy\InitialAmountWithRegularPayments'
+        - '@App\Context\Backend\Calculator\CalculateStrategy\InitialAmountWithoutRegularPayments'

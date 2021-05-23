@@ -10,6 +10,14 @@ use App\Context\Backend\Calculator\Model\Result;
 
 class Service
 {
+    /** @var array<CalculateStrategyInterface> */
+    private array $strategies;
+
+    public function __construct(array $strategies)
+    {
+        $this->strategies = $strategies;
+    }
+
     /**
      * @throws CalculatorException
      */
@@ -17,6 +25,14 @@ class Service
     {
         $input->validate();
 
-        return new Result();
+        foreach ($this->strategies as $strategy) {
+            if (!$strategy->canHandle($input)) {
+                continue;
+            }
+
+            return $strategy->doCalculation($input);
+        }
+
+        throw CalculatorException::unknownError();
     }
 }

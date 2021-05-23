@@ -72,10 +72,11 @@ class RequestHandler extends AbstractController
         try {
             $result = $this->calcService->doCalculation($calcInput);
         } catch (Calculator\Exception\CalculatorException $e) {
-            $result = null;
-            $error = new FormError($e->getMessage());
+            foreach ($e->getErrors() as $error) {
+                $form->addError(new FormError($error));
+            }
 
-            $form->addError($error);
+            return $this->render('calculator.html.twig', ['form' => $form->createView()]);
         }
 
         return $this->render(

@@ -30,7 +30,7 @@ class Input
 
     /**
      * @Assert\Type("int", message="Количество лет должно быть числом")
-     * @Assert\GreaterThanOrEqual(1, message="Количество лет должно быть больше или равно еденице")
+     * @Assert\GreaterThanOrEqual(1, message="Количество лет должно быть больше или равно единице")
      */
     private ?int $numberOfYears;
 
@@ -115,10 +115,6 @@ class Input
 
     public function getNumberOfRegularPaymentsPerYear(): int
     {
-        if ($this->getRegularPayment() === 0) {
-            return 0;
-        }
-
         return $this->numberOfRegularPaymentsPerYear;
     }
 
@@ -179,16 +175,23 @@ class Input
      */
     public function validate(): void
     {
-        $errors = array_merge($this->checkNumberOfUnknownItems(), $this->checkKnownItems());
-
-        if (empty($errors)) {
-            return;
+        $error = $this->checkNumberOfUnknownItems();
+        if ($error) {
+            throw new CalculatorException([$error]);
         }
 
-        throw new CalculatorException($errors);
+        $errors = $this->checkKnownItems();
+        if (!empty($errors)) {
+            throw new CalculatorException($errors);
+        }
+
+        $error = $this->checkNumberOfRegularPaymentsPerYear();
+        if ($error) {
+            throw new CalculatorException([$error]);
+        }
     }
 
-    private function checkNumberOfUnknownItems(): array
+    private function checkNumberOfUnknownItems(): string
     {
         $i = 0;
 
@@ -213,18 +216,14 @@ class Input
         }
 
         if ($i === 0) {
-            return [
-                'Должна быть хотя бы одна неизвестная величина',
-            ];
+            return 'Должна быть хотя бы одна неизвестная величина';
         }
 
         if ($i !== 1) {
-            return [
-                'Может быть только одна неизвестная величина',
-            ];
+            return 'Может быть только одна неизвестная величина';
         }
 
-        return [];
+        return '';
     }
 
     private function checkKnownItems(): array
@@ -240,7 +239,7 @@ class Input
         }
 
         if (!$this->numberOfYearsIsUnknown() && $this->getNumberOfYears() === null) {
-            $errors[] = 'Количество лет должно быть больше или равно еденице';
+            $errors[] = 'Количество лет должно быть больше или равно единице';
         }
 
         if (!$this->interestRatePerYearIsUnknown() && $this->getInterestRatePerYear() === null) {
@@ -252,5 +251,26 @@ class Input
         }
 
         return $errors;
+    }
+
+    private function checkNumberOfRegularPaymentsPerYear(): string
+    {
+        if ($this->regularPaymentIsUnknown()) {
+            if ($this->getNumberOfRegularPaymentsPerYear() < 1) {
+                return 'Количество взносов в год должно быть больше или равно единице';
+            }
+        } else {
+            if ((float)$this->getRegularPayment() === 0.0) {
+                if ($this->getNumberOfRegularPaymentsPerYear() !== 0) {
+                    return 'Количество взносов в год должно быть равно нулю';
+                }
+            } else {
+                if ($this->getNumberOfRegularPaymentsPerYear() < 1) {
+                    return 'Количество взносов в год должно быть больше или равно единице';
+                }
+            }
+        }
+
+        return '';
     }
 }
