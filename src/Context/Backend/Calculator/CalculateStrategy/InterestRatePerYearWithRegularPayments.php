@@ -17,6 +17,13 @@ class InterestRatePerYearWithRegularPayments implements CalculateStrategyInterfa
 
     public function doCalculation(Input $input): Result
     {
-        return new Result(get_class($this));
+        return new Result(
+            (float)$input->getInitialAmount(),
+            (float)$input->getRegularPayment(),
+            $input->getNumberOfRegularPaymentsPerYear(),
+            (int)$input->getNumberOfYears(),
+            (float)$input->getInterestRatePerYear(),
+            (float)$input->getFinalAmount()
+        );
     }
 }

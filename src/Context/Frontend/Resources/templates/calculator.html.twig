@@ -48,11 +48,18 @@
             {{ form_rest(form) }}
         {{ form_end(form) }}
 
-        <div id="result">
-            {% if result is defined %}
-                {{ result|json_encode }}
-            {% endif %}
-        </div>
+        {% if result is defined %}
+            <div id="result">
+                <ul>
+                    <li>Начальная сумма размещения: <span>{{ result.initialAmount }}</span></li>
+                    <li>Сумма регулярного взноса: <span>{{ result.regularPayment }}</span></li>
+                    <li>Количество взносов в год: <span>{{ result.numberOfRegularPaymentsPerYear }}</span></li>
+                    <li>Количество лет: <span>{{ result.numberOfYears }}</span></li>
+                    <li>Ставка размещения в % годовых: <span>{{ result.interestRatePerYear }}</span></li>
+                    <li>Сумма накопления: <span>{{ result.finalAmount }}</span></li>
+                </ul>
+            </div>
+        {% endif %}
     </main>
     <footer id="main_footer">
         <span>

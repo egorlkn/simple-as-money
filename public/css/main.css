@@ -342,3 +342,7 @@ main address {
         font-size: 19px;
     }
 }
+
+#result span {
+    font-weight: 700;
+}

@@ -4,21 +4,63 @@ declare(strict_types=1);
 
 namespace App\Context\Backend\Calculator\Model;
 
-use JsonSerializable;
-
-class Result implements JsonSerializable
+class Result
 {
-    private string $strategy;
+    private float $initialAmount;
 
-    public function __construct(string $strategy)
-    {
-        $this->strategy = $strategy;
+    private float $regularPayment;
+
+    private int $numberOfRegularPaymentsPerYear;
+
+    private int $numberOfYears;
+
+    private float $interestRatePerYear;
+
+    private float $finalAmount;
+
+    public function __construct(
+        float $initialAmount,
+        float $regularPayment,
+        int $numberOfRegularPaymentsPerYear,
+        int $numberOfYears,
+        float $interestRatePerYear,
+        float $finalAmount
+    ) {
+        $this->initialAmount = $initialAmount;
+        $this->regularPayment = $regularPayment;
+        $this->numberOfRegularPaymentsPerYear = $numberOfRegularPaymentsPerYear;
+        $this->numberOfYears = $numberOfYears;
+        $this->interestRatePerYear = $interestRatePerYear;
+        $this->finalAmount = $finalAmount;
     }
 
-    public function jsonSerialize(): array
+    public function getInitialAmount(): float
     {
-        return [
-            $this->strategy,
-        ];
+        return $this->initialAmount;
+    }
+
+    public function getRegularPayment(): float
+    {
+        return $this->regularPayment;
+    }
+
+    public function getNumberOfRegularPaymentsPerYear(): int
+    {
+        return $this->numberOfRegularPaymentsPerYear;
+    }
+
+    public function getNumberOfYears(): int
+    {
+        return $this->numberOfYears;
+    }
+
+    public function getInterestRatePerYear(): float
+    {
+        return $this->interestRatePerYear;
+    }
+
+    public function getFinalAmount(): float
+    {
+        return $this->finalAmount;
     }
 }

@@ -17,6 +17,19 @@ class NumberOfYearsWithoutRegularPayments implements CalculateStrategyInterface
 
     public function doCalculation(Input $input): Result
     {
-        return new Result(get_class($this));
+        $PV = (float)$input->getInitialAmount();
+        $i = (float)$input->getInterestRatePerYear() / 100;
+        $FV = (float)$input->getFinalAmount();
+
+        $numberOfYears = log($FV / $PV, 1 + $i);
+
+        return new Result(
+            (float)$input->getInitialAmount(),
+            (float)$input->getRegularPayment(),
+            $input->getNumberOfRegularPaymentsPerYear(),
+            (int)ceil($numberOfYears),
+            (float)$input->getInterestRatePerYear(),
+            (float)$input->getFinalAmount()
+        );
     }
 }
