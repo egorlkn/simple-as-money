@@ -22,7 +22,7 @@
             {{ form_errors(form)|nl2br }}
         </div>
 
-        {{ form_start(form, {'attr': {'id': 'calculator'}}) }}
+        {{ form_start(form, {'attr': {'id': 'calculator', 'novalidate': 'novalidate'}}) }}
             {{ form_row(form.initialAmount) }}
             {{ form_row(form.initialAmountIsUnknown) }}
             <br>

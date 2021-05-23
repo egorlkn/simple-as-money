@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Context\Backend\Calculator\Model;
 
+use App\Context\Backend\Calculator\Exception\CalculatorException;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class Input
@@ -21,11 +22,11 @@ class Input
     private ?float $regularPayment;
 
     /**
-     * @Assert\NotNull(message="Количество взносов в год должно быть задано")
      * @Assert\Type("int", message="Количество взносов в год должно быть числом")
      * @Assert\PositiveOrZero(message="Количество взносов в год должно быть больше или равно нулю")
+     * @Assert\NotNull(message="Количество взносов в год должно быть больше или равно нулю")
      */
-    private int $numberOfRegularPaymentsPerYear;
+    private ?int $numberOfRegularPaymentsPerYear;
 
     /**
      * @Assert\Type("int", message="Количество лет должно быть числом")
@@ -54,7 +55,7 @@ class Input
     public function __construct(
         ?float $initialAmount,
         ?float $regularPayment,
-        int $numberOfRegularPaymentsPerYear,
+        ?int $numberOfRegularPaymentsPerYear,
         ?int $numberOfYears,
         ?float $interestRatePerYear,
         ?float $finalAmount,
@@ -171,5 +172,85 @@ class Input
     public function finalAmountIsUnknown(): bool
     {
         return $this->finalAmountIsUnknown;
+    }
+
+    /**
+     * @throws CalculatorException
+     */
+    public function validate(): void
+    {
+        $errors = array_merge($this->checkNumberOfUnknownItems(), $this->checkKnownItems());
+
+        if (empty($errors)) {
+            return;
+        }
+
+        throw new CalculatorException($errors);
+    }
+
+    private function checkNumberOfUnknownItems(): array
+    {
+        $i = 0;
+
+        if ($this->initialAmountIsUnknown()) {
+            $i++;
+        }
+
+        if ($this->regularPaymentIsUnknown()) {
+            $i++;
+        }
+
+        if ($this->numberOfYearsIsUnknown()) {
+            $i++;
+        }
+
+        if ($this->interestRatePerYearIsUnknown()) {
+            $i++;
+        }
+
+        if ($this->finalAmountIsUnknown()) {
+            $i++;
+        }
+
+        if ($i === 0) {
+            return [
+                'Должна быть хотя бы одна неизвестная величина',
+            ];
+        }
+
+        if ($i !== 1) {
+            return [
+                'Может быть только одна неизвестная величина',
+            ];
+        }
+
+        return [];
+    }
+
+    private function checkKnownItems(): array
+    {
+        $errors = [];
+
+        if (!$this->initialAmountIsUnknown() && $this->getInitialAmount() === null) {
+            $errors[] = 'Начальная сумма размещения должна быть больше или равна нулю';
+        }
+
+        if (!$this->regularPaymentIsUnknown() && $this->getRegularPayment() === null) {
+            $errors[] = 'Сумма регулярного взноса должна быть больше или равна нулю';
+        }
+
+        if (!$this->numberOfYearsIsUnknown() && $this->getNumberOfYears() === null) {
+            $errors[] = 'Количество лет должно быть больше или равно еденице';
+        }
+
+        if (!$this->interestRatePerYearIsUnknown() && $this->getInterestRatePerYear() === null) {
+            $errors[] = 'Ставка размещения должна быть больше нуля';
+        }
+
+        if (!$this->finalAmountIsUnknown() && $this->getFinalAmount() === null) {
+            $errors[] = 'Сумма накопления должна быть больше нуля';
+        }
+
+        return $errors;
     }
 }
