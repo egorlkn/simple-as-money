@@ -17,13 +17,25 @@ class FinalAmountWithRegularPayments implements CalculateStrategyInterface
 
     public function doCalculation(Input $input): Result
     {
+        $PV = (float)$input->getInitialAmount();
+        $A = (float)$input->getRegularPayment();
+        $d = (float)$input->getNumberOfRegularPaymentsPerYear();
+        $n = (float)$input->getNumberOfYears();
+        $i = (float)$input->getInterestRatePerYear() / 100;
+
+        $m = $n * $d;
+
+        $j = ((1 + $i) ** (1 / $m)) - 1;
+
+        $finalAmount = $PV * ((1 + $j) ** $m) + $A * ((((1 + $j) ** $m) - 1) / $j);
+
         return new Result(
             (float)$input->getInitialAmount(),
             (float)$input->getRegularPayment(),
             $input->getNumberOfRegularPaymentsPerYear(),
             (int)$input->getNumberOfYears(),
             (float)$input->getInterestRatePerYear(),
-            (float)$input->getFinalAmount()
+            round($finalAmount, 2)
         );
     }
 }
