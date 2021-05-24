@@ -17,8 +17,6 @@ class InterestRatePerYearWithRegularPayments implements CalculateStrategyInterfa
 
     public function doCalculation(Input $input): Result
     {
-        return new Result(0.0, 0.0, 0, 0.0, 0.0, 0.0);
-
         $PV = (float)$input->getInitialAmount();
         $A = (float)$input->getRegularPayment();
         $d = (float)$input->getNumberOfRegularPaymentsPerYear();
@@ -27,17 +25,20 @@ class InterestRatePerYearWithRegularPayments implements CalculateStrategyInterfa
 
         $m = $n * $d;
 
-        $jUp = 0.0;
-        $jDown = 0.0;
+        $jUpInterest = 0.0;
+        $jDownInterest = 0.0;
 
         while (true) {
-            $jUp += 0.01;
-            $jDown -= 0.01;
+            $jUpInterest = round($jUpInterest + 0.01, 2);
+            $jUp = $jUpInterest / 100;
 
             if ($this->isSolvingEquation($PV, $A, $FV, $m, $jUp)) {
                 $j = $jUp;
                 break;
             }
+
+            $jDownInterest = round($jDownInterest - 0.01, 2);
+            $jDown = $jDownInterest / 100;
 
             if ($this->isSolvingEquation($PV, $A, $FV, $m, $jDown)) {
                 $j = $jDown;
@@ -45,7 +46,7 @@ class InterestRatePerYearWithRegularPayments implements CalculateStrategyInterfa
             }
         }
 
-        $interestRatePerYear = ((1 + $j) ** $m) - 1;
+        $interestRatePerYear = (((1 + $j) ** $m) - 1) * 100;
 
         return new Result(
             (float)$input->getInitialAmount(),
@@ -64,7 +65,15 @@ class InterestRatePerYearWithRegularPayments implements CalculateStrategyInterfa
         float $m,
         float $j
     ): bool {
-        $leftSubEquation = round(($FV * $j + $A) / ($PV * $j + $A), 2);
+        $leftA = $FV * $j + $A;
+        $leftB = $PV * $j + $A;
+
+        if ((int)$leftB === 0) {
+            return false;
+        }
+
+        $leftSubEquation = round($leftA / $leftB, 2);
+
         $rightSubEquation = round((1 + $j) ** $m, 2);
 
         return $leftSubEquation === $rightSubEquation;
