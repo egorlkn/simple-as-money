@@ -17,14 +17,7 @@ class InterestRatePerYearWithRegularPayments implements CalculateStrategyInterfa
 
     public function doCalculation(Input $input): Result
     {
-        return new Result(
-            (float)$input->getInitialAmount(),
-            (float)$input->getRegularPayment(),
-            $input->getNumberOfRegularPaymentsPerYear(),
-            (int)$input->getNumberOfYears(),
-            0.0,
-            (float)$input->getFinalAmount()
-        );
+        return new Result(0.0, 0.0, 0, 0.0, 0.0, 0.0);
 
         $PV = (float)$input->getInitialAmount();
         $A = (float)$input->getRegularPayment();
@@ -58,7 +51,7 @@ class InterestRatePerYearWithRegularPayments implements CalculateStrategyInterfa
             (float)$input->getInitialAmount(),
             (float)$input->getRegularPayment(),
             $input->getNumberOfRegularPaymentsPerYear(),
-            (int)$input->getNumberOfYears(),
+            (float)$input->getNumberOfYears(),
             round($interestRatePerYear, 2),
             (float)$input->getFinalAmount()
         );

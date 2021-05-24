@@ -27,7 +27,7 @@ class InitialAmountWithoutRegularPayments implements CalculateStrategyInterface
             round($initialAmount, 2),
             (float)$input->getRegularPayment(),
             $input->getNumberOfRegularPaymentsPerYear(),
-            (int)$input->getNumberOfYears(),
+            (float)$input->getNumberOfYears(),
             (float)$input->getInterestRatePerYear(),
             (float)$input->getFinalAmount()
         );

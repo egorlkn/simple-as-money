@@ -18,7 +18,7 @@ class CalculatorInputFormMapper extends DataMapper
             $this->mapFloat($forms['initialAmount']),
             $this->mapFloat($forms['regularPayment']),
             $this->mapInt($forms['numberOfRegularPaymentsPerYear']),
-            $this->mapInt($forms['numberOfYears']),
+            $this->mapFloat($forms['numberOfYears']),
             $this->mapFloat($forms['interestRatePerYear']),
             $this->mapFloat($forms['finalAmount']),
             $this->mapBoolean($forms['initialAmountIsUnknown']),

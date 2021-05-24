@@ -27,7 +27,7 @@ class InterestRatePerYearWithoutRegularPayments implements CalculateStrategyInte
             (float)$input->getInitialAmount(),
             (float)$input->getRegularPayment(),
             $input->getNumberOfRegularPaymentsPerYear(),
-            (int)$input->getNumberOfYears(),
+            (float)$input->getNumberOfYears(),
             round($interestRatePerYear, 2),
             (float)$input->getFinalAmount()
         );

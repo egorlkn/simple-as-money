@@ -12,7 +12,7 @@ class Result
 
     private int $numberOfRegularPaymentsPerYear;
 
-    private int $numberOfYears;
+    private float $numberOfYears;
 
     private float $interestRatePerYear;
 
@@ -22,7 +22,7 @@ class Result
         float $initialAmount,
         float $regularPayment,
         int $numberOfRegularPaymentsPerYear,
-        int $numberOfYears,
+        float $numberOfYears,
         float $interestRatePerYear,
         float $finalAmount
     ) {
@@ -49,7 +49,7 @@ class Result
         return $this->numberOfRegularPaymentsPerYear;
     }
 
-    public function getNumberOfYears(): int
+    public function getNumberOfYears(): float
     {
         return $this->numberOfYears;
     }

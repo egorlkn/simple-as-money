@@ -29,10 +29,10 @@ class Input
     private ?int $numberOfRegularPaymentsPerYear;
 
     /**
-     * @Assert\Type("int", message="Количество лет должно быть числом")
+     * @Assert\Type("float", message="Количество лет должно быть числом")
      * @Assert\GreaterThanOrEqual(1, message="Количество лет должно быть больше или равно единице")
      */
-    private ?int $numberOfYears;
+    private ?float $numberOfYears;
 
     /**
      * @Assert\Type("float", message="Ставка размещения должна быть числом")
@@ -56,7 +56,7 @@ class Input
         ?float $initialAmount,
         ?float $regularPayment,
         ?int $numberOfRegularPaymentsPerYear,
-        ?int $numberOfYears,
+        ?float $numberOfYears,
         ?float $interestRatePerYear,
         ?float $finalAmount,
         bool $initialAmountIsUnknown,
@@ -118,7 +118,7 @@ class Input
         return $this->numberOfRegularPaymentsPerYear;
     }
 
-    public function getNumberOfYears(): ?int
+    public function getNumberOfYears(): ?float
     {
         if ($this->numberOfYearsIsUnknown()) {
             return null;

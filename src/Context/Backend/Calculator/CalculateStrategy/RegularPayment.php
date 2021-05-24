@@ -33,7 +33,7 @@ class RegularPayment implements CalculateStrategyInterface
             (float)$input->getInitialAmount(),
             round($regularPayment, 2),
             $input->getNumberOfRegularPaymentsPerYear(),
-            (int)$input->getNumberOfYears(),
+            (float)$input->getNumberOfYears(),
             (float)$input->getInterestRatePerYear(),
             (float)$input->getFinalAmount()
         );

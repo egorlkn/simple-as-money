@@ -31,7 +31,7 @@ class NumberOfYearsWithRegularPayments implements CalculateStrategyInterface
             (float)$input->getInitialAmount(),
             (float)$input->getRegularPayment(),
             $input->getNumberOfRegularPaymentsPerYear(),
-            (int)ceil($numberOfYears),
+            round($numberOfYears, 2),
             (float)$input->getInterestRatePerYear(),
             (float)$input->getFinalAmount()
         );

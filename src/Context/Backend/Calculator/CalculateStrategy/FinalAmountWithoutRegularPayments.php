@@ -27,7 +27,7 @@ class FinalAmountWithoutRegularPayments implements CalculateStrategyInterface
             (float)$input->getInitialAmount(),
             (float)$input->getRegularPayment(),
             $input->getNumberOfRegularPaymentsPerYear(),
-            (int)$input->getNumberOfYears(),
+            (float)$input->getNumberOfYears(),
             (float)$input->getInterestRatePerYear(),
             round($finalAmount, 2)
         );

@@ -88,7 +88,7 @@ class CalculatorInputForm extends AbstractType
                     'html5' => true,
                     'scale' => 0,
                     'attr' => [
-                        'step' => 1,
+                        'step' => 0.1,
                         'min' => 1,
                     ],
                     'input' => 'number',
