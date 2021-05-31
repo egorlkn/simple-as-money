@@ -80,19 +80,19 @@ class CommonResult
     private function buildYearlyResults(): YearlyResultCollection
     {
         $results = [];
-        $numberOfYears = $this->getNumberOfYears();
+        $numberOfYears = $leaveNumberOfYears = $this->getNumberOfYears();
         $numberOfRegularPaymentsPerYear = $this->getNumberOfRegularPaymentsPerYear();
         $regularPayment = $this->getRegularPayment();
         $initialAmount = $this->getInitialAmount();
         $ratePerYear = $this->getInterestRatePerYear() / 100;
 
         for ($i = 1.0; $i <= ceil($numberOfYears); $i++) {
-            $numberOfYears -= 1.0;
+            $leaveNumberOfYears -= 1.0;
 
-            if ($numberOfYears > 0.0) {
+            if ($leaveNumberOfYears > 0.0) {
                 $n = 1.0;
             } else {
-                $n = $numberOfYears + 1.0;
+                $n = $leaveNumberOfYears + 1.0;
             }
 
             if ($numberOfRegularPaymentsPerYear === 0) {

@@ -4,10 +4,13 @@ services:
   php:
     container_name: php
     user: 1000:1000
-    image: php:8.0.3-fpm-alpine
+    build: .
     env_file: ../../.env
+    environment:
+      - PHP_IDE_CONFIG=serverName=Docker
     volumes:
       - ../..:/var/www/app
+    working_dir: /var/www/app
     expose:
       - 9000
     networks:
