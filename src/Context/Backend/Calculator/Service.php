@@ -6,7 +6,7 @@ namespace App\Context\Backend\Calculator;
 
 use App\Context\Backend\Calculator\Exception\CalculatorException;
 use App\Context\Backend\Calculator\Model\Input;
-use App\Context\Backend\Calculator\Model\Result;
+use App\Context\Backend\Calculator\Model\CommonResult;
 
 class Service
 {
@@ -21,7 +21,7 @@ class Service
     /**
      * @throws CalculatorException
      */
-    public function doCalculation(Input $input): Result
+    public function doCalculation(Input $input): CommonResult
     {
         $input->validate();
 

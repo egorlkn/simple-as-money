@@ -6,7 +6,7 @@ namespace App\Context\Backend\Calculator\CalculateStrategy;
 
 use App\Context\Backend\Calculator\CalculateStrategyInterface;
 use App\Context\Backend\Calculator\Model\Input;
-use App\Context\Backend\Calculator\Model\Result;
+use App\Context\Backend\Calculator\Model\CommonResult;
 
 class RegularPayment implements CalculateStrategyInterface
 {
@@ -15,7 +15,7 @@ class RegularPayment implements CalculateStrategyInterface
         return $input->regularPaymentIsUnknown();
     }
 
-    public function doCalculation(Input $input): Result
+    public function doCalculation(Input $input): CommonResult
     {
         $PV = (float)$input->getInitialAmount();
         $d = (float)$input->getNumberOfRegularPaymentsPerYear();
@@ -29,7 +29,7 @@ class RegularPayment implements CalculateStrategyInterface
 
         $regularPayment = ($FV - $PV * ((1 + $j) ** $m)) / ((((1 + $j) ** $m) - 1) / $j);
 
-        return new Result(
+        return new CommonResult(
             (float)$input->getInitialAmount(),
             round($regularPayment, 2),
             $input->getNumberOfRegularPaymentsPerYear(),

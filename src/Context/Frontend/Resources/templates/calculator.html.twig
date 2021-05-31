@@ -58,6 +58,14 @@
                     <li>Ставка размещения в % годовых: <span>{{ result.interestRatePerYear }}</span></li>
                     <li>Сумма накопления: <span>{{ result.finalAmount }}</span></li>
                 </ul>
+
+                <div>Результат по годам:</div>
+                {% for yearlyResult in result.yearlyResults %}
+                    <ul>
+                        <li>Номер года: <span>{{ yearlyResult.numberOfYear }}</span></li>
+                        <li>Сумма накопления: <span>{{ yearlyResult.finalAmount }}</span></li>
+                    </ul>
+                {% endfor %}
             </div>
         {% endif %}
     </main>
