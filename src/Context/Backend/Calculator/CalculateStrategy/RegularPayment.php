@@ -25,7 +25,7 @@ class RegularPayment implements CalculateStrategyInterface
 
         $m = $n * $d;
 
-        $j = ((1 + $i) ** (1 / $m)) - 1;
+        $j = ((1 + $i) ** (1 / $d)) - 1;
 
         $regularPayment = ($FV - $PV * ((1 + $j) ** $m)) / ((((1 + $j) ** $m) - 1) / $j);
 
