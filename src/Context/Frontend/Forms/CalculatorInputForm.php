@@ -86,7 +86,7 @@ class CalculatorInputForm extends AbstractType
                 NumberType::class,
                 [
                     'html5' => true,
-                    'scale' => 0,
+                    'scale' => 1,
                     'attr' => [
                         'step' => 0.1,
                         'min' => 1,
