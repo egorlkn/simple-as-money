@@ -29,7 +29,7 @@ class InterestRatePerYearWithRegularPayments implements CalculateStrategyInterfa
         $jDownInterest = 0.0;
 
         while (true) {
-            $jUpInterest = round($jUpInterest + 0.01, 2);
+            $jUpInterest = round($jUpInterest + 0.001, 3);
             $jUp = $jUpInterest / 100;
 
             if ($this->isSolvingEquation($PV, $A, $FV, $m, $jUp)) {
@@ -37,23 +37,23 @@ class InterestRatePerYearWithRegularPayments implements CalculateStrategyInterfa
                 break;
             }
 
-            $jDownInterest = round($jDownInterest - 0.01, 2);
-            $jDown = $jDownInterest / 100;
-
-            if ($this->isSolvingEquation($PV, $A, $FV, $m, $jDown)) {
-                $j = $jDown;
-                break;
-            }
+//            $jDownInterest = round($jDownInterest - 0.01, 2);
+//            $jDown = $jDownInterest / 100;
+//
+//            if ($this->isSolvingEquation($PV, $A, $FV, $m, $jDown)) {
+//                $j = $jDown;
+//                break;
+//            }
         }
 
-        $interestRatePerYear = (((1 + $j) ** $m) - 1) * 100;
+        $interestRatePerYear = (((1 + $j) ** $d) - 1) * 100;
 
         return new CommonResult(
             (float)$input->getInitialAmount(),
             (float)$input->getRegularPayment(),
             $input->getNumberOfRegularPaymentsPerYear(),
             (float)$input->getNumberOfYears(),
-            round($interestRatePerYear, 2),
+            $interestRatePerYear,
             (float)$input->getFinalAmount()
         );
     }
@@ -65,17 +65,12 @@ class InterestRatePerYearWithRegularPayments implements CalculateStrategyInterfa
         float $m,
         float $j
     ): bool {
-        $leftA = $FV * $j + $A;
-        $leftB = $PV * $j + $A;
+        $a1 = $PV * ((1 + $j) ** $m);
+        $a2 = ((1 + $j) ** $m) - 1;
+        $a3 = $a2 / $j;
+        $a4 = $a3 * $A;
+        $calcFV = $a1 + $a4;
 
-        if ((int)$leftB === 0) {
-            return false;
-        }
-
-        $leftSubEquation = round($leftA / $leftB, 2);
-
-        $rightSubEquation = round((1 + $j) ** $m, 2);
-
-        return $leftSubEquation === $rightSubEquation;
+        return $calcFV >= ($FV * 0.9998) && $calcFV <= ($FV * 1.0002);
     }
 }

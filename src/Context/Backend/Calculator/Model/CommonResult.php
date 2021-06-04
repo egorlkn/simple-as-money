@@ -85,28 +85,26 @@ class CommonResult
         $regularPayment = $this->getRegularPayment();
         $initialAmount = $this->getInitialAmount();
         $ratePerYear = $this->getInterestRatePerYear() / 100;
+        $commonFinalAmount = $this->getFinalAmount();
 
         for ($i = 1.0; $i <= ceil($numberOfYears); $i++) {
             $leaveNumberOfYears -= 1.0;
 
-            if ($leaveNumberOfYears > 0.0) {
-                $n = 1.0;
-            } else {
-                $n = $leaveNumberOfYears + 1.0;
+            if ($leaveNumberOfYears <= 0.0) {
+                $results[] = new YearlyResult((int)$i, $commonFinalAmount);
+
+                break;
             }
 
             if ($numberOfRegularPaymentsPerYear === 0) {
-                $finalAmount = $initialAmount * ((1 + $ratePerYear) ** $n);
+                $finalAmount = $initialAmount * ((1 + $ratePerYear) ** 1.0);
             } else {
-                $m = $n * $numberOfRegularPaymentsPerYear;
-                $j = ((1 + $ratePerYear) ** (1 / $m)) - 1;
-                $finalAmount = $initialAmount * ((1 + $j) ** $m) + $regularPayment * (((1 + $j) ** $m) - 1 / $j);
+                $m = 1.0 * $numberOfRegularPaymentsPerYear;
+                $j = ((1 + $ratePerYear) ** (1 / $numberOfRegularPaymentsPerYear)) - 1;
+                $finalAmount = $initialAmount * ((1 + $j) ** $m) + $regularPayment * ((((1 + $j) ** $m) - 1) / $j);
             }
 
-            $results[] = new YearlyResult(
-                (int)$i,
-                round($finalAmount, 2)
-            );
+            $results[] = new YearlyResult((int)$i, $finalAmount);
 
             $initialAmount = $finalAmount;
         }
@@ -114,3 +112,4 @@ class CommonResult
         return new YearlyResultCollection($results);
     }
 }
+// @todo Убрать округление Количества лет в форме

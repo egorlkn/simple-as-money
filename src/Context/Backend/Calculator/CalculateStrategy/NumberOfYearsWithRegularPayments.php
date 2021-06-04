@@ -23,7 +23,9 @@ class NumberOfYearsWithRegularPayments implements CalculateStrategyInterface
         $i = (float)$input->getInterestRatePerYear() / 100;
         $FV = (float)$input->getFinalAmount();
 
-        $m = log(($FV * $i + $A) / ($PV * $i + $A), 1 + $i);
+        $j = ((1 + $i) ** (1 / $d)) - 1;
+
+        $m = log(($FV * $j + $A) / ($PV * $j + $A), 1 + $j);
 
         $numberOfYears = $m / $d;
 
@@ -31,7 +33,7 @@ class NumberOfYearsWithRegularPayments implements CalculateStrategyInterface
             (float)$input->getInitialAmount(),
             (float)$input->getRegularPayment(),
             $input->getNumberOfRegularPaymentsPerYear(),
-            round($numberOfYears, 2),
+            $numberOfYears,
             (float)$input->getInterestRatePerYear(),
             (float)$input->getFinalAmount()
         );

@@ -25,12 +25,12 @@ class InitialAmountWithRegularPayments implements CalculateStrategyInterface
 
         $m = $n * $d;
 
-        $j = ((1 + $i) ** (1 / $m)) - 1;
+        $j = ((1 + $i) ** (1 / $d)) - 1;
 
         $initialAmount = ($FV - $A * ((((1 + $j) ** $m) - 1) / $j)) / ((1 + $j) ** $m);
 
         return new CommonResult(
-            round($initialAmount, 2),
+            $initialAmount,
             (float)$input->getRegularPayment(),
             $input->getNumberOfRegularPaymentsPerYear(),
             (float)$input->getNumberOfYears(),

@@ -51,19 +51,19 @@
         {% if result is defined %}
             <div id="result">
                 <ul>
-                    <li>Начальная сумма размещения: <span>{{ result.initialAmount }}</span></li>
-                    <li>Сумма регулярного взноса: <span>{{ result.regularPayment }}</span></li>
+                    <li>Начальная сумма размещения: <span>{{ result.initialAmount|round(2) }}</span></li>
+                    <li>Сумма регулярного взноса: <span>{{ result.regularPayment|round(2) }}</span></li>
                     <li>Количество взносов в год: <span>{{ result.numberOfRegularPaymentsPerYear }}</span></li>
-                    <li>Количество лет: <span>{{ result.numberOfYears }}</span></li>
-                    <li>Ставка размещения в % годовых: <span>{{ result.interestRatePerYear }}</span></li>
-                    <li>Сумма накопления: <span>{{ result.finalAmount }}</span></li>
+                    <li>Количество лет: <span>{{ result.numberOfYears|round(1) }}</span></li>
+                    <li>Ставка размещения в % годовых: <span>{{ result.interestRatePerYear|round(2) }}</span></li>
+                    <li>Сумма накопления: <span>{{ result.finalAmount|round(2) }}</span></li>
                 </ul>
 
                 <div>Результат по годам:</div>
                 {% for yearlyResult in result.yearlyResults %}
                     <ul>
                         <li>Номер года: <span>{{ yearlyResult.numberOfYear }}</span></li>
-                        <li>Сумма накопления: <span>{{ yearlyResult.finalAmount }}</span></li>
+                        <li>Сумма накопления: <span>{{ yearlyResult.finalAmount|round(2) }}</span></li>
                     </ul>
                 {% endfor %}
             </div>
