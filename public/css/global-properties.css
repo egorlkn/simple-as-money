@@ -1,0 +1,14 @@
+:root {
+    --color-1: #000000;
+    --color-2: #ffffff;
+    --color-2-opacitry: rgba(255, 255, 255, 0.85);
+    --color-3: #960202;
+
+    --side-gap: 25px;
+    --top-gap: 25px;
+    --content-gap: var(--top-gap);
+    --header-h: 25px;
+    --footer-h: 25px;
+
+    --font-size: 15px;
+}

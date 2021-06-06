@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@400&family=Roboto:wght@300;700&display=swap');
+@import 'global-properties.css';
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    background-color: var(--color-2);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: var(--font-size);
+    line-height: 1.3;
+    color: var(--color-1);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'PT Serif', serif;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-3);
+}
+
+a:hover, a:focus {
+    background-color: var(--color-3);
+    color: var(--color-2);
+}
+
+body {
+    display: grid;
+    max-width: 100vw;
+    min-height: 100vh;
+    grid-template-columns: var(--side-gap) 1fr var(--side-gap);
+    grid-template-rows: calc(var(--header-h) * 2) 1fr var(--footer-h);
+    gap: var(--content-gap) 0;
+}
+
+#main_header {
+    grid-column: 2 / -2;
+    grid-row: 1 / 2;
+}
+
+main {
+    grid-column: 2 / -2;
+    grid-row: 2 / 4;
+    z-index: 100;
+}
+
+#main_footer {
+    grid-column: 2 / -2;
+    grid-row: 3 / 4;
+    z-index: 200;
+}
+
+body {
+    background-image: url('/images/bg-lines-834-min.png');
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    background-size: 145vw;
+}
+
+#main_header {
+    padding-top: var(--header-h);
+}
+
+#main_header a {
+    display: inline-block;
+    height: 100%;
+    background-color: transparent;
+    color: transparent;
+}
+
+#main_header a img {
+    display: inline-block;
+    height: 100%;
+}
+
+#main_footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25em;
+    font-size: 0.65em;
+    background-color: var(--color-2-opacitry);
+}
+
+@media all and (min-width: 576px) {
+    body {
+        background-image: url('/images/bg-lines-883-min.png');
+        background-size: 115vw;
+    }
+}
+
+@media all and (min-width: 768px) {
+    body {
+        background-image: url('/images/bg-lines-892-min.png');
+        background-size: 90vw;
+    }
+}
+
+@media all and (min-width: 992px) {
+    body {
+        background-image: url('/images/bg-lines-876-min.png');
+        background-size: 73vw;
+    }
+}
+
+@media all and (min-width: 1200px) {
+    body {
+        background-image: url('/images/bg-lines-1040-min.png');
+        background-size: 65vw;
+    }
+}
+
+@media all and (min-width: 1600px) {
+    body {
+        background-image: url('/images/bg-lines-1235-min.png');
+        background-size: 65vw;
+    }
+}
+
+@media all and (min-width: 1900px) {
+    body {
+        background-image: url('/images/bg-lines-1665-min.png');
+        background-size: 65vw;
+    }
+}

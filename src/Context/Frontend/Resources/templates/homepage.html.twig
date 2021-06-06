@@ -1,4 +1,4 @@
-{% extends 'landing.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block description %}
     Ресурс, на котором рассказывается о зарубежном подходе управления деньгами, постановке и достижении финансовых целей.
@@ -10,70 +10,61 @@
 
 {% block title %}{{ parent() }}{% endblock %}
 
-{% block body %}
-    <header id="main_header">
-        <a tabindex="5" href="/">
-            <img src="{{ asset('images/logo.svg') }}" alt="Site logo">
+{% block css %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/homepage.css?v=6621') }}">
+{% endblock %}
+
+{% block main %}
+    <article>
+        <h1>
+            Личные финансы - это сильно проще,
+            <small>чем Вы можете себе представить</small>
+        </h1>
+        <p>
+            И для того, чтобы правильно управлять своими деньгами не нужно проводить дни напролет у
+            монитора или торговых терминалов. Весь зарубежный мир живёт по этим правилам и люди прекрасно
+            справляются со своими задачами, достигают целей. В России же этой культуры пока нет.
+            Мы решили исправить эту ситуацию и запускаем ресурс, на котором будем рассказывать о том,
+            как на самом деле все работает. Вы сможете легко отличать хороший финансовый продукт от плохого,
+            и понять во что вам вкладываться, а во что - нет.
+        </p>
+    </article>
+    <div id="forbes_list">
+        <span>Читайте мои статьи на <i>Forbes</i></span>
+        <ul>
+            <li>
+                <a href="https://www.forbes.ru/finansy-i-investicii/422651-cena-straha-pochemu-luchshe-vseh-investiruyut-mertvye-i-neaktivnye"
+                   target="_blank">
+                    Цена страха: почему лучше всех инвестируют мертвые и неактивные инвесторы
+                </a>
+            </li>
+            <li>
+                <a href="https://www.forbes.ru/finansy-i-investicii/425123-ipo-s-nulevoy-summoy-kto-platit-za-prazdnik-dohodnostey-na-rynke"
+                   target="_blank">
+                    IPO с нулевой суммой: кто платит за праздник доходностей на рынке первичных размещений
+                </a>
+            </li>
+            <li>
+                <a href="https://www.forbes.ru/finansy-i-investicii/428267-glupost-ili-genialnost-pochemu-pokupka-kartinki-v-internete-za-693-mln"
+                   target="_blank">
+                    Глупость или гениальность: почему покупка картинки в интернете за $69,3 млн может стать
+                    лучшей инвестиционной идеей
+                </a>
+            </li>
+        </ul>
+    </div>
+    <address>
+        Финансовый консультант, кандидат экономических наук
+        <a href="https://www.instagram.com/simpleasmoney/" rel="author" target="_blank">
+            Вадим Погосьян
         </a>
-    </header>
-    <main>
-        <article>
-            <h1>
-                Личные финансы - это сильно проще,
-                <small>чем Вы можете себе представить</small>
-            </h1>
-            <p>
-                И для того, чтобы правильно управлять своими деньгами не нужно проводить дни напролет у
-                монитора или торговых терминалов. Весь зарубежный мир живёт по этим правилам и люди прекрасно
-                справляются со своими задачами, достигают целей. В России же этой культуры пока нет.
-                Мы решили исправить эту ситуацию и запускаем ресурс, на котором будем рассказывать о том,
-                как на самом деле все работает. Вы сможете легко отличать хороший финансовый продукт от плохого,
-                и понять во что вам вкладываться, а во что - нет.
-            </p>
-        </article>
-        <div id="forbes_list">
-            <span>Читайте мои статьи на <i>Forbes</i></span>
-            <ul>
-                <li>
-                    <a tabindex="1"
-                       href="https://www.forbes.ru/finansy-i-investicii/422651-cena-straha-pochemu-luchshe-vseh-investiruyut-mertvye-i-neaktivnye"
-                       target="_blank">
-                        Цена страха: почему лучше всех инвестируют мертвые и неактивные инвесторы
-                    </a>
-                </li>
-                <li>
-                    <a tabindex="2"
-                       href="https://www.forbes.ru/finansy-i-investicii/425123-ipo-s-nulevoy-summoy-kto-platit-za-prazdnik-dohodnostey-na-rynke"
-                       target="_blank">
-                        IPO с нулевой суммой: кто платит за праздник доходностей на рынке первичных размещений
-                    </a>
-                </li>
-                <li>
-                    <a tabindex="3"
-                       href="https://www.forbes.ru/finansy-i-investicii/428267-glupost-ili-genialnost-pochemu-pokupka-kartinki-v-internete-za-693-mln"
-                       target="_blank">
-                        Глупость или гениальность: почему покупка картинки в интернете за $69,3 млн может стать
-                        лучшей инвестиционной идеей
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <address>
-            Финансовый консультант, кандидат экономических наук
-            <a tabindex="4" href="https://www.instagram.com/simpleasmoney/" rel="author" target="_blank">
-                Вадим Погосьян
-            </a>
-        </address>
-        <img id="vadim"
-             srcset="{{ asset('images/vadim-886.png') }} 886w, {{ asset('images/vadim-575.png') }} 575w"
+    </address>
+    <div id="vadim">
+        <img srcset="{{ asset('images/vadim-886.png') }} 886w, {{ asset('images/vadim-575.png') }} 575w"
              sizes="(min-width: 1200px) 886px, 575px"
              src="{{ asset('images/vadim-886.png') }}"
              alt="Vadim Pogosyan photo"
         >
-    </main>
-    <footer id="main_footer">
-        <span>
-            Copyright &copy; 2021 SimpleAsMoney · <a tabindex="6" href="{{ url('policy') }}">Политика конфиденциальности</a>
-        </span>
-    </footer>
-{% endblock %}
+    </div>
+{% endblock main %}

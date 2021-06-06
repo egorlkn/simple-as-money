@@ -1,0 +1,20 @@
+@import 'global-properties.css';
+
+main {
+    grid-column: 1 / -1;
+    grid-row: 2 / 3;
+    padding: 0 calc(var(--side-gap) / 2);
+}
+
+main article {
+    display: flex;
+    flex-flow: column;
+    gap: var(--content-gap) 0;
+    padding: 0 calc(var(--side-gap) / 2);
+    background-color: var(--color-2-opacitry);
+    text-align: justify;
+}
+
+main article h1, h2 {
+    margin: 0;
+}
