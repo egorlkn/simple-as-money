@@ -11,10 +11,34 @@ main article {
     flex-flow: column;
     gap: var(--content-gap) 0;
     padding: 0 calc(var(--side-gap) / 2);
-    background-color: var(--color-2-opacitry);
+    background-color: var(--color-2-opacity);
     text-align: justify;
 }
 
 main article h1, h2 {
     margin: 0;
+}
+
+@media all and (min-width: 576px) {
+
+}
+
+@media all and (min-width: 768px) {
+
+}
+
+@media all and (min-width: 992px) {
+
+}
+
+@media all and (min-width: 1200px) {
+
+}
+
+@media all and (min-width: 1600px) {
+
+}
+
+@media all and (min-width: 1900px) {
+
 }

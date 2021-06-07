@@ -1,0 +1,5 @@
+@import 'global-properties.css';
+
+main {
+    background-color: var(--color-2-opacity);
+}

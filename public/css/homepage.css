@@ -83,3 +83,91 @@ address {
 #vadim img {
     max-width: 100%;
 }
+
+@media all and (min-width: 576px) {
+    article h1 {
+        font-size: 1.65em;
+    }
+}
+
+@media all and (min-width: 768px) {
+    article h1 {
+        font-size: 1.75em;
+    }
+}
+
+@media all and (min-width: 992px) {
+    article h1 {
+        font-size: 1.9em;
+    }
+}
+
+@media all and (min-width: 1200px) {
+    main {
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: min-content min-content auto;
+        gap: var(--content-gap);
+    }
+
+    article {
+        grid-column: 1 / 5;
+        grid-row: 1 / 2;
+        background-color: var(--color-2-opacity);
+        padding-right: var(--content-gap);
+        padding-bottom: var(--content-gap);
+    }
+
+    article h1 {
+        font-size: 1.9em;
+    }
+
+    #forbes_list {
+        grid-column: 1 / 4;
+        grid-row: 2 / 3;
+        background-color: var(--color-2-opacity);
+        padding-right: var(--content-gap);
+        padding-bottom: var(--content-gap);
+        text-align: justify;
+    }
+
+    #forbes_list span i {
+        height: 18px;
+        background-size: 57px;
+    }
+
+    address {
+        grid-column: 1 / 4;
+        grid-row: 3 / 4;
+    }
+
+    #vadim {
+        grid-column: 4 / 7;
+        grid-row: 1 / 4;
+        position: relative;
+    }
+
+    #vadim img {
+        max-width: 100%;
+        max-height: 105%;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+}
+
+@media all and (min-width: 1600px) {
+    article h1 {
+        font-size: 2.2em;
+    }
+
+    #forbes_list span i {
+        height: 21px;
+        background-size: 68px;
+    }
+}
+
+@media all and (min-width: 1900px) {
+    article h1 {
+        font-size: 2.4em;
+    }
+}
