@@ -35,8 +35,8 @@ body {
     display: grid;
     max-width: 100vw;
     min-height: 100vh;
-    grid-template-columns: var(--side-gap) 1fr var(--side-gap);
-    grid-template-rows: calc(var(--header-h) * 2) 1fr var(--footer-h);
+    grid-template-columns: var(--side-gap) calc(100vw - var(--side-gap) * 2) var(--side-gap);
+    grid-template-rows: calc(var(--header-h) * 2) auto var(--footer-h);
     gap: var(--content-gap) 0;
 }
 
