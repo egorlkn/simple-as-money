@@ -4,14 +4,17 @@ main {
     grid-column: 1 / -1;
     grid-row: 2 / 3;
     padding: 0 calc(var(--side-gap) / 2);
+    margin: 0 calc(var(--side-gap) / 2);
+    background-color: var(--color-2-opacity);
 }
 
 main article {
     display: flex;
     flex-flow: column;
     gap: var(--content-gap) 0;
-    padding: 0 calc(var(--side-gap) / 2);
-    background-color: var(--color-2-opacity);
+}
+
+main article p {
     text-align: justify;
 }
 

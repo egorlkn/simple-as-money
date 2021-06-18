@@ -82,9 +82,8 @@ body {
 
 #main_footer {
     display: flex;
-    justify-content: center;
+    flex-flow: column;
     align-items: center;
-    gap: 0.25em;
     font-size: 0.65em;
     background-color: var(--color-2-opacity);
 }
@@ -93,6 +92,12 @@ body {
     body {
         background-image: url('/images/bg-lines-883-min.png');
         background-size: 115vw;
+    }
+
+    #main_footer {
+        flex-flow: row;
+        justify-content: center;
+        gap: 0.25em;
     }
 }
 
