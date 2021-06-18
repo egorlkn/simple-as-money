@@ -14,10 +14,6 @@ main article {
     gap: var(--content-gap) 0;
 }
 
-main article p {
-    text-align: justify;
-}
-
 main article h1, h2 {
     margin: 0;
 }

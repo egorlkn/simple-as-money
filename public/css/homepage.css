@@ -61,7 +61,7 @@ article p {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: calc(var(--content-gap) / 4) 0;
+    gap: calc(var(--content-gap) / 2) 0;
 }
 
 #forbes_list ul li {
@@ -121,13 +121,16 @@ address {
         font-size: 1.9em;
     }
 
+    article p {
+        text-align: left;
+    }
+
     #forbes_list {
         grid-column: 1 / 4;
         grid-row: 2 / 3;
         background-color: var(--color-2-opacity);
         padding-right: var(--content-gap);
         padding-bottom: var(--content-gap);
-        text-align: justify;
     }
 
     #forbes_list span i {
