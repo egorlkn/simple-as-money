@@ -1,3 +1,11 @@
-frontend:
-  resource: ../../src/Context/Frontend/
+static:
+  resource: ../../src/Context/Frontend/StaticRequestHandler.php
   type: annotation
+  prefix: /
+  name_prefix: static_
+
+api:
+  resource: ../../src/Context/Frontend/AjaxRequestHandler.php
+  type: annotation
+  prefix: /api/
+  name_prefix: api_
