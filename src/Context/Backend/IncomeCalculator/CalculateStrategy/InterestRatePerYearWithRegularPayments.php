@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Context\Backend\IncomeCalculator\CalculateStrategy;
 
 use App\Context\Backend\IncomeCalculator\CalculateStrategyInterface;
+use App\Context\Backend\IncomeCalculator\Exception\CalculatorException;
 use App\Context\Backend\IncomeCalculator\Model\Input;
 use App\Context\Backend\IncomeCalculator\Model\Result;
 
@@ -15,6 +16,9 @@ class InterestRatePerYearWithRegularPayments implements CalculateStrategyInterfa
         return $input->interestRatePerYearIsUnknown() && ((float)$input->getRegularPayment() > 0.0);
     }
 
+    /**
+     * @throws CalculatorException
+     */
     public function doCalculation(Input $input): Result
     {
         $PV = (float)$input->getInitialAmount();
@@ -26,9 +30,15 @@ class InterestRatePerYearWithRegularPayments implements CalculateStrategyInterfa
         $m = $n * $d;
 
         $jUpInterest = 0.0;
-        $jDownInterest = 0.0;
+        $startTime = time();
 
         while (true) {
+            $runningTime = time() - $startTime;
+
+            if ($runningTime > 10) {
+                throw CalculatorException::wrongCalculation();
+            }
+
             $jUpInterest = round($jUpInterest + 0.001, 3);
             $jUp = $jUpInterest / 100;
 
@@ -36,14 +46,6 @@ class InterestRatePerYearWithRegularPayments implements CalculateStrategyInterfa
                 $j = $jUp;
                 break;
             }
-
-//            $jDownInterest = round($jDownInterest - 0.01, 2);
-//            $jDown = $jDownInterest / 100;
-//
-//            if ($this->isSolvingEquation($PV, $A, $FV, $m, $jDown)) {
-//                $j = $jDown;
-//                break;
-//            }
         }
 
         $interestRatePerYear = (((1 + $j) ** $d) - 1) * 100;

@@ -8,12 +8,18 @@ use Exception;
 
 class CalculatorException extends Exception
 {
-    protected const UNKNOWN_ERROR = 1000;
-    protected const INPUT_VALIDATION_ERROR = 1001;
+    public const UNKNOWN_ERROR = 1000;
+    public const INPUT_VALIDATION_ERROR = 1001;
+    public const WRONG_CALCULATION_ERROR = 1002;
 
     protected function __construct($message = '', $code = 0)
     {
         parent::__construct($message, $code);
+    }
+
+    public static function wrongCalculation(): self
+    {
+        return new self('Wrong calculation', self::WRONG_CALCULATION_ERROR);
     }
 
     public static function unknownError(): self

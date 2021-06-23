@@ -8,6 +8,7 @@ use App\Context\Backend\IncomeCalculator\Exception\CalculatorException;
 use App\Context\Backend\IncomeCalculator\Model\Input;
 use App\Context\Backend\IncomeCalculator\Model\Result;
 use App\Context\Backend\IncomeCalculator\Validation\InputValidator;
+use DivisionByZeroError;
 use Webmozart\Assert\Assert;
 
 class Service
@@ -32,10 +33,14 @@ class Service
     {
         $this->inputValidator->validate($input);
 
-        foreach ($this->strategies as $strategy) {
-            if ($strategy->canHandle($input)) {
-                return $strategy->doCalculation($input);
+        try {
+            foreach ($this->strategies as $strategy) {
+                if ($strategy->canHandle($input)) {
+                    return $strategy->doCalculation($input);
+                }
             }
+        } catch (DivisionByZeroError $error) {
+            throw CalculatorException::wrongCalculation();
         }
 
         throw CalculatorException::unknownError();
