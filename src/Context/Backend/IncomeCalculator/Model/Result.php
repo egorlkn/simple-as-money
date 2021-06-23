@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Context\Backend\Calculator\Model;
+namespace App\Context\Backend\IncomeCalculator\Model;
 
-class CommonResult
+class Result
 {
     private float $initialAmount;
 
@@ -18,7 +18,7 @@ class CommonResult
 
     private float $finalAmount;
 
-    private ?YearlyResultCollection $yearlyResults = null;
+    private ?YearlyIncomeCollection $yearlyResults = null;
 
     public function __construct(
         float $initialAmount,
@@ -66,20 +66,21 @@ class CommonResult
         return $this->finalAmount;
     }
 
-    public function getYearlyResults(): YearlyResultCollection
+    public function getYearlyIncomeCollection(): YearlyIncomeCollection
     {
-        if ($this->yearlyResults instanceof YearlyResultCollection) {
+        if ($this->yearlyResults instanceof YearlyIncomeCollection) {
             return $this->yearlyResults;
         }
 
-        $this->yearlyResults = $this->buildYearlyResults();
+        $this->yearlyResults = $this->calcYearlyIncomeCollection();
 
         return $this->yearlyResults;
     }
 
-    private function buildYearlyResults(): YearlyResultCollection
+    private function calcYearlyIncomeCollection(): YearlyIncomeCollection
     {
         $results = [];
+
         $numberOfYears = $leaveNumberOfYears = $this->getNumberOfYears();
         $numberOfRegularPaymentsPerYear = $this->getNumberOfRegularPaymentsPerYear();
         $regularPayment = $this->getRegularPayment();
@@ -91,7 +92,7 @@ class CommonResult
             $leaveNumberOfYears -= 1.0;
 
             if ($leaveNumberOfYears <= 0.0) {
-                $results[] = new YearlyResult((int)$i, $commonFinalAmount);
+                $results[] = new YearlyIncome((int)$i, $commonFinalAmount);
 
                 break;
             }
@@ -104,12 +105,11 @@ class CommonResult
                 $finalAmount = $initialAmount * ((1 + $j) ** $m) + $regularPayment * ((((1 + $j) ** $m) - 1) / $j);
             }
 
-            $results[] = new YearlyResult((int)$i, $finalAmount);
+            $results[] = new YearlyIncome((int)$i, $finalAmount);
 
             $initialAmount = $finalAmount;
         }
 
-        return new YearlyResultCollection($results);
+        return new YearlyIncomeCollection($results);
     }
 }
-// @todo Убрать округление Количества лет в форме

@@ -9,17 +9,17 @@ services:
     resource: '../src/'
     exclude:
       - '../src/Kernel.php'
-      - '../src/Context/Backend/Calculator/{Exception,Model}'
+      - '../src/Context/Backend/IncomeCalculator/{Exception,Model}'
 
-  App\Context\Backend\Calculator\Service:
+  App\Context\Backend\IncomeCalculator\Service:
     arguments:
       $strategies:
-        - '@App\Context\Backend\Calculator\CalculateStrategy\RegularPayment'
-        - '@App\Context\Backend\Calculator\CalculateStrategy\FinalAmountWithRegularPayments'
-        - '@App\Context\Backend\Calculator\CalculateStrategy\FinalAmountWithoutRegularPayments'
-        - '@App\Context\Backend\Calculator\CalculateStrategy\NumberOfYearsWithRegularPayments'
-        - '@App\Context\Backend\Calculator\CalculateStrategy\NumberOfYearsWithoutRegularPayments'
-        - '@App\Context\Backend\Calculator\CalculateStrategy\InterestRatePerYearWithRegularPayments'
-        - '@App\Context\Backend\Calculator\CalculateStrategy\InterestRatePerYearWithoutRegularPayments'
-        - '@App\Context\Backend\Calculator\CalculateStrategy\InitialAmountWithRegularPayments'
-        - '@App\Context\Backend\Calculator\CalculateStrategy\InitialAmountWithoutRegularPayments'
+        - '@App\Context\Backend\IncomeCalculator\CalculateStrategy\RegularPayment'
+        - '@App\Context\Backend\IncomeCalculator\CalculateStrategy\FinalAmountWithRegularPayments'
+        - '@App\Context\Backend\IncomeCalculator\CalculateStrategy\FinalAmountWithoutRegularPayments'
+        - '@App\Context\Backend\IncomeCalculator\CalculateStrategy\NumberOfYearsWithRegularPayments'
+        - '@App\Context\Backend\IncomeCalculator\CalculateStrategy\NumberOfYearsWithoutRegularPayments'
+        - '@App\Context\Backend\IncomeCalculator\CalculateStrategy\InterestRatePerYearWithRegularPayments'
+        - '@App\Context\Backend\IncomeCalculator\CalculateStrategy\InterestRatePerYearWithoutRegularPayments'
+        - '@App\Context\Backend\IncomeCalculator\CalculateStrategy\InitialAmountWithRegularPayments'
+        - '@App\Context\Backend\IncomeCalculator\CalculateStrategy\InitialAmountWithoutRegularPayments'

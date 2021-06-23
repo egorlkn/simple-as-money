@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Context\Backend\Calculator\Model;
+namespace App\Context\Backend\IncomeCalculator\Model;
 
-class YearlyResult
+class YearlyIncome
 {
     private int $numberOfYear;
 
