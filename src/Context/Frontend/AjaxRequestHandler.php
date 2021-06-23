@@ -13,9 +13,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class AjaxRequestHandler extends AbstractController
 {
     /**
-     * @Route(path="calculator", methods={"GET"}, name="calculator")
+     * @Route(path="calculator/income", methods={"GET"}, name="calculator_income")
      */
-    public function calculatorAjax(Request $request): Response
+    public function incomeCalculator(Request $request): Response
+    {
+        if (!$request->isXmlHttpRequest()) {
+            return new Response(Response::$statusTexts[Response::HTTP_NOT_ACCEPTABLE], Response::HTTP_NOT_ACCEPTABLE);
+        }
+
+        return new JsonResponse();
+    }
+
+    /**
+     * @Route(path="calculator/outcome", methods={"GET"}, name="calculator_outcome")
+     */
+    public function outcomeCalculator(Request $request): Response
     {
         if (!$request->isXmlHttpRequest()) {
             return new Response(Response::$statusTexts[Response::HTTP_NOT_ACCEPTABLE], Response::HTTP_NOT_ACCEPTABLE);
