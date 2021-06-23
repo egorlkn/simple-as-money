@@ -1,11 +1,11 @@
 static:
-  resource: ../../src/Context/Frontend/StaticRequestHandler.php
+  resource: ../../src/Infrastructure/StaticRequestHandler.php
   type: annotation
   prefix: /
   name_prefix: static_
 
 api:
-  resource: ../../src/Context/Frontend/AjaxRequestHandler.php
+  resource: ../../src/Infrastructure/AjaxRequestHandler.php
   type: annotation
   prefix: /api/
   name_prefix: api_

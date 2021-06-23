@@ -1,2 +1,2 @@
 twig:
-  default_path: '%kernel.project_dir%/src/Context/Frontend/Resources/templates'
+  default_path: '%kernel.project_dir%/src/Infrastructure/Resources/templates'

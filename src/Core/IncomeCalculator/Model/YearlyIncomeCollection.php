@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Context\Backend\IncomeCalculator\Model;
+namespace App\Core\IncomeCalculator\Model;
 
 use ArrayIterator;
 use Webmozart\Assert\Assert;

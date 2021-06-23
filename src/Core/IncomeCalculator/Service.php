@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Context\Backend\IncomeCalculator;
+namespace App\Core\IncomeCalculator;
 
-use App\Context\Backend\IncomeCalculator\Exception\CalculatorException;
-use App\Context\Backend\IncomeCalculator\Model\Input;
-use App\Context\Backend\IncomeCalculator\Model\Result;
-use App\Context\Backend\IncomeCalculator\Validation\InputValidator;
+use App\Core\IncomeCalculator\Exception\CalculatorException;
+use App\Core\IncomeCalculator\Model\Input;
+use App\Core\IncomeCalculator\Model\Result;
+use App\Core\IncomeCalculator\Validation\InputValidator;
 use DivisionByZeroError;
 use Webmozart\Assert\Assert;
 

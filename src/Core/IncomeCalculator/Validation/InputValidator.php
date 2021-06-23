@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Context\Backend\IncomeCalculator\Validation;
+namespace App\Core\IncomeCalculator\Validation;
 
-use App\Context\Backend\IncomeCalculator\Exception\InputValidationException;
-use App\Context\Backend\IncomeCalculator\Model\Input;
+use App\Core\IncomeCalculator\Exception\InputValidationException;
+use App\Core\IncomeCalculator\Model\Input;
 
 class InputValidator
 {

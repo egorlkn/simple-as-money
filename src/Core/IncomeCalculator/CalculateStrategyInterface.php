@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Context\Backend\IncomeCalculator;
+namespace App\Core\IncomeCalculator;
 
-use App\Context\Backend\IncomeCalculator\Model\Input;
-use App\Context\Backend\IncomeCalculator\Model\Result;
+use App\Core\IncomeCalculator\Model\Input;
+use App\Core\IncomeCalculator\Model\Result;
 
 interface CalculateStrategyInterface
 {

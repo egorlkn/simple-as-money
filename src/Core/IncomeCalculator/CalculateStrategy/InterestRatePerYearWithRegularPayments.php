@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Context\Backend\IncomeCalculator\CalculateStrategy;
+namespace App\Core\IncomeCalculator\CalculateStrategy;
 
-use App\Context\Backend\IncomeCalculator\CalculateStrategyInterface;
-use App\Context\Backend\IncomeCalculator\Exception\CalculatorException;
-use App\Context\Backend\IncomeCalculator\Model\Input;
-use App\Context\Backend\IncomeCalculator\Model\Result;
+use App\Core\IncomeCalculator\CalculateStrategyInterface;
+use App\Core\IncomeCalculator\Exception\CalculatorException;
+use App\Core\IncomeCalculator\Model\Input;
+use App\Core\IncomeCalculator\Model\Result;
 
 class InterestRatePerYearWithRegularPayments implements CalculateStrategyInterface
 {
