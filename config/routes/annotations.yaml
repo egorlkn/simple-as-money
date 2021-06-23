@@ -1,11 +1,9 @@
 static:
-  resource: ../../src/Infrastructure/StaticRequestHandler.php
+  resource: ../../src/Infrastructure/Static/RequestHandler.php
   type: annotation
   prefix: /
   name_prefix: static_
 
 api:
-  resource: ../../src/Infrastructure/AjaxRequestHandler.php
+  resource: ../../src/Infrastructure/IncomeCalculator/RequestHandler.php
   type: annotation
-  prefix: /api/
-  name_prefix: api_

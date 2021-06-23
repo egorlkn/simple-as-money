@@ -17,6 +17,11 @@ class InputValidator
         $errors = [];
 
         $errors = array_merge($errors, $this->validateNumberOfUnknownValues($input));
+
+        if (!empty($errors)) {
+            throw InputValidationException::create($errors);
+        }
+
         $errors = array_merge($errors, $this->validateInitialAmount($input));
         $errors = array_merge($errors, $this->validateRegularPayment($input));
         $errors = array_merge($errors, $this->validateNumberOfRegularPaymentsPerYear($input));
@@ -24,11 +29,9 @@ class InputValidator
         $errors = array_merge($errors, $this->validateInterestRatePerYear($input));
         $errors = array_merge($errors, $this->validateFinalAmount($input));
 
-        if (empty($errors)) {
-            return;
+        if (!empty($errors)) {
+            throw InputValidationException::create($errors);
         }
-
-        throw InputValidationException::create($errors);
     }
 
     private function validateNumberOfUnknownValues(Input $input): array
@@ -122,13 +125,13 @@ class InputValidator
         if ($regularPayment === 0.0) {
             if ($numberOfRegularPaymentsPerYear !== 0) {
                 return [
-                    'При нулевой Сумме регулярного взноса Количество взносов в год должно быть равно нулю'
+                    'Количество взносов в год должно быть равно нулю'
                 ];
             }
         } else {
             if ($numberOfRegularPaymentsPerYear < 1) {
                 return [
-                    'При заданной Сумме регулярного взноса Количество взносов в год должно быть больше или равно еденицы'
+                    'Количество взносов в год должно быть больше или равно еденицы'
                 ];
             }
         }

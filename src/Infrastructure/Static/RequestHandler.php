@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure;
+namespace App\Infrastructure\Static;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class StaticRequestHandler extends AbstractController
+class RequestHandler extends AbstractController
 {
     /**
      * @Route(path="/", methods={"GET"}, name="homepage")
