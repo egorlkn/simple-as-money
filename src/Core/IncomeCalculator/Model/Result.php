@@ -18,7 +18,7 @@ class Result
 
     private float $finalAmount;
 
-    private ?YearlyIncomeCollection $yearlyResults = null;
+    private ?YearlyBalanceCollection $yearlyBalances = null;
 
     public function __construct(
         float $initialAmount,
@@ -66,18 +66,18 @@ class Result
         return $this->finalAmount;
     }
 
-    public function getYearlyIncomeCollection(): YearlyIncomeCollection
+    public function getYearlyBalanceCollection(): YearlyBalanceCollection
     {
-        if ($this->yearlyResults instanceof YearlyIncomeCollection) {
-            return $this->yearlyResults;
+        if ($this->yearlyBalances instanceof YearlyBalanceCollection) {
+            return $this->yearlyBalances;
         }
 
-        $this->yearlyResults = $this->calcYearlyIncomeCollection();
+        $this->yearlyBalances = $this->calcYearlyBalances();
 
-        return $this->yearlyResults;
+        return $this->yearlyBalances;
     }
 
-    private function calcYearlyIncomeCollection(): YearlyIncomeCollection
+    private function calcYearlyBalances(): YearlyBalanceCollection
     {
         $results = [];
 
@@ -92,7 +92,7 @@ class Result
             $leaveNumberOfYears -= 1.0;
 
             if ($leaveNumberOfYears <= 0.0) {
-                $results[] = new YearlyIncome((int)$i, $commonFinalAmount);
+                $results[] = new YearlyBalance((int)$i, $commonFinalAmount);
 
                 break;
             }
@@ -105,11 +105,11 @@ class Result
                 $finalAmount = $initialAmount * ((1 + $j) ** $m) + $regularPayment * ((((1 + $j) ** $m) - 1) / $j);
             }
 
-            $results[] = new YearlyIncome((int)$i, $finalAmount);
+            $results[] = new YearlyBalance((int)$i, $finalAmount);
 
             $initialAmount = $finalAmount;
         }
 
-        return new YearlyIncomeCollection($results);
+        return new YearlyBalanceCollection($results);
     }
 }

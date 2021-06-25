@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace App\Core\IncomeCalculator\Model;
 
-class YearlyIncome
+class YearlyBalance
 {
     private int $numberOfYear;
 
-    private float $finalAmount;
+    private float $amount;
 
-    public function __construct(int $numberOfYear, float $finalAmount)
+    public function __construct(int $numberOfYear, float $amount)
     {
         $this->numberOfYear = $numberOfYear;
-        $this->finalAmount = $finalAmount;
+        $this->amount = $amount;
     }
 
     public function getNumberOfYear(): int
@@ -21,8 +21,8 @@ class YearlyIncome
         return $this->numberOfYear;
     }
 
-    public function getFinalAmount(): float
+    public function getAmount(): float
     {
-        return $this->finalAmount;
+        return $this->amount;
     }
 }

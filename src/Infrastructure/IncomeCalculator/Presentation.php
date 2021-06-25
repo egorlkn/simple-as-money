@@ -58,13 +58,13 @@ class Presentation
 
     private function getSuccessfulView(): array
     {
-        $yearlyIncomeCollection = $this->result->getYearlyIncomeCollection();
-        $yearlyIncomeView = [];
+        $yearlyBalances = $this->result->getYearlyBalanceCollection();
+        $yearlyBalancesView = [];
 
-        foreach ($yearlyIncomeCollection->getIterator() as $yearlyIncome) {
-            $yearlyIncomeView[] = [
-                'number_of_year' => $yearlyIncome->getNumberOfYear(),
-                'yearly_final_amount' => round($yearlyIncome->getFinalAmount(), 2),
+        foreach ($yearlyBalances->getIterator() as $yearlyBalance) {
+            $yearlyBalancesView[] = [
+                'number_of_year' => $yearlyBalance->getNumberOfYear(),
+                'amount' => round($yearlyBalance->getAmount(), 2),
             ];
         }
 
@@ -75,7 +75,7 @@ class Presentation
             'number_of_years' => round($this->result->getNumberOfYears(), 1),
             'interest_rate_per_year' => round($this->result->getInterestRatePerYear(), 2),
             'final_amount' => round($this->result->getFinalAmount(), 2),
-            'yearly_income' => $yearlyIncomeView,
+            'yearly_balances' => $yearlyBalancesView,
         ];
     }
 
