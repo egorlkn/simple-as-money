@@ -153,7 +153,7 @@ class InputValidator
             ];
         }
 
-        if ($numberOfYears < 1) {
+        if ($numberOfYears < 1.0) {
             return [
                 'Количество лет должно быть больше или равно единицы'
             ];
@@ -199,29 +199,9 @@ class InputValidator
             ];
         }
 
-        $simpleFinalAmount = 0.0;
-
-        $initialAmount = $input->getInitialAmount();
-        if (is_float($initialAmount)) {
-            $simpleFinalAmount += $initialAmount;
-        }
-
-        $regularPayment = $input->getRegularPayment();
-        if (is_float($regularPayment)) {
-            $numberOfYears = $input->getNumberOfYears();
-
-            if (is_float($numberOfYears)) {
-                $numberOfRegularPaymentsPerYear = $input->getNumberOfRegularPaymentsPerYear();
-
-                $simpleFinalAmount += ($regularPayment * $numberOfRegularPaymentsPerYear * $numberOfYears);
-            } else {
-                $simpleFinalAmount += $regularPayment;
-            }
-        }
-
-        if ($finalAmount <= $simpleFinalAmount) {
+        if ($finalAmount <= 0.0) {
             return [
-                'Сумма накопления должна быть больше суммы Начального размещения вместе со всеми Регулярными взоносами'
+                'Сумма накопления должна быть больше нуля'
             ];
         }
 
