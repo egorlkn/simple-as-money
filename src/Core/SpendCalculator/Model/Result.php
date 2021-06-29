@@ -12,13 +12,13 @@ class Result
 
     private int $numberOfPaymentsPerYear;
 
-    private float $numberOfYears;
+    private int $numberOfYears;
 
     private float $interestRatePerYear;
 
     private float $finalAmount;
 
-    private float $numberOfYearsUntilFistPayment;
+    private int $numberOfYearsUntilFistPayment;
 
     private float $inflation;
 
@@ -26,10 +26,10 @@ class Result
         float $initialAmount,
         float $paymentAmount,
         int $numberOfPaymentsPerYear,
-        float $numberOfYears,
+        int $numberOfYears,
         float $interestRatePerYear,
         float $finalAmount,
-        float $numberOfYearsUntilFistPayment,
+        int $numberOfYearsUntilFistPayment,
         float $inflation
     ) {
         $this->initialAmount = $initialAmount;
@@ -57,7 +57,7 @@ class Result
         return $this->numberOfPaymentsPerYear;
     }
 
-    public function getNumberOfYears(): float
+    public function getNumberOfYears(): int
     {
         return $this->numberOfYears;
     }
@@ -72,7 +72,7 @@ class Result
         return $this->finalAmount;
     }
 
-    public function getNumberOfYearsUntilFistPayment(): float
+    public function getNumberOfYearsUntilFistPayment(): int
     {
         return $this->numberOfYearsUntilFistPayment;
     }

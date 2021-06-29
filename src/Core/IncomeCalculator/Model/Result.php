@@ -12,7 +12,7 @@ class Result
 
     private int $numberOfRegularPaymentsPerYear;
 
-    private float $numberOfYears;
+    private int $numberOfYears;
 
     private float $interestRatePerYear;
 
@@ -24,7 +24,7 @@ class Result
         float $initialAmount,
         float $regularPayment,
         int $numberOfRegularPaymentsPerYear,
-        float $numberOfYears,
+        int $numberOfYears,
         float $interestRatePerYear,
         float $finalAmount
     ) {
@@ -51,7 +51,7 @@ class Result
         return $this->numberOfRegularPaymentsPerYear;
     }
 
-    public function getNumberOfYears(): float
+    public function getNumberOfYears(): int
     {
         return $this->numberOfYears;
     }
@@ -88,11 +88,11 @@ class Result
         $ratePerYear = $this->getInterestRatePerYear() / 100;
         $commonFinalAmount = $this->getFinalAmount();
 
-        for ($i = 1.0; $i <= ceil($numberOfYears); $i++) {
-            $leaveNumberOfYears -= 1.0;
+        for ($i = 1; $i <= $numberOfYears; $i++) {
+            --$leaveNumberOfYears;
 
-            if ($leaveNumberOfYears <= 0.0) {
-                $results[] = new YearlyBalance((int)$i, $commonFinalAmount);
+            if ($leaveNumberOfYears === 0) {
+                $results[] = new YearlyBalance($i, $commonFinalAmount);
 
                 break;
             }
@@ -105,7 +105,7 @@ class Result
                 $finalAmount = $initialAmount * ((1 + $j) ** $m) + $regularPayment * ((((1 + $j) ** $m) - 1) / $j);
             }
 
-            $results[] = new YearlyBalance((int)$i, $finalAmount);
+            $results[] = new YearlyBalance($i, $finalAmount);
 
             $initialAmount = $finalAmount;
         }

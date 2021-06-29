@@ -12,7 +12,7 @@ class Input
 
     private int $numberOfRegularPaymentsPerYear;
 
-    private ?float $numberOfYears;
+    private ?int $numberOfYears;
 
     private ?float $interestRatePerYear;
 
@@ -28,7 +28,7 @@ class Input
         ?float $initialAmount,
         ?float $regularPayment,
         int $numberOfRegularPaymentsPerYear,
-        ?float $numberOfYears,
+        ?int $numberOfYears,
         ?float $interestRatePerYear,
         ?float $finalAmount,
         bool $initialAmountIsUnknown,
@@ -73,7 +73,7 @@ class Input
         return $this->numberOfRegularPaymentsPerYear;
     }
 
-    public function getNumberOfYears(): ?float
+    public function getNumberOfYears(): ?int
     {
         if ($this->numberOfYearsIsUnknown()) {
             return null;

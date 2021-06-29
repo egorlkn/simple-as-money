@@ -62,10 +62,10 @@ class Presentation
             'initial_amount' => round($this->result->getInitialAmount(), 2),
             'payment_amount' => round($this->result->getPaymentAmount(), 2),
             'number_of_payments_per_year' => $this->result->getNumberOfPaymentsPerYear(),
-            'number_of_years' => round($this->result->getNumberOfYears(), 1),
+            'number_of_years' => $this->result->getNumberOfYears(),
             'interest_rate_per_year' => round($this->result->getInterestRatePerYear(), 2),
             'final_amount' => round($this->result->getFinalAmount(), 2),
-            'numberOfYearsUntilFistPayment' => round($this->result->getNumberOfYearsUntilFistPayment(), 2),
+            'numberOfYearsUntilFistPayment' => $this->result->getNumberOfYearsUntilFistPayment(),
             'inflation' => round($this->result->getInflation(), 2),
         ];
     }

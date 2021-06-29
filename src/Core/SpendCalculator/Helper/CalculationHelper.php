@@ -17,8 +17,8 @@ class CalculationHelper
     public function calcPaymentsWithInflation(
         float $paymentAmount,
         int $numberOfPaymentsPerYear,
-        float $numberOfYears,
-        float $numberOfYearsUntilFistPayment,
+        int $numberOfYears,
+        int $numberOfYearsUntilFistPayment,
         float $inflationPerPeriod
     ): array {
         $list = [];

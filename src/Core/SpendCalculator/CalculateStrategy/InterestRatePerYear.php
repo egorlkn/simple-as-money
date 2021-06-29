@@ -29,7 +29,7 @@ class InterestRatePerYear implements CalculateStrategyInterface
         $PV = (float)$input->getInitialAmount();
         $H = (float)$input->getPaymentAmount();
         $x = $input->getNumberOfPaymentsPerYear();
-        $n = (float)$input->getNumberOfYears();
+        $n = (int)$input->getNumberOfYears();
         $FV = (float)$input->getFinalAmount();
         $z = $input->getNumberOfYearsUntilFistPayment();
         $k = $input->getInflation() / 100;
@@ -48,7 +48,7 @@ class InterestRatePerYear implements CalculateStrategyInterface
         while (true) {
             $runningTime = time() - $startTime;
 
-            if ($runningTime > 10) {
+            if ($runningTime > 5) {
                 throw CalculatorException::wrongCalculation();
             }
 
@@ -66,7 +66,7 @@ class InterestRatePerYear implements CalculateStrategyInterface
             (float)$input->getInitialAmount(),
             (float)$input->getPaymentAmount(),
             $input->getNumberOfPaymentsPerYear(),
-            (float)$input->getNumberOfYears(),
+            (int)$input->getNumberOfYears(),
             $interestRatePerYear,
             (float)$input->getFinalAmount(),
             $input->getNumberOfYearsUntilFistPayment(),

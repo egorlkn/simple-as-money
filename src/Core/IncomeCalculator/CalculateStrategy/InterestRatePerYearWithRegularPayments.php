@@ -35,7 +35,7 @@ class InterestRatePerYearWithRegularPayments implements CalculateStrategyInterfa
         while (true) {
             $runningTime = time() - $startTime;
 
-            if ($runningTime > 10) {
+            if ($runningTime > 5) {
                 throw CalculatorException::wrongCalculation();
             }
 
@@ -54,7 +54,7 @@ class InterestRatePerYearWithRegularPayments implements CalculateStrategyInterfa
             (float)$input->getInitialAmount(),
             (float)$input->getRegularPayment(),
             $input->getNumberOfRegularPaymentsPerYear(),
-            (float)$input->getNumberOfYears(),
+            (int)$input->getNumberOfYears(),
             $interestRatePerYear,
             (float)$input->getFinalAmount()
         );

@@ -6,19 +6,19 @@ namespace App\Core\IncomeCalculator\Model;
 
 class YearlyBalance
 {
-    private int $numberOfYear;
+    private int $indexOfYear;
 
     private float $amount;
 
-    public function __construct(int $numberOfYear, float $amount)
+    public function __construct(int $indexOfYear, float $amount)
     {
-        $this->numberOfYear = $numberOfYear;
+        $this->indexOfYear = $indexOfYear;
         $this->amount = $amount;
     }
 
-    public function getNumberOfYear(): int
+    public function getIndexOfYear(): int
     {
-        return $this->numberOfYear;
+        return $this->indexOfYear;
     }
 
     public function getAmount(): float

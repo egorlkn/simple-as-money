@@ -63,7 +63,7 @@ class Presentation
 
         foreach ($yearlyBalances->getIterator() as $yearlyBalance) {
             $yearlyBalancesView[] = [
-                'number_of_year' => $yearlyBalance->getNumberOfYear(),
+                'index_of_year' => $yearlyBalance->getIndexOfYear(),
                 'amount' => round($yearlyBalance->getAmount(), 2),
             ];
         }
@@ -72,7 +72,7 @@ class Presentation
             'initial_amount' => round($this->result->getInitialAmount(), 2),
             'regular_payment' => round($this->result->getRegularPayment(), 2),
             'number_of_regular_payments_per_year' => $this->result->getNumberOfRegularPaymentsPerYear(),
-            'number_of_years' => round($this->result->getNumberOfYears(), 1),
+            'number_of_years' => $this->result->getNumberOfYears(),
             'interest_rate_per_year' => round($this->result->getInterestRatePerYear(), 2),
             'final_amount' => round($this->result->getFinalAmount(), 2),
             'yearly_balances' => $yearlyBalancesView,

@@ -59,7 +59,7 @@ class NumberOfYears implements CalculateStrategyInterface
             $PV *= (1 + $Sp);
         }
 
-        // @todo дополняем сумму остатка
+        // @todo update final amount
         $numberOfYears = (int)floor($np / $x);
 
         return new Result(

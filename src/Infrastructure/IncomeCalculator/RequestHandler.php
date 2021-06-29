@@ -55,7 +55,7 @@ class RequestHandler extends AbstractController
             isset($initialAmount) ? (float)$initialAmount : null,
             isset($regularPayment) ? (float)$regularPayment : null,
             (int)$numberOfRegularPaymentsPerYear,
-            isset($numberOfYears) ? (float)$numberOfYears : null,
+            isset($numberOfYears) ? (int)$numberOfYears : null,
             isset($interestRatePerYear) ? (float)$interestRatePerYear : null,
             isset($finalAmount) ? (float)$finalAmount : null,
             (bool)$request->query->get('initial_amount_is_unknown', false),

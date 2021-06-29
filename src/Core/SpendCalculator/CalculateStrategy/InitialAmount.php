@@ -27,7 +27,7 @@ class InitialAmount implements CalculateStrategyInterface
     {
         $H = (float)$input->getPaymentAmount();
         $x = $input->getNumberOfPaymentsPerYear();
-        $n = (float)$input->getNumberOfYears();
+        $n = (int)$input->getNumberOfYears();
         $s = (float)$input->getInterestRatePerYear() / 100;
         $FV = $input->getFinalAmount();
         $z = $input->getNumberOfYearsUntilFistPayment();
@@ -60,7 +60,7 @@ class InitialAmount implements CalculateStrategyInterface
             $initialAmount,
             (float)$input->getPaymentAmount(),
             $input->getNumberOfPaymentsPerYear(),
-            (float)$input->getNumberOfYears(),
+            (int)$input->getNumberOfYears(),
             (float)$input->getInterestRatePerYear(),
             (float)$input->getFinalAmount(),
             $input->getNumberOfYearsUntilFistPayment(),

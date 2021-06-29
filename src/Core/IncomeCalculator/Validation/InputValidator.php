@@ -147,13 +147,13 @@ class InputValidator
 
         $numberOfYears = $input->getNumberOfYears();
 
-        if (!is_float($numberOfYears)) {
+        if (!is_int($numberOfYears)) {
             return [
                 'Не задано Количество лет'
             ];
         }
 
-        if ($numberOfYears < 1.0) {
+        if ($numberOfYears < 1) {
             return [
                 'Количество лет должно быть больше или равно единицы'
             ];
@@ -212,7 +212,7 @@ class InputValidator
         if (is_float($regularPayment)) {
             $numberOfYears = $input->getNumberOfYears();
 
-            if (is_float($numberOfYears)) {
+            if (is_int($numberOfYears)) {
                 $numberOfRegularPaymentsPerYear = $input->getNumberOfRegularPaymentsPerYear();
 
                 $minFinalAmount += ($regularPayment * $numberOfRegularPaymentsPerYear * $numberOfYears);
