@@ -65,7 +65,7 @@ class Presentation
             'number_of_years' => $this->result->getNumberOfYears(),
             'interest_rate_per_year' => round($this->result->getInterestRatePerYear(), 2),
             'final_amount' => round($this->result->getFinalAmount(), 2),
-            'numberOfYearsUntilFistPayment' => $this->result->getNumberOfYearsUntilFistPayment(),
+            'number_of_years_until_fist_payment' => $this->result->getNumberOfYearsUntilFistPayment(),
             'inflation' => round($this->result->getInflation(), 2),
         ];
     }

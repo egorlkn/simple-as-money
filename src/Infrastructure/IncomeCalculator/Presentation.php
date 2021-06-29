@@ -61,7 +61,7 @@ class Presentation
         $yearlyBalances = $this->result->getYearlyBalanceCollection();
         $yearlyBalancesView = [];
 
-        foreach ($yearlyBalances->getIterator() as $yearlyBalance) {
+        foreach ($yearlyBalances as $yearlyBalance) {
             $yearlyBalancesView[] = [
                 'index_of_year' => $yearlyBalance->getIndexOfYear(),
                 'amount' => round($yearlyBalance->getAmount(), 2),

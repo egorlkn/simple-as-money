@@ -36,31 +36,38 @@ class NumberOfYears implements CalculateStrategyInterface
         $Kp = $this->helper->calcRateForPeriod($k, $x);
         $Sp = $this->helper->calcRateForPeriod($s, $x);
 
-        $np = 0;
-        $Hkp = $H;
+        $Hkp = $H * ((1 + $Kp) ** ($z * $x));
 
-        while ($PV > $FV) {
-            $np++;
-
-            if ($np === 1) {
-                $Hkp = $Hkp * ((1 + $Kp) ** ($z * $x));
-            } else {
-                $Hkp = $Hkp * (1 + $Kp);
-            }
-
-            if (($PV - $FV) < $Hkp) {
-                $np--;
+        switch (true) {
+            case $PV < $Hkp:
+                $numberOfYears = 0;
+                $finalAmount = $PV - $Hkp;
 
                 break;
-            }
+            default:
+                $np = 0;
 
-            $PV -= $Hkp;
+                while ($PV > $FV) {
+                    $np++;
 
-            $PV *= (1 + $Sp);
+                    if ($np > 1) {
+                        $PV *= (1 + $Sp);
+
+                        $Hkp = $Hkp * (1 + $Kp);
+
+                        if (($PV - $FV) < $Hkp) {
+                            $np--;
+
+                            break;
+                        }
+                    }
+
+                    $PV -= $Hkp;
+                }
+
+                $numberOfYears = (int)floor($np / $x);
+                $finalAmount = $PV;
         }
-
-        // @todo update final amount
-        $numberOfYears = (int)floor($np / $x);
 
         return new Result(
             (float)$input->getInitialAmount(),
@@ -68,7 +75,7 @@ class NumberOfYears implements CalculateStrategyInterface
             $input->getNumberOfPaymentsPerYear(),
             $numberOfYears,
             (float)$input->getInterestRatePerYear(),
-            (float)$input->getFinalAmount(),
+            $finalAmount,
             $input->getNumberOfYearsUntilFistPayment(),
             $input->getInflation()
         );

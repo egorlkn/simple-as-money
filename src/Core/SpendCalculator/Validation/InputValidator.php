@@ -87,8 +87,6 @@ class InputValidator
             ];
         }
 
-        // @todo проверить логику валидации начальной суммы
-
         if ($initialAmount <= 0.0) {
             return [
                 'Начальная сумма должна быть больше нуля',
@@ -220,9 +218,9 @@ class InputValidator
     {
         $inflation = $input->getInflation();
 
-        if ($inflation <= 0.0) {
+        if ($inflation < 0.0) {
             return [
-                'Инфляция должна быть больше нуля',
+                'Инфляция должна быть больше или равна нулю',
             ];
         }
 

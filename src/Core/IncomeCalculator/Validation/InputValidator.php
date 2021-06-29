@@ -187,8 +187,6 @@ class InputValidator
 
     private function validateFinalAmount(Input $input): array
     {
-        // @todo проверить логику валидацию конечной суммы
-
         if ($input->finalAmountIsUnknown()) {
             return [];
         }
@@ -201,29 +199,9 @@ class InputValidator
             ];
         }
 
-        $minFinalAmount = 0.0;
-
-        $initialAmount = $input->getInitialAmount();
-        if (is_float($initialAmount)) {
-            $minFinalAmount += $initialAmount;
-        }
-
-        $regularPayment = $input->getRegularPayment();
-        if (is_float($regularPayment)) {
-            $numberOfYears = $input->getNumberOfYears();
-
-            if (is_int($numberOfYears)) {
-                $numberOfRegularPaymentsPerYear = $input->getNumberOfRegularPaymentsPerYear();
-
-                $minFinalAmount += ($regularPayment * $numberOfRegularPaymentsPerYear * $numberOfYears);
-            } else {
-                $minFinalAmount += $regularPayment;
-            }
-        }
-
-        if ($finalAmount <= $minFinalAmount) {
+        if ($finalAmount <= 0.0) {
             return [
-                'Сумма накопления должна быть больше суммы Начального размещения вместе со всеми Регулярными взоносами'
+                'Сумма накопления должна быть больше нуля'
             ];
         }
 
