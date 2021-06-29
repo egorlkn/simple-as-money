@@ -10,6 +10,7 @@ services:
     exclude:
       - '../src/Kernel.php'
       - '../src/Core/IncomeCalculator/{Exception,Model}'
+      - '../src/Core/SpendCalculator/{Exception,Model}'
 
   App\Core\IncomeCalculator\Service:
     arguments:
@@ -23,3 +24,12 @@ services:
         - '@App\Core\IncomeCalculator\CalculateStrategy\InterestRatePerYearWithoutRegularPayments'
         - '@App\Core\IncomeCalculator\CalculateStrategy\InitialAmountWithRegularPayments'
         - '@App\Core\IncomeCalculator\CalculateStrategy\InitialAmountWithoutRegularPayments'
+
+  App\Core\SpendCalculator\Service:
+    arguments:
+      $strategies:
+        - '@App\Core\SpendCalculator\CalculateStrategy\InitialAmount'
+        - '@App\Core\SpendCalculator\CalculateStrategy\FinalAmount'
+        - '@App\Core\SpendCalculator\CalculateStrategy\PaymentAmount'
+        - '@App\Core\SpendCalculator\CalculateStrategy\NumberOfYears'
+        - '@App\Core\SpendCalculator\CalculateStrategy\InterestRatePerYear'

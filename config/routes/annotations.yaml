@@ -4,6 +4,10 @@ static:
   prefix: /
   name_prefix: static_
 
-api:
+api_income_calculator:
   resource: ../../src/Infrastructure/IncomeCalculator/RequestHandler.php
+  type: annotation
+
+api_spend_calculator:
+  resource: ../../src/Infrastructure/SpendCalculator/RequestHandler.php
   type: annotation
