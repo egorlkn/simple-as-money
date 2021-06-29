@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace App\Core\SpendCalculator\Model;
 
-class YearlyBalance
+class BalanceByPeriod
 {
-    private int $numberOfYear;
+    private int $indexOfPeriod;
 
     private float $amount;
 
-    public function __construct(int $numberOfYear, float $amount)
+    public function __construct(int $indexOfPeriod, float $amount)
     {
-        $this->numberOfYear = $numberOfYear;
+        $this->indexOfPeriod = $indexOfPeriod;
         $this->amount = $amount;
     }
 
-    public function getNumberOfYear(): int
+    public function getIndexOfPeriod(): int
     {
-        return $this->numberOfYear;
+        return $this->indexOfPeriod;
     }
 
     public function getAmount(): float

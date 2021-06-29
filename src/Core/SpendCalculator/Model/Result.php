@@ -22,6 +22,8 @@ class Result
 
     private float $inflation;
 
+    private ?BalanceByPeriodCollection $balancesByPeriod = null;
+
     public function __construct(
         float $initialAmount,
         float $paymentAmount,
@@ -80,5 +82,51 @@ class Result
     public function getInflation(): float
     {
         return $this->inflation;
+    }
+
+    public function getBalancesByPeriod(): BalanceByPeriodCollection
+    {
+        if ($this->balancesByPeriod instanceof BalanceByPeriodCollection) {
+            return $this->balancesByPeriod;
+        }
+
+        $this->balancesByPeriod = $this->calcBalancesByPeriod();
+
+        return $this->balancesByPeriod;
+    }
+
+    private function calcBalancesByPeriod(): BalanceByPeriodCollection
+    {
+        $list = [];
+
+        $PV = $this->getInitialAmount();
+        $H = $this->getPaymentAmount();
+        $x = $this->getNumberOfPaymentsPerYear();
+        $n = $this->getNumberOfYears();
+        $s = $this->getInterestRatePerYear() / 100;
+        $FV = $this->getFinalAmount();
+        $z = $this->getNumberOfYearsUntilFistPayment();
+        $k = $this->getInflation() / 100;
+
+        $Kp = ((1 + $k) ** (1 / $x)) - 1;
+        $Sp = ((1 + $s) ** (1 / $x)) - 1;
+
+        $Hkp = $H * ((1 + $Kp) ** ($z * $x));
+
+        for ($i = 1; $i <= ($n * $x); $i++) {
+            if ($i > 1) {
+                $PV *= (1 + $Sp);
+                $Hkp *= (1 + $Kp);
+            }
+
+            // @todo Period
+            $list[] = new BalanceByPeriod($i, $PV);
+
+            $PV -= $Hkp;
+        }
+
+        $list[] = new BalanceByPeriod($i, $FV);
+
+        return new BalanceByPeriodCollection($list);
     }
 }

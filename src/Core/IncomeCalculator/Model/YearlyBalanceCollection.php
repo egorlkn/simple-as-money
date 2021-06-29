@@ -7,9 +7,6 @@ namespace App\Core\IncomeCalculator\Model;
 use ArrayIterator;
 use Webmozart\Assert\Assert;
 
-/**
- * @method YearlyBalance[] getIterator()
- */
 class YearlyBalanceCollection extends ArrayIterator
 {
     public function __construct($yearlyBalanceList = array())

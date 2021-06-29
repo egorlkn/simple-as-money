@@ -7,14 +7,11 @@ namespace App\Core\SpendCalculator\Model;
 use ArrayIterator;
 use Webmozart\Assert\Assert;
 
-/**
- * @method YearlyBalance[] getIterator()
- */
-class YearlyBalanceCollection extends ArrayIterator
+class BalanceByPeriodCollection extends ArrayIterator
 {
     public function __construct($yearlyBalanceList = array())
     {
-        Assert::allIsInstanceOf($yearlyBalanceList, YearlyBalance::class);
+        Assert::allIsInstanceOf($yearlyBalanceList, BalanceByPeriod::class);
 
         parent::__construct($yearlyBalanceList);
     }

@@ -58,6 +58,17 @@ class Presentation
 
     private function getSuccessfulView(): array
     {
+        $balancesByPeriod = $this->result->getBalancesByPeriod();
+        $balancesByPeriodView = [];
+
+        /** @var SpendCalculator\Model\BalanceByPeriod $balance */
+        foreach ($balancesByPeriod as $balance) {
+            $balancesByPeriodView[] = [
+                'index_of_period' => $balance->getIndexOfPeriod(),
+                'amount' => round($balance->getAmount(), 2),
+            ];
+        }
+
         return [
             'initial_amount' => round($this->result->getInitialAmount(), 2),
             'payment_amount' => round($this->result->getPaymentAmount(), 2),
@@ -67,6 +78,7 @@ class Presentation
             'final_amount' => round($this->result->getFinalAmount(), 2),
             'number_of_years_until_fist_payment' => $this->result->getNumberOfYearsUntilFistPayment(),
             'inflation' => round($this->result->getInflation(), 2),
+            'balances_by_period' => $balancesByPeriodView,
         ];
     }
 
