@@ -1,0 +1,321 @@
+{% extends 'base.html.twig' %}
+
+{% block description %}
+{% endblock %}
+
+{% block keywords %}
+{% endblock %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block css %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/calculator.css?v=2721') }}">
+{% endblock %}
+
+{% block main %}
+    <section id="income-calculator">
+        <form v-on:submit.prevent="doIncomeCalc">
+            <div>
+                <label>
+                    Начальная сумма размещения
+                    <input type="number"
+                           min="0"
+                           step="0.01"
+                           v-model.number="icInitialAmountValue"
+                           v-bind:disabled="icInitialAmountIsUnknown"
+                           v-bind:required="icInitialAmountIsRequired"
+                    >
+                </label>
+                <br>
+                <label class="unknown">
+                    Неизвестная величина
+                    <input type="checkbox"
+                           v-model="icInitialAmountIsUnknown"
+                    >
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    Сумма регулярного взноса
+                    <input type="number"
+                           min="0"
+                           step="0.01"
+                           v-model.number="icRegularPaymentValue"
+                           v-bind:disabled="icRegularPaymentIsUnknown"
+                           v-bind:required="icRegularPaymentIsRequired"
+                    >
+                </label>
+                <br>
+                <label class="unknown">
+                    Неизвестная величина
+                    <input type="checkbox"
+                           v-model="icRegularPaymentIsUnknown"
+                    >
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    Количество взносов в год
+                    <input type="number"
+                           min="0"
+                           step="1"
+                           v-model.number="icNumberOfRegularPaymentsPerYearValue"
+                           required
+                    >
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    Количество лет
+                    <input type="number"
+                           min="1"
+                           step="1"
+                           v-model.number="icNumberOfYearsValue"
+                           v-bind:disabled="icNumberOfYearsIsUnknown"
+                           v-bind:required="icNumberOfYearsIsRequired"
+                    >
+                </label>
+                <br>
+                <label class="unknown">
+                    Неизвестная величина
+                    <input type="checkbox"
+                           v-model="icNumberOfYearsIsUnknown"
+                    >
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    Ставка размещения в % годовых
+                    <input type="number"
+                           min="0.01"
+                           step="0.01"
+                           v-model.number="icInterestRatePerYearValue"
+                           v-bind:disabled="icInterestRatePerYearIsUnknown"
+                           v-bind:required="icInterestRatePerYearIsRequired"
+                    >
+                </label>
+                <br>
+                <label class="unknown">
+                    Неизвестная величина
+                    <input type="checkbox"
+                           v-model="icInterestRatePerYearIsUnknown"
+                    >
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    Сумма накопления
+                    <input type="number"
+                           min="0.01"
+                           step="0.01"
+                           v-model.number="icFinalAmountValue"
+                           v-bind:disabled="icFinalAmountIsUnknown"
+                           v-bind:required="icFinalAmountIsRequired"
+                    >
+                </label>
+                <br>
+                <label class="unknown">
+                    Неизвестная величина
+                    <input type="checkbox"
+                           v-model="icFinalAmountIsUnknown"
+                    >
+                </label>
+            </div>
+
+            <div>
+                <button type="submit">Рассчитать</button>
+            </div>
+
+            <div class="errors" style="display: none;" v-show="icIsErrorResult">
+                <div v-for="error in icErrors">${ error }</div>
+            </div>
+
+            <div class="result" style="display: none;" v-show="icIsSuccessResult">
+                <div>Начальная сумма размещения: <span>${ icInitialAmountResult }</span></div>
+                <div>Сумма регулярного взноса: <span>${ icRegularPaymentResult }</span></div>
+                <div>Количество взносов в год: <span>${ icNumberOfRegularPaymentsPerYearResult }</span></div>
+                <div>Количество лет: <span>${ icNumberOfYearsResult }</span></div>
+                <div>Ставка размещения в % годовых: <span>${ icInterestRatePerYearResult }</span></div>
+                <div>Сумма накопления: <span>${ icFinalAmountResult }</span></div>
+            </div>
+        </form>
+    </section>
+
+    <section id="spend-calculator">
+        <form v-on:submit.prevent="doSpendCalc">
+            <div>
+                <label>
+                    Начальная сумма
+                    <input type="number"
+                           min="0.01"
+                           step="0.01"
+                           v-model.number="scInitialAmountValue"
+                           v-bind:disabled="scInitialAmountIsUnknown"
+                           v-bind:required="scInitialAmountIsRequired"
+                    >
+                </label>
+                <br>
+                <label class="unknown">
+                    Неизвестная величина
+                    <input type="checkbox"
+                           v-model="scInitialAmountIsUnknown"
+                    >
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    Сумма выплаты
+                    <input type="number"
+                           min="0.01"
+                           step="0.01"
+                           v-model.number="scPaymentAmountValue"
+                           v-bind:disabled="scPaymentAmountIsUnknown"
+                           v-bind:required="scPaymentAmountIsRequired"
+                    >
+                </label>
+                <br>
+                <label class="unknown">
+                    Неизвестная величина
+                    <input type="checkbox"
+                           v-model="scPaymentAmountIsUnknown"
+                    >
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    Количество выплат в год
+                    <input type="number"
+                           min="1"
+                           step="1"
+                           v-model.number="scNumberOfPaymentsPerYearValue"
+                           required
+                    >
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    Количество лет
+                    <input type="number"
+                           min="1"
+                           step="1"
+                           v-model.number="scNumberOfYearsValue"
+                           v-bind:disabled="scNumberOfYearsIsUnknown"
+                           v-bind:required="scNumberOfYearsIsRequired"
+                    >
+                </label>
+                <br>
+                <label class="unknown">
+                    Неизвестная величина
+                    <input type="checkbox"
+                           v-model="scNumberOfYearsIsUnknown"
+                    >
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    Ставка размещения в % годовых
+                    <input type="number"
+                           min="0.01"
+                           step="0.01"
+                           v-model.number="scInterestRatePerYearValue"
+                           v-bind:disabled="scInterestRatePerYearIsUnknown"
+                           v-bind:required="scInterestRatePerYearIsRequired"
+                    >
+                </label>
+                <br>
+                <label class="unknown">
+                    Неизвестная величина
+                    <input type="checkbox"
+                           v-model="scInterestRatePerYearIsUnknown"
+                    >
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    Конечная сумма
+                    <input type="number"
+                           min="0"
+                           step="0.01"
+                           v-model.number="scFinalAmountValue"
+                           v-bind:disabled="scFinalAmountIsUnknown"
+                           v-bind:required="scFinalAmountIsRequired"
+                    >
+                </label>
+                <br>
+                <label class="unknown">
+                    Неизвестная величина
+                    <input type="checkbox"
+                           v-model="scFinalAmountIsUnknown"
+                    >
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    Количество лет до первой выплаты
+                    <input type="number"
+                           min="0"
+                           step="1"
+                           v-model.number="scNumberOfYearsUntilFistPaymentValue"
+                           required
+                    >
+                </label>
+            </div>
+
+            <div>
+                <label>
+                    Инфляция в % годовых
+                    <input type="number"
+                           min="0.01"
+                           step="0.01"
+                           v-model.number="scInflationValue"
+                           required
+                    >
+                </label>
+            </div>
+
+            <div>
+                <button type="submit">Рассчитать</button>
+            </div>
+
+
+            <div class="errors" style="display: none;" v-show="scIsErrorResult">
+                <div v-for="error in scErrors">${ error }</div>
+            </div>
+
+            <div class="result" style="display: none;" v-show="scIsSuccessResult">
+                <div>Начальная сумма: <span>${ scInitialAmountResult }</span></div>
+                <div>Сумма выплаты: <span>${ scPaymentAmountResult }</span></div>
+                <div>Количество выплат в год: <span>${ scNumberOfPaymentsPerYearResult }</span></div>
+                <div>Количество лет: <span>${ scNumberOfYearsResult }</span></div>
+                <div>Ставка размещения в % годовых: <span>${ scInterestRatePerYearResult }</span></div>
+                <div>Конечная сумма: <span>${ scFinalAmountResult }</span></div>
+                <div>Количество лет до первой выплаты: <span>${ scNumberOfYearsUntilFistPaymentResult }</span></div>
+                <div>Инфляция в % годовых: <span>${ scInflationResult }</span></div>
+            </div>
+        </form>
+    </section>
+{% endblock main %}
+
+{% block js %}
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    {% if app.environment == 'dev' %}
+        <script src="https://unpkg.com/vue@3.1.4/dist/vue.global.js"></script>
+    {% else %}
+        <script src="https://unpkg.com/vue@3.1.4/dist/vue.global.prod.js"></script>
+    {% endif %}
+
+    <script src="{{ asset('js/calculator.js?v=2721') }}"></script>
+{% endblock %}

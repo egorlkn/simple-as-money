@@ -34,4 +34,16 @@ class RequestHandler extends AbstractController
 
         return $this->render('policy.html.twig');
     }
+
+    /**
+     * @Route(path="/calculator", methods={"GET"}, name="calculator")
+     */
+    public function calculator(Request $request): Response
+    {
+        if ($request->isXmlHttpRequest()) {
+            return new Response(Response::$statusTexts[Response::HTTP_NOT_ACCEPTABLE], Response::HTTP_NOT_ACCEPTABLE);
+        }
+
+        return $this->render('calculator.html.twig');
+    }
 }

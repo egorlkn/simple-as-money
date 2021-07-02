@@ -1,0 +1,40 @@
+main {
+    grid-column: 1 / -1;
+    grid-row: 2 / -2;
+    margin: calc(var(--content-gap) / 2) calc(var(--side-gap) / 2);
+    padding: calc(var(--content-gap) / 2) calc(var(--side-gap) / 2);
+    background-color: var(--color-2-opacity);
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: min-content;
+}
+
+#income-calculator {
+    grid-column: 1 / 2;
+    grid-row: 1 / -1;
+}
+
+#spend-calculator {
+    grid-column: 2 / 3;
+    grid-row: 1 / -1;
+}
+
+#income-calculator form,
+#spend-calculator form {
+    display: flex;
+    flex-flow: column;
+    gap: var(--content-gap);
+}
+
+.unknown {
+    cursor: pointer;
+}
+
+.errors {
+    color: var(--color-3);
+}
+
+.result span {
+    font-weight: 700;
+}

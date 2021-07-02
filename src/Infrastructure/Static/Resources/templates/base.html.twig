@@ -29,10 +29,6 @@
         <link rel="stylesheet" href="{{ asset('css/normalize.css?v=8.0.1') }}">
         <link rel="stylesheet" href="{{ asset('css/base.css?v=18621') }}">
     {% endblock %}
-
-    {% block js %}
-        <script src="{{ asset('js/jquery.min.js?v=3.6.0') }}"></script>
-    {% endblock %}
 </head>
 <body>
     <header id="main_header">
@@ -40,14 +36,18 @@
             <img src="{{ asset('images/logo.svg') }}" alt="SimpleAsMoney site logo">
         </a>
     </header>
+
     <main>
         {% block main %}{% endblock main %}
     </main>
+
     <footer id="main_footer">
         <span>Copyright &copy; SimpleAsMoney 2021. Все права защищены.</span>
         {% block footer_menu %}
             <a href="{{ url('static_policy') }}">Политика конфиденциальности</a>
         {% endblock %}
     </footer>
+
+    {% block js %}{% endblock %}
 </body>
 </html>
