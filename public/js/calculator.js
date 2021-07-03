@@ -29,6 +29,12 @@ const Calculator = {
             icFinalAmountValue: '',
             icFinalAmountResult: '',
 
+            icYearlyBalances: [],
+
+            icIsErrorResult: false,
+            icIsSuccessResult: false,
+            icErrors: [],
+
             scInitialAmountIsUnknown: true,
             scInitialAmountValue: '',
             scInitialAmountResult: '',
@@ -58,9 +64,8 @@ const Calculator = {
             scInflationValue: 2,
             scInflationResult: '',
 
-            icIsErrorResult: false,
-            icIsSuccessResult: false,
-            icErrors: [],
+            scBalancesByPeriod: [],
+
             scIsErrorResult: false,
             scIsSuccessResult: false,
             scErrors: []
@@ -185,6 +190,9 @@ const Calculator = {
                 app.icInterestRatePerYearResult = response.data.interest_rate_per_year;
                 app.icFinalAmountResult = response.data.final_amount;
 
+                app.icYearlyBalances.splice(0);
+                app.icYearlyBalances.push(...response.data.yearly_balances);
+
                 app.icIsErrorResult = false;
                 app.icIsSuccessResult = true;
 
@@ -233,6 +241,9 @@ const Calculator = {
                 app.scFinalAmountResult = response.data.final_amount;
                 app.scNumberOfYearsUntilFistPaymentResult = response.data.number_of_years_until_fist_payment;
                 app.scInflationResult = response.data.inflation;
+
+                app.scBalancesByPeriod.splice(0);
+                app.scBalancesByPeriod.push(...response.data.balances_by_period);
 
                 app.scIsErrorResult = false;
                 app.scIsSuccessResult = true;

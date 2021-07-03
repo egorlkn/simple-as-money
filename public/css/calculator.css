@@ -38,3 +38,7 @@ main {
 .result span {
     font-weight: 700;
 }
+
+.result ul {
+    list-style: none;
+}

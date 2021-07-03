@@ -143,6 +143,13 @@
                 <div>Количество лет: <span>${ icNumberOfYearsResult }</span></div>
                 <div>Ставка размещения в % годовых: <span>${ icInterestRatePerYearResult }</span></div>
                 <div>Сумма накопления: <span>${ icFinalAmountResult }</span></div>
+                <div>Сумма накопления по годам:</div>
+                <ul>
+                    <li v-for="balance in icYearlyBalances">
+                        #${ balance.index_of_year }.
+                        <span>${ balance.amount }</span>
+                    </li>
+                </ul>
             </div>
         </form>
     </section>
@@ -303,6 +310,13 @@
                 <div>Конечная сумма: <span>${ scFinalAmountResult }</span></div>
                 <div>Количество лет до первой выплаты: <span>${ scNumberOfYearsUntilFistPaymentResult }</span></div>
                 <div>Инфляция в % годовых: <span>${ scInflationResult }</span></div>
+                <div>Конечная сумма до выплаты по периодам:</div>
+                <ul>
+                    <li v-for="balance in scBalancesByPeriod">
+                        #${ balance.index_of_period }.
+                        <span>${ balance.amount }</span>
+                    </li>
+                </ul>
             </div>
         </form>
     </section>
