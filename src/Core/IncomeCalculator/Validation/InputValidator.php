@@ -131,7 +131,7 @@ class InputValidator
         } else {
             if ($numberOfRegularPaymentsPerYear < 1) {
                 return [
-                    'Количество взносов в год должно быть больше или равно еденицы'
+                    'Количество взносов в год должно быть больше или равно единицы'
                 ];
             }
         }
