@@ -1,8 +1,13 @@
 :root {
     --color-1: #000000;
+    --color-4: #969696;
+    --color-5: #c8c8c8;
     --color-2: #ffffff;
     --color-2-opacity: rgba(255, 255, 255, 0.85);
+    --color-6: #fafafa;
     --color-3: #960202;
+    --color-7: #ff0000;
+    --color-8: #ffc800;
 
     --side-gap: 25px;
     --content-gap: 25px;

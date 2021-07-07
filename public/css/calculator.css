@@ -1,44 +1,190 @@
 main {
-    grid-column: 1 / -1;
-    grid-row: 2 / -2;
-    margin: calc(var(--content-gap) / 2) calc(var(--side-gap) / 2);
-    padding: calc(var(--content-gap) / 2) calc(var(--side-gap) / 2);
     background-color: var(--color-2-opacity);
-    border-radius: 5px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: min-content;
 }
 
-#income-calculator {
-    grid-column: 1 / 2;
-    grid-row: 1 / -1;
-}
-
-#spend-calculator {
-    grid-column: 2 / 3;
-    grid-row: 1 / -1;
-}
-
-#income-calculator form,
-#spend-calculator form {
+main nav {
     display: flex;
-    flex-flow: column;
-    gap: var(--content-gap);
+    height: var(--side-gap);
+    overflow: hidden;
+    position: fixed;
+    transform: rotate(90deg);
+    left: calc(-152px + var(--side-gap) / 2);
+    top: 40%;
+    background-color: var(--color-6);
+    border-radius: 7px 7px 0 0;
+    box-shadow: 0 -1px 3px var(--color-4);
+    font-size: 0.75em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.unknown {
-    cursor: pointer;
-}
-
-.errors {
-    color: var(--color-3);
-}
-
-.result span {
+main nav a {
+    height: 100%;
+    width: 150px;
+    text-align: center;
+    color: var(--color-4);
+    padding-top: 6px;
     font-weight: 700;
 }
 
-.result ul {
+nav a.active {
+    background-color: var(--color-3);
+    color: var(--color-2);
+}
+
+main nav .separator {
+    width: 1px;
+    height: 100%;
+    background-color: var(--color-5);
+}
+
+main {
+    grid-row: 2 / -2;
+    display: grid;
+    grid-template-columns: var(--side-gap) calc(100% - var(--side-gap) * 2) var(--side-gap);
+    grid-template-rows: min-content auto;
+    row-gap: var(--content-gap);
+}
+
+main h1 {
+    margin: 0;
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+}
+
+main h2 {
+    display: none;
+}
+
+.calculator {
+    grid-column: 2 / -2;
+    grid-row: 2 / 3;
+}
+
+.calculator,
+.calculator form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--content-gap);
+}
+
+.field-label {
+    display: block;
+    font-weight: 700;
+}
+
+.field-label.disabled {
+    display: block;
+    color: var(--color-4);
+}
+
+.field {
+    display: block;
+    width: 100%;
+    margin-top: calc(var(--content-gap) / 4);
+    background: transparent;
+    border-radius: 0;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid 2px var(--color-4);
+    font-size: 2em;
+}
+
+.field.blink {
+    animation-name: blink;
+    animation-duration: 1s;
+}
+
+@keyframes blink {
+    from {
+        background: var(--color-8);
+    }
+
+    to {
+        background: transparent;
+    }
+}
+
+.field:disabled {
+    border-color: var(--color-5);
+    color: var(--color-4);
+}
+
+.field.blink:disabled {
+    animation-name: blink_disabled;
+    animation-duration: 1s;
+}
+
+@keyframes blink_disabled {
+    from {
+        background: var(--color-8);
+    }
+
+    to {
+        background: transparent;
+    }
+}
+
+.unknown {
+    margin-top: calc(var(--content-gap) / 4);
+}
+
+.unknown label {
+    display: inline-block;
+    background-color: var(--color-6);
+    color: var(--color-4);
+    border: solid 1px var(--color-4);
+    border-radius: 12px;
+    line-height: 1;
+    padding: 7px 10px 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.6em;
+    letter-spacing: 1px;
+}
+
+.unknown label.checked {
+    background-color: var(--color-3);
+    border-color: var(--color-3);
+    color: var(--color-2);
+}
+
+.unknown input {
+    display: none;
+}
+
+.errors {
     list-style: none;
+    color: var(--color-7);
+    font-size: 0.9em;
+    font-weight: 700;
+}
+
+button[type="submit"] {
+    display: inline-block;
+    float: right;
+    background-color: var(--color-1);
+    color: var(--color-2);
+    border-radius: 25px;
+    border: none;
+    line-height: 1;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.2em;
+    padding: 10px 15px;
+    font-family: 'PT Serif', serif;
+    letter-spacing: 1px;
+}
+
+button[type="submit"]:active {
+    background-color: var(--color-3);
+}
+
+button[type="submit"].disabled {
+    background-color: var(--color-5);
+}
+
+button[type="submit"].disabled:active {
+    background-color: var(--color-5);
 }
