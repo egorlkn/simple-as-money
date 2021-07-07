@@ -10,7 +10,7 @@
 
 {% block css %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/calculator.css?v=7721') }}">
+    <link rel="stylesheet" href="{{ asset('css/calculator.css?v=8721') }}">
 {% endblock %}
 
 {% block main %}
@@ -143,6 +143,7 @@
                        v-bind:required="icInterestRatePerYearIsRequired"
                        v-bind:class="{ blink: icInterestRatePerYearIsBlinked }"
                 >
+                {##
                 <div class="unknown">
                     <label v-bind:class="{ checked: icInterestRatePerYearIsUnknown }">
                         неизвестная величина
@@ -151,6 +152,7 @@
                         >
                     </label>
                 </div>
+                #}
             </div>
 
             <div>
@@ -310,6 +312,7 @@
                        v-bind:required="scInterestRatePerYearIsRequired"
                        v-bind:class="{ blink: scInterestRatePerYearIsBlinked }"
                 >
+                {##
                 <div class="unknown">
                     <label v-bind:class="{ checked: scInterestRatePerYearIsUnknown }">
                         неизвестная величина
@@ -318,6 +321,7 @@
                         >
                     </label>
                 </div>
+                #}
             </div>
 
             <div>
@@ -400,5 +404,5 @@
         <script src="https://unpkg.com/vue@3.1.4/dist/vue.global.prod.js"></script>
     {% endif %}
 
-    <script src="{{ asset('js/calculator.js?v=7721') }}"></script>
+    <script src="{{ asset('js/calculator.js?v=8721') }}"></script>
 {% endblock %}
