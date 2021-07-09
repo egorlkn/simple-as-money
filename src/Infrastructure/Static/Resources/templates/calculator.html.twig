@@ -10,7 +10,7 @@
 
 {% block css %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/calculator.css?v=8721') }}">
+    <link rel="stylesheet" href="{{ asset('css/calculator.css?v=92721') }}">
 {% endblock %}
 
 {% block main %}
@@ -37,24 +37,25 @@
                 >
                     Начальная сумма размещения:
                 </label>
+                <div class="unknown">
+                    <label v-bind:class="{ checked: icInitialAmountIsUnknown }"
+                           v-on:click.prevent="changeIcInitialAmountUnknowing"
+                    >
+                        <input type="checkbox" v-bind:checked="icInitialAmountIsUnknown">
+                        <span>неизвестная величина</span>
+                    </label>
+                </div>
                 <input class="field"
                        id="ic-initial-amount"
                        type="number"
                        min="0"
                        step="0.01"
-                       v-model.number="icInitialAmountValue"
-                       v-bind:disabled="icInitialAmountIsUnknown"
+                       v-on:input.prevent="setIcInitialAmountValue($event.target.value)"
+                       v-bind:value="icInitialAmountValue"
+                       v-bind:readonly="icInitialAmountIsUnknown"
                        v-bind:required="icInitialAmountIsRequired"
                        v-bind:class="{ blink: icInitialAmountIsBlinked }"
                 >
-                <div class="unknown">
-                    <label v-bind:class="{ checked: icInitialAmountIsUnknown }">
-                        неизвестная величина
-                        <input type="checkbox"
-                               v-on:change="changeIcInitialAmountUnknowing"
-                        >
-                    </label>
-                </div>
             </div>
 
             <div>
@@ -64,24 +65,25 @@
                 >
                     Сумма регулярного взноса:
                 </label>
+                <div class="unknown">
+                    <label v-bind:class="{ checked: icRegularPaymentIsUnknown }"
+                           v-on:click.prevent="changeIcRegularPaymentUnknowing"
+                    >
+                        <input type="checkbox" v-bind:checked="icRegularPaymentIsUnknown">
+                        <span>неизвестная величина</span>
+                    </label>
+                </div>
                 <input class="field"
                        id="ic-regular-payment"
                        type="number"
                        min="0"
                        step="0.01"
-                       v-model.number="icRegularPaymentValue"
-                       v-bind:disabled="icRegularPaymentIsUnknown"
+                       v-on:input.prevent="setIcRegularPaymentValue($event.target.value)"
+                       v-bind:value="icRegularPaymentValue"
+                       v-bind:readonly="icRegularPaymentIsUnknown"
                        v-bind:required="icRegularPaymentIsRequired"
                        v-bind:class="{ blink: icRegularPaymentIsBlinked }"
                 >
-                <div class="unknown">
-                    <label v-bind:class="{ checked: icRegularPaymentIsUnknown }">
-                        неизвестная величина
-                        <input type="checkbox"
-                               v-on:change="changeIcRegularPaymentUnknowing"
-                        >
-                    </label>
-                </div>
             </div>
 
             <div>
@@ -93,7 +95,8 @@
                        type="number"
                        min="0"
                        step="1"
-                       v-model.number="icNumberOfRegularPaymentsPerYearValue"
+                       v-on:input.prevent="setIcNumberOfRegularPaymentsPerYearValue($event.target.value)"
+                       v-bind:value="icNumberOfRegularPaymentsPerYearValue"
                        v-bind:class="{ blink: icNumberOfRegularPaymentsPerYearIsBlinked }"
                        required
                 >
@@ -106,24 +109,25 @@
                 >
                     Количество лет:
                 </label>
+                <div class="unknown">
+                    <label v-bind:class="{ checked: icNumberOfYearsIsUnknown }"
+                           v-on:click.prevent="changeIcNumberOfYearsUnknowing"
+                    >
+                        <input type="checkbox" v-bind:checked="icNumberOfYearsIsUnknown">
+                        <span>неизвестная величина</span>
+                    </label>
+                </div>
                 <input class="field"
                        id="ic-number-of-years"
                        type="number"
                        min="1"
                        step="1"
-                       v-model.number="icNumberOfYearsValue"
-                       v-bind:disabled="icNumberOfYearsIsUnknown"
+                       v-on:input.prevent="setIcNumberOfYearsValue($event.target.value)"
+                       v-bind:value="icNumberOfYearsValue"
+                       v-bind:readonly="icNumberOfYearsIsUnknown"
                        v-bind:required="icNumberOfYearsIsRequired"
                        v-bind:class="{ blink: icNumberOfYearsIsBlinked }"
                 >
-                <div class="unknown">
-                    <label v-bind:class="{ checked: icNumberOfYearsIsUnknown }">
-                        неизвестная величина
-                        <input type="checkbox"
-                               v-on:change="changeIcNumberOfYearsUnknowing"
-                        >
-                    </label>
-                </div>
             </div>
 
             <div>
@@ -133,26 +137,25 @@
                 >
                     Ставка размещения в % годовых:
                 </label>
+                <div class="unknown">
+                    <label v-bind:class="{ checked: icInterestRatePerYearIsUnknown }"
+                           v-on:click.prevent="changeIcInterestRatePerYearUnknowing"
+                    >
+                        <input type="checkbox" v-bind:checked="icInterestRatePerYearIsUnknown">
+                        <span>неизвестная величина</span>
+                    </label>
+                </div>
                 <input class="field"
                        id="ic-interest-rate-per-year"
                        type="number"
                        min="0.01"
                        step="0.01"
-                       v-model.number="icInterestRatePerYearValue"
-                       v-bind:disabled="icInterestRatePerYearIsUnknown"
+                       v-on:input.prevent="setIcInterestRatePerYearValue($event.target.value)"
+                       v-bind:value="icInterestRatePerYearValue"
+                       v-bind:readonly="icInterestRatePerYearIsUnknown"
                        v-bind:required="icInterestRatePerYearIsRequired"
                        v-bind:class="{ blink: icInterestRatePerYearIsBlinked }"
                 >
-                {##
-                <div class="unknown">
-                    <label v-bind:class="{ checked: icInterestRatePerYearIsUnknown }">
-                        неизвестная величина
-                        <input type="checkbox"
-                               v-on:change="changeIcInterestRatePerYearUnknowing"
-                        >
-                    </label>
-                </div>
-                #}
             </div>
 
             <div>
@@ -162,24 +165,25 @@
                 >
                     Сумма накопления:
                 </label>
+                <div class="unknown">
+                    <label v-bind:class="{ checked: icFinalAmountIsUnknown }"
+                           v-on:click.prevent="changeIcFinalAmountUnknowing"
+                    >
+                        <input type="checkbox" v-bind:checked="icFinalAmountIsUnknown">
+                        <span>неизвестная величина</span>
+                    </label>
+                </div>
                 <input class="field"
                        id="ic-final-amount"
                        type="number"
                        min="0.01"
                        step="0.01"
-                       v-model.number="icFinalAmountValue"
-                       v-bind:disabled="icFinalAmountIsUnknown"
+                       v-on:input.prevent="setIcFinalAmountValue($event.target.value)"
+                       v-bind:value="icFinalAmountValue"
+                       v-bind:readonly="icFinalAmountIsUnknown"
                        v-bind:required="icFinalAmountIsRequired"
                        v-bind:class="{ blink: icFinalAmountIsBlinked }"
                 >
-                <div class="unknown">
-                    <label v-bind:class="{ checked: icFinalAmountIsUnknown }">
-                        неизвестная величина
-                        <input type="checkbox"
-                               v-on:change="changeIcFinalAmountUnknowing"
-                        >
-                    </label>
-                </div>
             </div>
 
             <ul class="errors" style="display: none;" v-show="icIsErrorResult">
@@ -208,24 +212,25 @@
                 >
                     Начальная сумма:
                 </label>
+                <div class="unknown">
+                    <label v-bind:class="{ checked: scInitialAmountIsUnknown }"
+                           v-on:click.prevent="changeScInitialAmountUnknowing"
+                    >
+                        <input type="checkbox" v-bind:checked="scInitialAmountIsUnknown">
+                        <span>неизвестная величина</span>
+                    </label>
+                </div>
                 <input class="field"
                        id="sc-initial-amount"
                        type="number"
                        min="0.01"
                        step="0.01"
-                       v-model.number="scInitialAmountValue"
-                       v-bind:disabled="scInitialAmountIsUnknown"
+                       v-on:input.prevent="setScInitialAmountValue($event.target.value)"
+                       v-bind:value="scInitialAmountValue"
+                       v-bind:readonly="scInitialAmountIsUnknown"
                        v-bind:required="scInitialAmountIsRequired"
                        v-bind:class="{ blink: scInitialAmountIsBlinked }"
                 >
-                <div class="unknown">
-                    <label v-bind:class="{ checked: scInitialAmountIsUnknown }">
-                        неизвестная величина
-                        <input type="checkbox"
-                               v-on:change="changeScInitialAmountUnknowing"
-                        >
-                    </label>
-                </div>
             </div>
 
             <div>
@@ -235,24 +240,25 @@
                 >
                     Сумма выплаты:
                 </label>
+                <div class="unknown">
+                    <label v-bind:class="{ checked: scPaymentAmountIsUnknown }"
+                           v-on:click.prevent="changeScPaymentAmountUnknowing"
+                    >
+                        <input type="checkbox" v-bind:checked="scPaymentAmountIsUnknown">
+                        <span>неизвестная величина</span>
+                    </label>
+                </div>
                 <input class="field"
                        id="sc-payment-amount"
                        type="number"
                        min="0.01"
                        step="0.01"
-                       v-model.number="scPaymentAmountValue"
-                       v-bind:disabled="scPaymentAmountIsUnknown"
+                       v-on:input.prevent="setScPaymentAmountValue($event.target.value)"
+                       v-bind:value="scPaymentAmountValue"
+                       v-bind:readonly="scPaymentAmountIsUnknown"
                        v-bind:required="scPaymentAmountIsRequired"
                        v-bind:class="{ blink: scPaymentAmountIsBlinked }"
                 >
-                <div class="unknown">
-                    <label v-bind:class="{ checked: scPaymentAmountIsUnknown }">
-                        неизвестная величина
-                        <input type="checkbox"
-                               v-on:change="changeScPaymentAmountUnknowing"
-                        >
-                    </label>
-                </div>
             </div>
 
             <div>
@@ -262,7 +268,8 @@
                        type="number"
                        min="1"
                        step="1"
-                       v-model.number="scNumberOfPaymentsPerYearValue"
+                       v-on:input.prevent="setScNumberOfPaymentsPerYearValue($event.target.value)"
+                       v-bind:value="scNumberOfPaymentsPerYearValue"
                        v-bind:class="{ blink: scNumberOfPaymentsPerYearIsBlinked }"
                        required
                 >
@@ -275,24 +282,25 @@
                 >
                     Количество лет:
                 </label>
+                <div class="unknown">
+                    <label v-bind:class="{ checked: scNumberOfYearsIsUnknown }"
+                           v-on:click.prevent="changeScNumberOfYearsUnknowing"
+                    >
+                        <input type="checkbox" v-bind:checked="scNumberOfYearsIsUnknown">
+                        <span>неизвестная величина</span>
+                    </label>
+                </div>
                 <input class="field"
                        id="sc-number-of-years"
                        type="number"
                        min="1"
                        step="1"
-                       v-model.number="scNumberOfYearsValue"
-                       v-bind:disabled="scNumberOfYearsIsUnknown"
+                       v-on:input.prevent="setScNumberOfYearsValue($event.target.value)"
+                       v-bind:value="scNumberOfYearsValue"
+                       v-bind:readonly="scNumberOfYearsIsUnknown"
                        v-bind:required="scNumberOfYearsIsRequired"
                        v-bind:class="{ blink: scNumberOfYearsIsBlinked }"
                 >
-                <div class="unknown">
-                    <label v-bind:class="{ checked: scNumberOfYearsIsUnknown }">
-                        неизвестная величина
-                        <input type="checkbox"
-                               v-on:change="changeScNumberOfYearsUnknowing"
-                        >
-                    </label>
-                </div>
             </div>
 
             <div>
@@ -302,26 +310,25 @@
                 >
                     Ставка размещения в % годовых:
                 </label>
+                <div class="unknown">
+                    <label v-bind:class="{ checked: scInterestRatePerYearIsUnknown }"
+                           v-on:click.prevent="changeScInterestRatePerYearUnknowing"
+                    >
+                        <input type="checkbox" v-bind:checked="scInterestRatePerYearIsUnknown">
+                        <span>неизвестная величина</span>
+                    </label>
+                </div>
                 <input class="field"
                        id="sc-interest-rate-per-year"
                        type="number"
                        min="0.01"
                        step="0.01"
-                       v-model.number="scInterestRatePerYearValue"
-                       v-bind:disabled="scInterestRatePerYearIsUnknown"
+                       v-on:input.prevent="setScInterestRatePerYearValue($event.target.value)"
+                       v-bind:value="scInterestRatePerYearValue"
+                       v-bind:readonly="scInterestRatePerYearIsUnknown"
                        v-bind:required="scInterestRatePerYearIsRequired"
                        v-bind:class="{ blink: scInterestRatePerYearIsBlinked }"
                 >
-                {##
-                <div class="unknown">
-                    <label v-bind:class="{ checked: scInterestRatePerYearIsUnknown }">
-                        неизвестная величина
-                        <input type="checkbox"
-                               v-on:change="changeScInterestRatePerYearUnknowing"
-                        >
-                    </label>
-                </div>
-                #}
             </div>
 
             <div>
@@ -331,24 +338,25 @@
                 >
                     Конечная сумма:
                 </label>
+                <div class="unknown">
+                    <label v-bind:class="{ checked: scFinalAmountIsUnknown }"
+                           v-on:click.prevent="changeScFinalAmountUnknowing"
+                    >
+                        <input type="checkbox" v-bind:checked="scFinalAmountIsUnknown">
+                        <span>неизвестная величина</span>
+                    </label>
+                </div>
                 <input class="field"
                        id="sc-final-amount"
                        type="number"
                        min="0"
                        step="0.01"
-                       v-model.number="scFinalAmountValue"
-                       v-bind:disabled="scFinalAmountIsUnknown"
+                       v-on:input.prevent="setScFinalAmountValue($event.target.value)"
+                       v-bind:value="scFinalAmountValue"
+                       v-bind:readonly="scFinalAmountIsUnknown"
                        v-bind:required="scFinalAmountIsRequired"
                        v-bind:class="{ blink: scFinalAmountIsBlinked }"
                 >
-                <div class="unknown">
-                    <label v-bind:class="{ checked: scFinalAmountIsUnknown }">
-                        неизвестная величина
-                        <input type="checkbox"
-                               v-on:change="changeScFinalAmountUnknowing"
-                        >
-                    </label>
-                </div>
             </div>
 
             <div>
@@ -360,7 +368,8 @@
                        type="number"
                        min="0"
                        step="1"
-                       v-model.number="scNumberOfYearsUntilFistPaymentValue"
+                       v-on:input.prevent="setScNumberOfYearsUntilFistPaymentValue($event.target.value)"
+                       v-bind:value="scNumberOfYearsUntilFistPaymentValue"
                        v-bind:class="{ blink: scNumberOfYearsUntilFistPaymentIsBlinked }"
                        required
                 >
@@ -373,7 +382,8 @@
                        type="number"
                        min="0.01"
                        step="0.01"
-                       v-model.number="scInflationValue"
+                       v-on:input.prevent="setScInflationValue($event.target.value)"
+                       v-bind:value="scInflationValue"
                        v-bind:class="{ blink: scInflationIsBlinked }"
                        required
                 >
@@ -404,5 +414,5 @@
         <script src="https://unpkg.com/vue@3.1.4/dist/vue.global.prod.js"></script>
     {% endif %}
 
-    <script src="{{ asset('js/calculator.js?v=8721') }}"></script>
+    <script src="{{ asset('js/calculator.js?v=92721') }}"></script>
 {% endblock %}

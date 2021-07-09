@@ -9,7 +9,7 @@ main nav {
     position: fixed;
     transform: rotate(90deg);
     left: calc(-152px + var(--side-gap) / 2);
-    top: 40%;
+    top: 50%;
     background-color: var(--color-6);
     border-radius: 7px 7px 0 0;
     box-shadow: 0 -1px 3px var(--color-4);
@@ -78,6 +78,44 @@ main h2 {
     color: var(--color-4);
 }
 
+.unknown {
+    margin-top: calc(var(--content-gap) / 4);
+}
+
+.unknown label {
+    display: inline-block;
+    background-color: var(--color-6);
+    color: var(--color-4);
+    border: solid 1px var(--color-4);
+    border-radius: 0 12px 12px 0;
+    box-shadow: 1px 1px 3px var(--color-4);
+    line-height: 1;
+    padding: 2px 0 0;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.6em;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.unknown span {
+    display: inline-block;
+    margin: 5px 10px;
+}
+
+.unknown label.checked {
+    background-color: var(--color-3);
+    border-color: var(--color-3);
+    color: var(--color-2);
+}
+
+.unknown input {
+    display: block;
+    visibility: hidden;
+    height: 0;
+    width: 0;
+}
+
 .field {
     display: block;
     width: 100%;
@@ -106,12 +144,12 @@ main h2 {
     }
 }
 
-.field:disabled {
+.field:read-only {
     border-color: var(--color-5);
     color: var(--color-4);
 }
 
-.field.blink:disabled {
+.field.blink:read-only {
     animation-name: blink_disabled;
     animation-duration: 1s;
 }
@@ -124,34 +162,6 @@ main h2 {
     to {
         background: transparent;
     }
-}
-
-.unknown {
-    margin-top: calc(var(--content-gap) / 4);
-}
-
-.unknown label {
-    display: inline-block;
-    background-color: var(--color-6);
-    color: var(--color-4);
-    border: solid 1px var(--color-4);
-    border-radius: 12px;
-    line-height: 1;
-    padding: 7px 10px 4px;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.6em;
-    letter-spacing: 1px;
-}
-
-.unknown label.checked {
-    background-color: var(--color-3);
-    border-color: var(--color-3);
-    color: var(--color-2);
-}
-
-.unknown input {
-    display: none;
 }
 
 .errors {
@@ -175,6 +185,7 @@ button[type="submit"] {
     padding: 10px 15px;
     font-family: 'PT Serif', serif;
     letter-spacing: 1px;
+    cursor: pointer;
 }
 
 button[type="submit"]:active {

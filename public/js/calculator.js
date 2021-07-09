@@ -74,8 +74,6 @@ const Calculator = {
     computed: {
         icInitialAmountIsRequired() {
             if (this.icInitialAmountIsUnknown) {
-                this.icInitialAmountValue = '';
-
                 return false;
             }
 
@@ -83,8 +81,6 @@ const Calculator = {
         },
         icRegularPaymentIsRequired() {
             if (this.icRegularPaymentIsUnknown) {
-                this.icRegularPaymentValue = '';
-
                 return false;
             }
 
@@ -92,8 +88,6 @@ const Calculator = {
         },
         icNumberOfYearsIsRequired() {
             if (this.icNumberOfYearsIsUnknown) {
-                this.icNumberOfYearsValue = '';
-
                 return false;
             }
 
@@ -101,8 +95,6 @@ const Calculator = {
         },
         icInterestRatePerYearIsRequired() {
             if (this.icInterestRatePerYearIsUnknown) {
-                this.icInterestRatePerYearValue = '';
-
                 return false;
             }
 
@@ -110,8 +102,6 @@ const Calculator = {
         },
         icFinalAmountIsRequired() {
             if (this.icFinalAmountIsUnknown) {
-                this.icFinalAmountValue = '';
-
                 return false;
             }
 
@@ -119,8 +109,6 @@ const Calculator = {
         },
         scInitialAmountIsRequired() {
             if (this.scInitialAmountIsUnknown) {
-                this.scInitialAmountValue = '';
-
                 return false;
             }
 
@@ -128,8 +116,6 @@ const Calculator = {
         },
         scPaymentAmountIsRequired() {
             if (this.scPaymentAmountIsUnknown) {
-                this.scPaymentAmountValue = '';
-
                 return false;
             }
 
@@ -137,8 +123,6 @@ const Calculator = {
         },
         scNumberOfYearsIsRequired() {
             if (this.scNumberOfYearsIsUnknown) {
-                this.scNumberOfYearsValue = '';
-
                 return false;
             }
 
@@ -146,8 +130,6 @@ const Calculator = {
         },
         scInterestRatePerYearIsRequired() {
             if (this.scInterestRatePerYearIsUnknown) {
-                this.scInterestRatePerYearValue = '';
-
                 return false;
             }
 
@@ -155,8 +137,6 @@ const Calculator = {
         },
         scFinalAmountIsRequired() {
             if (this.scFinalAmountIsUnknown) {
-                this.scFinalAmountValue = '';
-
                 return false;
             }
 
@@ -178,6 +158,8 @@ const Calculator = {
 
                 this.icCalculationIsDisabled = true;
             } else {
+                this.setIcInitialAmountValue('');
+
                 this.icInitialAmountIsUnknown = true;
 
                 this.icRegularPaymentIsUnknown = false;
@@ -194,6 +176,8 @@ const Calculator = {
 
                 this.icCalculationIsDisabled = true;
             } else {
+                this.setIcRegularPaymentValue('');
+
                 this.icRegularPaymentIsUnknown = true;
 
                 this.icInitialAmountIsUnknown = false;
@@ -210,6 +194,8 @@ const Calculator = {
 
                 this.icCalculationIsDisabled = true;
             } else {
+                this.setIcNumberOfYearsValue('');
+
                 this.icNumberOfYearsIsUnknown = true;
 
                 this.icInitialAmountIsUnknown = false;
@@ -226,6 +212,8 @@ const Calculator = {
 
                 this.icCalculationIsDisabled = true;
             } else {
+                this.setIcInterestRatePerYearValue('');
+
                 this.icInterestRatePerYearIsUnknown = true;
 
                 this.icInitialAmountIsUnknown = false;
@@ -242,6 +230,8 @@ const Calculator = {
 
                 this.icCalculationIsDisabled = true;
             } else {
+                this.setIcFinalAmountValue('');
+
                 this.icFinalAmountIsUnknown = true;
 
                 this.icInitialAmountIsUnknown = false;
@@ -258,6 +248,8 @@ const Calculator = {
 
                 this.scCalculationIsDisabled = true;
             } else {
+                this.setScInitialAmountValue('');
+
                 this.scInitialAmountIsUnknown = true;
 
                 this.scPaymentAmountIsUnknown = false;
@@ -274,6 +266,8 @@ const Calculator = {
 
                 this.scCalculationIsDisabled = true;
             } else {
+                this.setScPaymentAmountValue('');
+
                 this.scPaymentAmountIsUnknown = true;
 
                 this.scInitialAmountIsUnknown = false;
@@ -290,6 +284,8 @@ const Calculator = {
 
                 this.scCalculationIsDisabled = true;
             } else {
+                this.setScNumberOfYearsValue('');
+
                 this.scNumberOfYearsIsUnknown = true;
 
                 this.scInitialAmountIsUnknown = false;
@@ -306,6 +302,8 @@ const Calculator = {
 
                 this.scCalculationIsDisabled = true;
             } else {
+                this.setScInterestRatePerYearValue('');
+
                 this.scInterestRatePerYearIsUnknown = true;
 
                 this.scInitialAmountIsUnknown = false;
@@ -322,6 +320,8 @@ const Calculator = {
 
                 this.scCalculationIsDisabled = true;
             } else {
+                this.setScFinalAmountValue('');
+
                 this.scFinalAmountIsUnknown = true;
 
                 this.scInitialAmountIsUnknown = false;
@@ -333,7 +333,51 @@ const Calculator = {
             }
         },
         setIcInitialAmountValue(value) {
+            this.icInitialAmountValue = value;
+        },
+        setIcRegularPaymentValue(value) {
+            this.icRegularPaymentValue = value;
+        },
+        setIcNumberOfRegularPaymentsPerYearValue(value) {
+            this.icNumberOfRegularPaymentsPerYearValue = value;
+        },
+        setIcNumberOfYearsValue(value) {
+            this.icNumberOfYearsValue = value;
+        },
+        setIcInterestRatePerYearValue(value) {
+            this.icInterestRatePerYearValue = value;
+        },
+        setIcFinalAmountValue(value) {
+            this.icFinalAmountValue = value;
+        },
+        setScInitialAmountValue(value) {
+            this.scInitialAmountValue = value;
+        },
+        setScPaymentAmountValue(value) {
+            this.scPaymentAmountValue = value;
+        },
+        setScNumberOfPaymentsPerYearValue(value) {
+            this.scNumberOfPaymentsPerYearValue = value;
+        },
+        setScNumberOfYearsValue(value) {
+            this.scNumberOfYearsValue = value;
+        },
+        setScInterestRatePerYearValue(value) {
+            this.scInterestRatePerYearValue = value;
+        },
+        setScFinalAmountValue(value) {
+            this.scFinalAmountValue = value;
+        },
+        setScNumberOfYearsUntilFistPaymentValue(value) {
+            this.scNumberOfYearsUntilFistPaymentValue = value;
+        },
+        setScInflationValue(value) {
+            this.scInflationValue = value;
+        },
+        updateIcInitialAmountValue(value) {
             const app = this;
+
+            value = value.toString();
 
             if (app.icInitialAmountValue === value) {
                 return void 0;
@@ -349,8 +393,10 @@ const Calculator = {
                 1100
             );
         },
-        setIcRegularPaymentValue(value) {
+        updateIcRegularPaymentValue(value) {
             const app = this;
+
+            value = value.toString();
 
             if (app.icRegularPaymentValue === value) {
                 return void 0;
@@ -366,8 +412,10 @@ const Calculator = {
                 1100
             );
         },
-        setIcNumberOfRegularPaymentsPerYearValue(value) {
+        updateIcNumberOfRegularPaymentsPerYearValue(value) {
             const app = this;
+
+            value = value.toString();
 
             if (app.icNumberOfRegularPaymentsPerYearValue === value) {
                 return void 0;
@@ -383,8 +431,10 @@ const Calculator = {
                 1100
             );
         },
-        setIcNumberOfYearsValue(value) {
+        updateIcNumberOfYearsValue(value) {
             const app = this;
+
+            value = value.toString();
 
             if (app.icNumberOfYearsValue === value) {
                 return void 0;
@@ -400,8 +450,10 @@ const Calculator = {
                 1100
             );
         },
-        setIcInterestRatePerYearValue(value) {
+        updateIcInterestRatePerYearValue(value) {
             const app = this;
+
+            value = value.toString();
 
             if (app.icInterestRatePerYearValue === value) {
                 return void 0;
@@ -417,8 +469,10 @@ const Calculator = {
                 1100
             );
         },
-        setIcFinalAmountValue(value) {
+        updateIcFinalAmountValue(value) {
             const app = this;
+
+            value = value.toString();
 
             if (app.icFinalAmountValue === value) {
                 return void 0;
@@ -434,8 +488,10 @@ const Calculator = {
                 1100
             );
         },
-        setScInitialAmountValue(value) {
+        updateScInitialAmountValue(value) {
             const app = this;
+
+            value = value.toString();
 
             if (app.scInitialAmountValue === value) {
                 return void 0;
@@ -451,8 +507,10 @@ const Calculator = {
                 1100
             );
         },
-        setScPaymentAmountValue(value) {
+        updateScPaymentAmountValue(value) {
             const app = this;
+
+            value = value.toString();
 
             if (app.scPaymentAmountValue === value) {
                 return void 0;
@@ -468,8 +526,10 @@ const Calculator = {
                 1100
             );
         },
-        setScNumberOfPaymentsPerYearValue(value) {
+        updateScNumberOfPaymentsPerYearValue(value) {
             const app = this;
+
+            value = value.toString();
 
             if (app.scNumberOfPaymentsPerYearValue === value) {
                 return void 0;
@@ -485,8 +545,10 @@ const Calculator = {
                 1100
             );
         },
-        setScNumberOfYearsValue(value) {
+        updateScNumberOfYearsValue(value) {
             const app = this;
+
+            value = value.toString();
 
             if (app.scNumberOfYearsValue === value) {
                 return void 0;
@@ -502,8 +564,10 @@ const Calculator = {
                 1100
             );
         },
-        setScInterestRatePerYearValue(value) {
+        updateScInterestRatePerYearValue(value) {
             const app = this;
+
+            value = value.toString();
 
             if (app.scInterestRatePerYearValue === value) {
                 return void 0;
@@ -519,8 +583,10 @@ const Calculator = {
                 1100
             );
         },
-        setScFinalAmountValue(value) {
+        updateScFinalAmountValue(value) {
             const app = this;
+
+            value = value.toString();
 
             if (app.scFinalAmountValue === value) {
                 return void 0;
@@ -536,8 +602,10 @@ const Calculator = {
                 1100
             );
         },
-        setScNumberOfYearsUntilFistPaymentValue(value) {
+        updateScNumberOfYearsUntilFistPaymentValue(value) {
             const app = this;
+
+            value = value.toString();
 
             if (app.scNumberOfYearsUntilFistPaymentValue === value) {
                 return void 0;
@@ -553,8 +621,10 @@ const Calculator = {
                 1100
             );
         },
-        setScInflationValue(value) {
+        updateScInflationValue(value) {
             const app = this;
+
+            value = value.toString();
 
             if (app.scInflationValue === value) {
                 return void 0;
@@ -594,12 +664,12 @@ const Calculator = {
                 }
             })
             .then(function (response) {
-                app.setIcInitialAmountValue(response.data.initial_amount);
-                app.setIcRegularPaymentValue(response.data.regular_payment);
-                app.setIcNumberOfRegularPaymentsPerYearValue(response.data.number_of_regular_payments_per_year);
-                app.setIcNumberOfYearsValue(response.data.number_of_years);
-                app.setIcInterestRatePerYearValue(response.data.interest_rate_per_year);
-                app.setIcFinalAmountValue(response.data.final_amount);
+                app.updateIcInitialAmountValue(response.data.initial_amount);
+                app.updateIcRegularPaymentValue(response.data.regular_payment);
+                app.updateIcNumberOfRegularPaymentsPerYearValue(response.data.number_of_regular_payments_per_year);
+                app.updateIcNumberOfYearsValue(response.data.number_of_years);
+                app.updateIcInterestRatePerYearValue(response.data.interest_rate_per_year);
+                app.updateIcFinalAmountValue(response.data.final_amount);
 
                 // app.icYearlyBalances.splice(0);
                 // app.icYearlyBalances.push(...response.data.yearly_balances);
@@ -641,14 +711,14 @@ const Calculator = {
                 }
             })
             .then(function (response) {
-                app.setScInitialAmountValue(response.data.initial_amount);
-                app.setScPaymentAmountValue(response.data.payment_amount);
-                app.setScNumberOfPaymentsPerYearValue(response.data.number_of_payments_per_year);
-                app.setScNumberOfYearsValue(response.data.number_of_years);
-                app.setScInterestRatePerYearValue(response.data.interest_rate_per_year);
-                app.setScFinalAmountValue(response.data.final_amount);
-                app.setScNumberOfYearsUntilFistPaymentValue(response.data.number_of_years_until_fist_payment);
-                app.setScInflationValue(response.data.inflation);
+                app.updateScInitialAmountValue(response.data.initial_amount);
+                app.updateScPaymentAmountValue(response.data.payment_amount);
+                app.updateScNumberOfPaymentsPerYearValue(response.data.number_of_payments_per_year);
+                app.updateScNumberOfYearsValue(response.data.number_of_years);
+                app.updateScInterestRatePerYearValue(response.data.interest_rate_per_year);
+                app.updateScFinalAmountValue(response.data.final_amount);
+                app.updateScNumberOfYearsUntilFistPaymentValue(response.data.number_of_years_until_fist_payment);
+                app.updateScInflationValue(response.data.inflation);
 
                 // app.scBalancesByPeriod.splice(0);
                 // app.scBalancesByPeriod.push(...response.data.balances_by_period);
