@@ -68,21 +68,26 @@ main h2 {
     gap: var(--content-gap);
 }
 
-.field-label {
+.form-row .field-label {
     display: block;
     font-weight: 700;
 }
 
-.field-label.disabled {
+.form-row.focused .field-label {
+    color: var(--color-9);
+}
+
+.form-row.disabled .field-label,
+.form-row.focused.disabled .field-label {
     display: block;
     color: var(--color-4);
 }
 
-.unknown {
+.form-row .unknown {
     margin-top: calc(var(--content-gap) / 4);
 }
 
-.unknown label {
+.form-row .unknown label {
     display: inline-block;
     background-color: var(--color-6);
     color: var(--color-4);
@@ -98,25 +103,31 @@ main h2 {
     cursor: pointer;
 }
 
-.unknown span {
+.form-row.focused .unknown label {
+    border-color: var(--color-9);
+    color: var(--color-9);
+}
+
+.form-row .unknown span {
     display: inline-block;
     margin: 5px 10px;
 }
 
-.unknown label.checked {
+.form-row .unknown label.checked,
+.form-row.focused .unknown label.checked {
     background-color: var(--color-3);
     border-color: var(--color-3);
     color: var(--color-2);
 }
 
-.unknown input {
+.form-row .unknown input {
     display: block;
     visibility: hidden;
     height: 0;
     width: 0;
 }
 
-.field {
+.form-row .field {
     display: block;
     width: 100%;
     margin-top: calc(var(--content-gap) / 4);
@@ -129,7 +140,12 @@ main h2 {
     font-size: 2em;
 }
 
-.field.blink {
+.form-row .field:focus {
+    border-bottom: solid 2px var(--color-9);
+    outline: solid 1px var(--color-9);
+}
+
+.form-row .field.blink {
     animation-name: blink;
     animation-duration: 1s;
 }
@@ -144,12 +160,14 @@ main h2 {
     }
 }
 
-.field:read-only {
-    border-color: var(--color-5);
+.form-row .field:read-only,
+.form-row .field:read-only:focus {
+    border-bottom: solid 2px var(--color-5);
     color: var(--color-4);
+    outline: none;
 }
 
-.field.blink:read-only {
+.form-row .field.blink:read-only {
     animation-name: blink_disabled;
     animation-duration: 1s;
 }

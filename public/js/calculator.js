@@ -11,25 +11,31 @@ const Calculator = {
 
             icInitialAmountIsUnknown: false,
             icInitialAmountIsBlinked: false,
+            icInitialAmountIsFocused: false,
             icInitialAmountValue: '',
 
             icRegularPaymentIsUnknown: false,
             icRegularPaymentIsBlinked: false,
+            icRegularPaymentIsFocused: false,
             icRegularPaymentValue: '',
 
             icNumberOfRegularPaymentsPerYearIsBlinked: false,
+            icNumberOfRegularPaymentsPerYearIsFocused: false,
             icNumberOfRegularPaymentsPerYearValue: '',
 
             icNumberOfYearsIsUnknown: false,
             icNumberOfYearsIsBlinked: false,
+            icNumberOfYearsIsFocused: false,
             icNumberOfYearsValue: '',
 
             icInterestRatePerYearIsUnknown: false,
             icInterestRatePerYearIsBlinked: false,
+            icInterestRatePerYearIsFocused: false,
             icInterestRatePerYearValue: '',
 
             icFinalAmountIsUnknown: false,
             icFinalAmountIsBlinked: false,
+            icFinalAmountIsFocused: false,
             icFinalAmountValue: '',
 
             icIsErrorResult: false,
@@ -40,31 +46,39 @@ const Calculator = {
 
             scInitialAmountIsUnknown: false,
             scInitialAmountIsBlinked: false,
+            scInitialAmountIsFocused: false,
             scInitialAmountValue: '',
 
             scPaymentAmountIsUnknown: false,
             scPaymentAmountIsBlinked: false,
+            scPaymentAmountIsFocused: false,
             scPaymentAmountValue: '',
 
             scNumberOfPaymentsPerYearIsBlinked: false,
+            scNumberOfPaymentsPerYearIsFocused: false,
             scNumberOfPaymentsPerYearValue: '',
 
             scNumberOfYearsIsUnknown: false,
             scNumberOfYearsIsBlinked: false,
+            scNumberOfYearsIsFocused: false,
             scNumberOfYearsValue: '',
 
             scInterestRatePerYearIsUnknown: false,
             scInterestRatePerYearIsBlinked: false,
+            scInterestRatePerYearIsFocused: false,
             scInterestRatePerYearValue: '',
 
             scFinalAmountIsUnknown: false,
             scFinalAmountIsBlinked: false,
+            scFinalAmountIsFocused: false,
             scFinalAmountValue: '',
 
             scNumberOfYearsUntilFistPaymentIsBlinked: false,
+            scNumberOfYearsUntilFistPaymentIsFocused: false,
             scNumberOfYearsUntilFistPaymentValue: '',
 
             scInflationIsBlinked: false,
+            scInflationIsFocused: false,
             scInflationValue: '',
 
             scIsErrorResult: false,

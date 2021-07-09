@@ -6,11 +6,11 @@
 {% block keywords %}
 {% endblock %}
 
-{% block title %}{{ parent() }}{% endblock %}
+{% block title %}Инвестиционный калькулятор | {{ parent() }}{% endblock %}
 
 {% block css %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/calculator.css?v=92721') }}">
+    <link rel="stylesheet" href="{{ asset('css/calculator.css?v=9721n1') }}">
 {% endblock %}
 
 {% block main %}
@@ -30,11 +30,10 @@
         <h2>Накопление</h2>
 
         <form v-on:submit.prevent="doIncomeCalc">
-            <div>
-                <label class="field-label"
-                       v-bind:class="{ disabled: icInitialAmountIsUnknown }"
-                       for="ic-initial-amount"
-                >
+            <div class="form-row"
+                 v-bind:class="{ disabled: icInitialAmountIsUnknown, focused: icInitialAmountIsFocused }"
+            >
+                <label class="field-label" for="ic-initial-amount">
                     Начальная сумма размещения:
                 </label>
                 <div class="unknown">
@@ -51,6 +50,8 @@
                        min="0"
                        step="0.01"
                        v-on:input.prevent="setIcInitialAmountValue($event.target.value)"
+                       v-on:focus="icInitialAmountIsFocused = true"
+                       v-on:focusout="icInitialAmountIsFocused = false"
                        v-bind:value="icInitialAmountValue"
                        v-bind:readonly="icInitialAmountIsUnknown"
                        v-bind:required="icInitialAmountIsRequired"
@@ -58,11 +59,10 @@
                 >
             </div>
 
-            <div>
-                <label class="field-label"
-                       v-bind:class="{ disabled: icRegularPaymentIsUnknown }"
-                       for="ic-regular-payment"
-                >
+            <div class="form-row"
+                 v-bind:class="{ disabled: icRegularPaymentIsUnknown, focused: icRegularPaymentIsFocused }"
+            >
+                <label class="field-label" for="ic-regular-payment">
                     Сумма регулярного взноса:
                 </label>
                 <div class="unknown">
@@ -79,6 +79,8 @@
                        min="0"
                        step="0.01"
                        v-on:input.prevent="setIcRegularPaymentValue($event.target.value)"
+                       v-on:focus="icRegularPaymentIsFocused = true"
+                       v-on:focusout="icRegularPaymentIsFocused = false"
                        v-bind:value="icRegularPaymentValue"
                        v-bind:readonly="icRegularPaymentIsUnknown"
                        v-bind:required="icRegularPaymentIsRequired"
@@ -86,7 +88,9 @@
                 >
             </div>
 
-            <div>
+            <div class="form-row"
+                 v-bind:class="{ focused: icNumberOfRegularPaymentsPerYearIsFocused }"
+            >
                 <label class="field-label" for="ic-number-of-regular-payments-per-year">
                     Количество взносов в год:
                 </label>
@@ -96,17 +100,18 @@
                        min="0"
                        step="1"
                        v-on:input.prevent="setIcNumberOfRegularPaymentsPerYearValue($event.target.value)"
+                       v-on:focus="icNumberOfRegularPaymentsPerYearIsFocused = true"
+                       v-on:focusout="icNumberOfRegularPaymentsPerYearIsFocused = false"
                        v-bind:value="icNumberOfRegularPaymentsPerYearValue"
                        v-bind:class="{ blink: icNumberOfRegularPaymentsPerYearIsBlinked }"
                        required
                 >
             </div>
 
-            <div>
-                <label class="field-label"
-                       v-bind:class="{ disabled: icNumberOfYearsIsUnknown }"
-                       for="ic-number-of-years"
-                >
+            <div class="form-row"
+                 v-bind:class="{ disabled: icNumberOfYearsIsUnknown, focused: icNumberOfYearsIsFocused }"
+            >
+                <label class="field-label" for="ic-number-of-years">
                     Количество лет:
                 </label>
                 <div class="unknown">
@@ -123,6 +128,8 @@
                        min="1"
                        step="1"
                        v-on:input.prevent="setIcNumberOfYearsValue($event.target.value)"
+                       v-on:focus="icNumberOfYearsIsFocused = true"
+                       v-on:focusout="icNumberOfYearsIsFocused = false"
                        v-bind:value="icNumberOfYearsValue"
                        v-bind:readonly="icNumberOfYearsIsUnknown"
                        v-bind:required="icNumberOfYearsIsRequired"
@@ -130,27 +137,28 @@
                 >
             </div>
 
-            <div>
-                <label class="field-label"
-                       v-bind:class="{ disabled: icInterestRatePerYearIsUnknown }"
-                       for="ic-interest-rate-per-year"
-                >
+            <div class="form-row"
+                 v-bind:class="{ disabled: icInterestRatePerYearIsUnknown, focused: icInterestRatePerYearIsFocused }"
+            >
+                <label class="field-label" for="ic-interest-rate-per-year">
                     Ставка размещения в % годовых:
                 </label>
-                <div class="unknown">
-                    <label v-bind:class="{ checked: icInterestRatePerYearIsUnknown }"
-                           v-on:click.prevent="changeIcInterestRatePerYearUnknowing"
-                    >
-                        <input type="checkbox" v-bind:checked="icInterestRatePerYearIsUnknown">
-                        <span>неизвестная величина</span>
-                    </label>
-                </div>
+{#                <div class="unknown">#}
+{#                    <label v-bind:class="{ checked: icInterestRatePerYearIsUnknown }"#}
+{#                           v-on:click.prevent="changeIcInterestRatePerYearUnknowing"#}
+{#                    >#}
+{#                        <input type="checkbox" v-bind:checked="icInterestRatePerYearIsUnknown">#}
+{#                        <span>неизвестная величина</span>#}
+{#                    </label>#}
+{#                </div>#}
                 <input class="field"
                        id="ic-interest-rate-per-year"
                        type="number"
                        min="0.01"
                        step="0.01"
                        v-on:input.prevent="setIcInterestRatePerYearValue($event.target.value)"
+                       v-on:focus="icInterestRatePerYearIsFocused = true"
+                       v-on:focusout="icInterestRatePerYearIsFocused = false"
                        v-bind:value="icInterestRatePerYearValue"
                        v-bind:readonly="icInterestRatePerYearIsUnknown"
                        v-bind:required="icInterestRatePerYearIsRequired"
@@ -158,11 +166,10 @@
                 >
             </div>
 
-            <div>
-                <label class="field-label"
-                       v-bind:class="{ disabled: icFinalAmountIsUnknown }"
-                       for="ic-final-amount"
-                >
+            <div class="form-row"
+                 v-bind:class="{ disabled: icFinalAmountIsUnknown, focused: icFinalAmountIsFocused }"
+            >
+                <label class="field-label" for="ic-final-amount">
                     Сумма накопления:
                 </label>
                 <div class="unknown">
@@ -179,6 +186,8 @@
                        min="0.01"
                        step="0.01"
                        v-on:input.prevent="setIcFinalAmountValue($event.target.value)"
+                       v-on:focus="icFinalAmountIsFocused = true"
+                       v-on:focusout="icFinalAmountIsFocused = false"
                        v-bind:value="icFinalAmountValue"
                        v-bind:readonly="icFinalAmountIsUnknown"
                        v-bind:required="icFinalAmountIsRequired"
@@ -205,11 +214,10 @@
         <h2>Использование</h2>
 
         <form v-on:submit.prevent="doSpendCalc">
-            <div>
-                <label class="field-label"
-                       v-bind:class="{ disabled: scInitialAmountIsUnknown }"
-                       for="sc-initial-amount"
-                >
+            <div class="form-row"
+                 v-bind:class="{ disabled: scInitialAmountIsUnknown, focused: scInitialAmountIsFocused }"
+            >
+                <label class="field-label" for="sc-initial-amount">
                     Начальная сумма:
                 </label>
                 <div class="unknown">
@@ -226,6 +234,8 @@
                        min="0.01"
                        step="0.01"
                        v-on:input.prevent="setScInitialAmountValue($event.target.value)"
+                       v-on:focus="scInitialAmountIsFocused = true"
+                       v-on:focusout="scInitialAmountIsFocused = false"
                        v-bind:value="scInitialAmountValue"
                        v-bind:readonly="scInitialAmountIsUnknown"
                        v-bind:required="scInitialAmountIsRequired"
@@ -233,11 +243,10 @@
                 >
             </div>
 
-            <div>
-                <label class="field-label"
-                       v-bind:class="{ disabled: scPaymentAmountIsUnknown }"
-                       for="sc-payment-amount"
-                >
+            <div class="form-row"
+                 v-bind:class="{ disabled: scPaymentAmountIsUnknown, focused: scPaymentAmountIsFocused }"
+            >
+                <label class="field-label" for="sc-payment-amount">
                     Сумма выплаты:
                 </label>
                 <div class="unknown">
@@ -254,6 +263,8 @@
                        min="0.01"
                        step="0.01"
                        v-on:input.prevent="setScPaymentAmountValue($event.target.value)"
+                       v-on:focus="scPaymentAmountIsFocused = true"
+                       v-on:focusout="scPaymentAmountIsFocused = false"
                        v-bind:value="scPaymentAmountValue"
                        v-bind:readonly="scPaymentAmountIsUnknown"
                        v-bind:required="scPaymentAmountIsRequired"
@@ -261,25 +272,28 @@
                 >
             </div>
 
-            <div>
-                <label class="field-label" for="sc-number-of-payments-per-year">Количество выплат в год:</label>
+            <div class="form-row" v-bind:class="{ focused: scNumberOfPaymentsPerYearIsFocused }">
+                <label class="field-label" for="sc-number-of-payments-per-year">
+                    Количество выплат в год:
+                </label>
                 <input class="field"
                        id="sc-number-of-payments-per-year"
                        type="number"
                        min="1"
                        step="1"
                        v-on:input.prevent="setScNumberOfPaymentsPerYearValue($event.target.value)"
+                       v-on:focus="scNumberOfPaymentsPerYearIsFocused = true"
+                       v-on:focusout="scNumberOfPaymentsPerYearIsFocused = false"
                        v-bind:value="scNumberOfPaymentsPerYearValue"
                        v-bind:class="{ blink: scNumberOfPaymentsPerYearIsBlinked }"
                        required
                 >
             </div>
 
-            <div>
-                <label class="field-label"
-                       v-bind:class="{ disabled: scNumberOfYearsIsUnknown }"
-                       for="sc-number-of-years"
-                >
+            <div class="form-row"
+                 v-bind:class="{ disabled: scNumberOfYearsIsUnknown, focused: scNumberOfYearsIsFocused }"
+            >
+                <label class="field-label" for="sc-number-of-years">
                     Количество лет:
                 </label>
                 <div class="unknown">
@@ -296,6 +310,8 @@
                        min="1"
                        step="1"
                        v-on:input.prevent="setScNumberOfYearsValue($event.target.value)"
+                       v-on:focus="scNumberOfYearsIsFocused = true"
+                       v-on:focusout="scNumberOfYearsIsFocused = false"
                        v-bind:value="scNumberOfYearsValue"
                        v-bind:readonly="scNumberOfYearsIsUnknown"
                        v-bind:required="scNumberOfYearsIsRequired"
@@ -303,27 +319,28 @@
                 >
             </div>
 
-            <div>
-                <label class="field-label"
-                       v-bind:class="{ disabled: scInterestRatePerYearIsUnknown }"
-                       for="sc-interest-rate-per-year"
-                >
+            <div class="form-row"
+                 v-bind:class="{ disabled: scInterestRatePerYearIsUnknown, focused: scInterestRatePerYearIsFocused }"
+            >
+                <label class="field-label" for="sc-interest-rate-per-year">
                     Ставка размещения в % годовых:
                 </label>
-                <div class="unknown">
-                    <label v-bind:class="{ checked: scInterestRatePerYearIsUnknown }"
-                           v-on:click.prevent="changeScInterestRatePerYearUnknowing"
-                    >
-                        <input type="checkbox" v-bind:checked="scInterestRatePerYearIsUnknown">
-                        <span>неизвестная величина</span>
-                    </label>
-                </div>
+{#                <div class="unknown">#}
+{#                    <label v-bind:class="{ checked: scInterestRatePerYearIsUnknown }"#}
+{#                           v-on:click.prevent="changeScInterestRatePerYearUnknowing"#}
+{#                    >#}
+{#                        <input type="checkbox" v-bind:checked="scInterestRatePerYearIsUnknown">#}
+{#                        <span>неизвестная величина</span>#}
+{#                    </label>#}
+{#                </div>#}
                 <input class="field"
                        id="sc-interest-rate-per-year"
                        type="number"
                        min="0.01"
                        step="0.01"
                        v-on:input.prevent="setScInterestRatePerYearValue($event.target.value)"
+                       v-on:focus="scInterestRatePerYearIsFocused = true"
+                       v-on:focusout="scInterestRatePerYearIsFocused = false"
                        v-bind:value="scInterestRatePerYearValue"
                        v-bind:readonly="scInterestRatePerYearIsUnknown"
                        v-bind:required="scInterestRatePerYearIsRequired"
@@ -331,11 +348,10 @@
                 >
             </div>
 
-            <div>
-                <label class="field-label"
-                       v-bind:class="{ disabled: scFinalAmountIsUnknown }"
-                       for="sc-final-amount"
-                >
+            <div class="form-row"
+                 v-bind:class="{ disabled: scFinalAmountIsUnknown, focused: scFinalAmountIsFocused }"
+            >
+                <label class="field-label" for="sc-final-amount">
                     Конечная сумма:
                 </label>
                 <div class="unknown">
@@ -352,6 +368,8 @@
                        min="0"
                        step="0.01"
                        v-on:input.prevent="setScFinalAmountValue($event.target.value)"
+                       v-on:focus="scFinalAmountIsFocused = true"
+                       v-on:focusout="scFinalAmountIsFocused = false"
                        v-bind:value="scFinalAmountValue"
                        v-bind:readonly="scFinalAmountIsUnknown"
                        v-bind:required="scFinalAmountIsRequired"
@@ -359,30 +377,36 @@
                 >
             </div>
 
-            <div>
-                <label class="field-label" for="sc-number-of-years-until-forst-payment">
+            <div class="form-row" v-bind:class="{ focused: scNumberOfYearsUntilFistPaymentIsFocused }">
+                <label class="field-label" for="sc-number-of-years-until-first-payment">
                     Количество лет до первой выплаты:
                 </label>
                 <input class="field"
-                       id="sc-number-of-years-until-forst-payment"
+                       id="sc-number-of-years-until-first-payment"
                        type="number"
                        min="0"
                        step="1"
                        v-on:input.prevent="setScNumberOfYearsUntilFistPaymentValue($event.target.value)"
+                       v-on:focus="scNumberOfYearsUntilFistPaymentIsFocused = true"
+                       v-on:focusout="scNumberOfYearsUntilFistPaymentIsFocused = false"
                        v-bind:value="scNumberOfYearsUntilFistPaymentValue"
                        v-bind:class="{ blink: scNumberOfYearsUntilFistPaymentIsBlinked }"
                        required
                 >
             </div>
 
-            <div>
-                <label class="field-label" for="sc-inflation">Инфляция в % годовых:</label>
+            <div class="form-row" v-bind:class="{ focused: scInflationIsFocused }">
+                <label class="field-label" for="sc-inflation">
+                    Инфляция в % годовых:
+                </label>
                 <input class="field"
                        id="sc-inflation"
                        type="number"
                        min="0.01"
                        step="0.01"
                        v-on:input.prevent="setScInflationValue($event.target.value)"
+                       v-on:focus="scInflationIsFocused = true"
+                       v-on:focusout="scInflationIsFocused = false"
                        v-bind:value="scInflationValue"
                        v-bind:class="{ blink: scInflationIsBlinked }"
                        required
@@ -414,5 +438,5 @@
         <script src="https://unpkg.com/vue@3.1.4/dist/vue.global.prod.js"></script>
     {% endif %}
 
-    <script src="{{ asset('js/calculator.js?v=92721') }}"></script>
+    <script src="{{ asset('js/calculator.js?v=9721n1') }}"></script>
 {% endblock %}
