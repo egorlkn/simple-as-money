@@ -38,6 +38,15 @@ const Calculator = {
             icFinalAmountIsFocused: false,
             icFinalAmountValue: '',
 
+            icLastRequestCash: {
+                initialAmount: '',
+                regularPayment: '',
+                numberOfRegularPaymentsPerYear: '',
+                numberOfYears: '',
+                interestRatePerYear: '',
+                finalAmount: ''
+            },
+
             icIsErrorResult: false,
             icErrors: [],
 
@@ -80,6 +89,17 @@ const Calculator = {
             scInflationIsBlinked: false,
             scInflationIsFocused: false,
             scInflationValue: '',
+
+            scLastRequestCash: {
+                initialAmount: '',
+                paymentAmount: '',
+                numberOfPaymentsPerYear: '',
+                numberOfYears: '',
+                interestRatePerYear: '',
+                finalAmount: '',
+                numberOfYearsUntilFistPayment: '',
+                inflation: ''
+            },
 
             scIsErrorResult: false,
             scErrors: []
@@ -702,6 +722,10 @@ const Calculator = {
         doIncomeCalc() {
             const app = this;
 
+            if(this.icReqWasHandledByCache()) {
+                return void 0;
+            }
+
             axios.get('/api/income-calculator', {
                 params: {
                     initial_amount: app.icInitialAmountValue,
@@ -717,27 +741,93 @@ const Calculator = {
                     final_amount_is_unknown: app.icFinalAmountIsUnknown ? 1 : 0,
                 }
             })
-            .then(function (response) {
-                app.updateIcInitialAmountValue(response.data.initial_amount);
-                app.updateIcRegularPaymentValue(response.data.regular_payment);
-                app.updateIcNumberOfRegularPaymentsPerYearValue(response.data.number_of_regular_payments_per_year);
-                app.updateIcNumberOfYearsValue(response.data.number_of_years);
-                app.updateIcInterestRatePerYearValue(response.data.interest_rate_per_year);
-                app.updateIcFinalAmountValue(response.data.final_amount);
+            .then(function (res) {
+                app.updateIcInitialAmountValue(res.data.initial_amount);
+                app.updateIcRegularPaymentValue(res.data.regular_payment);
+                app.updateIcNumberOfRegularPaymentsPerYearValue(res.data.number_of_regular_payments_per_year);
+                app.updateIcNumberOfYearsValue(res.data.number_of_years);
+                app.updateIcInterestRatePerYearValue(res.data.interest_rate_per_year);
+                app.updateIcFinalAmountValue(res.data.final_amount);
+
+                app.icLastRequestCash.initialAmount = res.data.initial_amount.toString();
+                app.icLastRequestCash.regularPayment = res.data.regular_payment.toString();
+                app.icLastRequestCash.numberOfRegularPaymentsPerYear =
+                    res.data.number_of_regular_payments_per_year.toString();
+                app.icLastRequestCash.numberOfYears = res.data.number_of_years.toString();
+                app.icLastRequestCash.interestRatePerYear = res.data.interest_rate_per_year.toString();
+                app.icLastRequestCash.finalAmount = res.data.final_amount.toString();
 
                 // app.icYearlyBalances.splice(0);
-                // app.icYearlyBalances.push(...response.data.yearly_balances);
+                // app.icYearlyBalances.push(...res.data.yearly_balances);
 
                 app.icIsErrorResult = false;
 
                 app.icErrors.splice(0);
             })
             .catch(function (error) {
+                app.icLastRequestCash.initialAmount = '';
+                app.icLastRequestCash.regularPayment = '';
+                app.icLastRequestCash.numberOfRegularPaymentsPerYear = '';
+                app.icLastRequestCash.numberOfYears = '';
+                app.icLastRequestCash.interestRatePerYear = '';
+                app.icLastRequestCash.finalAmount = '';
+
                 app.icErrors.splice(0);
                 app.icErrors.push(...error.response.data.errors);
 
                 app.icIsErrorResult = true;
             });
+        },
+        icReqWasHandledByCache() {
+            let cache = this.icLastRequestCash;
+
+            if (
+                !this.icInitialAmountIsUnknown &&
+                this.icInitialAmountValue !== cache.initialAmount
+            ) {
+                return false;
+            }
+
+            if (
+                !this.icRegularPaymentIsUnknown &&
+                this.icRegularPaymentValue !== cache.regularPayment
+            ) {
+                return false;
+            }
+
+            if (this.icNumberOfRegularPaymentsPerYearValue !== cache.numberOfRegularPaymentsPerYear) {
+                return false;
+            }
+
+            if (
+                !this.icNumberOfYearsIsUnknown &&
+                this.icNumberOfYearsValue !== cache.numberOfYears
+            ) {
+                return false;
+            }
+
+            if (
+                !this.icInterestRatePerYearIsUnknown &&
+                this.icInterestRatePerYearValue !== cache.interestRatePerYear
+            ) {
+                return false;
+            }
+
+            if (
+                !this.icFinalAmountIsUnknown &&
+                this.icFinalAmountValue !== cache.finalAmount
+            ) {
+                return false;
+            }
+
+            this.updateIcInitialAmountValue(cache.initialAmount);
+            this.updateIcRegularPaymentValue(cache.regularPayment);
+            this.updateIcNumberOfRegularPaymentsPerYearValue(cache.numberOfRegularPaymentsPerYear);
+            this.updateIcNumberOfYearsValue(cache.numberOfYears);
+            this.updateIcInterestRatePerYearValue(cache.interestRatePerYear);
+            this.updateIcFinalAmountValue(cache.finalAmount);
+
+            return true;
         },
         doSpendSubmit($event) {
             if (this.scCalculationIsDisabled) {
@@ -746,6 +836,10 @@ const Calculator = {
         },
         doSpendCalc() {
             const app = this;
+
+            if(this.scReqWasHandledByCache()) {
+                return void 0;
+            }
 
             axios.get('/api/spend-calculator', {
                 params: {
@@ -764,30 +858,110 @@ const Calculator = {
                     final_amount_is_unknown: app.scFinalAmountIsUnknown ? 1 : 0,
                 }
             })
-            .then(function (response) {
-                app.updateScInitialAmountValue(response.data.initial_amount);
-                app.updateScPaymentAmountValue(response.data.payment_amount);
-                app.updateScNumberOfPaymentsPerYearValue(response.data.number_of_payments_per_year);
-                app.updateScNumberOfYearsValue(response.data.number_of_years);
-                app.updateScInterestRatePerYearValue(response.data.interest_rate_per_year);
-                app.updateScFinalAmountValue(response.data.final_amount);
-                app.updateScNumberOfYearsUntilFistPaymentValue(response.data.number_of_years_until_fist_payment);
-                app.updateScInflationValue(response.data.inflation);
+            .then(function (res) {
+                app.updateScInitialAmountValue(res.data.initial_amount);
+                app.updateScPaymentAmountValue(res.data.payment_amount);
+                app.updateScNumberOfPaymentsPerYearValue(res.data.number_of_payments_per_year);
+                app.updateScNumberOfYearsValue(res.data.number_of_years);
+                app.updateScInterestRatePerYearValue(res.data.interest_rate_per_year);
+                app.updateScFinalAmountValue(res.data.final_amount);
+                app.updateScNumberOfYearsUntilFistPaymentValue(res.data.number_of_years_until_fist_payment);
+                app.updateScInflationValue(res.data.inflation);
+
+                app.scLastRequestCash.initialAmount = res.data.initial_amount.toString();
+                app.scLastRequestCash.paymentAmount = res.data.payment_amount.toString();
+                app.scLastRequestCash.numberOfPaymentsPerYear = res.data.number_of_payments_per_year.toString();
+                app.scLastRequestCash.numberOfYears = res.data.number_of_years.toString();
+                app.scLastRequestCash.interestRatePerYear = res.data.interest_rate_per_year.toString();
+                app.scLastRequestCash.finalAmount = res.data.final_amount.toString();
+                app.scLastRequestCash.numberOfYearsUntilFistPayment =
+                    res.data.number_of_years_until_fist_payment.toString();
+                app.scLastRequestCash.inflation = res.data.inflation.toString();
 
                 // app.scBalancesByPeriod.splice(0);
-                // app.scBalancesByPeriod.push(...response.data.balances_by_period);
+                // app.scBalancesByPeriod.push(...res.data.balances_by_period);
 
                 app.scIsErrorResult = false;
 
                 app.scErrors.splice(0);
             })
             .catch(function (error) {
+                app.scLastRequestCash.initialAmount = '';
+                app.scLastRequestCash.paymentAmount = '';
+                app.scLastRequestCash.numberOfPaymentsPerYear = '';
+                app.scLastRequestCash.numberOfYears = '';
+                app.scLastRequestCash.interestRatePerYear = '';
+                app.scLastRequestCash.finalAmount = '';
+                app.scLastRequestCash.numberOfYearsUntilFistPayment = '';
+                app.scLastRequestCash.inflation = '';
+
                 app.scErrors.splice(0);
                 app.scErrors.push(...error.response.data.errors);
 
                 app.scIsErrorResult = true;
             });
-        }
+        },
+        scReqWasHandledByCache() {
+            let cache = this.scLastRequestCash;
+
+            if (
+                !this.scInitialAmountIsUnknown &&
+                this.scInitialAmountValue !== cache.initialAmount
+            ) {
+                return false;
+            }
+
+            if (
+                !this.scPaymentAmountIsUnknown &&
+                this.scPaymentAmountValue !== cache.paymentAmount
+            ) {
+                return false;
+            }
+
+            if (this.scNumberOfPaymentsPerYearValue !== cache.numberOfPaymentsPerYear) {
+                return false;
+            }
+
+            if (
+                !this.scNumberOfYearsIsUnknown &&
+                this.scNumberOfYearsValue !== cache.numberOfYears
+            ) {
+                return false;
+            }
+
+            if (
+                !this.scInterestRatePerYearIsUnknown &&
+                this.scInterestRatePerYearValue !== cache.interestRatePerYear
+            ) {
+                return false;
+            }
+
+            if (
+                !this.scFinalAmountIsUnknown &&
+                this.scFinalAmountValue !== cache.finalAmount
+            ) {
+                return false;
+            }
+
+            if (this.scNumberOfYearsUntilFistPaymentValue !== cache.numberOfYearsUntilFistPayment) {
+                return false;
+            }
+
+            if (this.scInflationValue !== cache.inflation) {
+                return false;
+            }
+
+            this.updateScInitialAmountValue(cache.initialAmount);
+            this.updateScPaymentAmountValue(cache.paymentAmount);
+            this.updateScNumberOfPaymentsPerYearValue(cache.numberOfPaymentsPerYear);
+            this.updateScNumberOfYearsValue(cache.numberOfYears);
+            this.updateScInterestRatePerYearValue(cache.interestRatePerYear);
+            this.updateScFinalAmountValue(cache.finalAmount);
+            this.updateScNumberOfYearsUntilFistPaymentValue(cache.numberOfYearsUntilFistPayment);
+            this.updateScInflationValue(cache.inflation);
+
+            return true;
+        },
     }
 };
 
