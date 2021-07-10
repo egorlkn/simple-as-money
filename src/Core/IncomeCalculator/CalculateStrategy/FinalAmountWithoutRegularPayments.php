@@ -7,6 +7,7 @@ namespace App\Core\IncomeCalculator\CalculateStrategy;
 use App\Core\IncomeCalculator\CalculateStrategyInterface;
 use App\Core\IncomeCalculator\Model\Input;
 use App\Core\IncomeCalculator\Model\Result;
+use App\Core\IncomeCalculator\Exception\CalculatorException;
 
 class FinalAmountWithoutRegularPayments implements CalculateStrategyInterface
 {
@@ -15,6 +16,9 @@ class FinalAmountWithoutRegularPayments implements CalculateStrategyInterface
         return $input->finalAmountIsUnknown() && ((float)$input->getRegularPayment() === 0.0);
     }
 
+    /**
+     * @throws CalculatorException
+     */
     public function doCalculation(Input $input): Result
     {
         $PV = (float)$input->getInitialAmount();
@@ -22,6 +26,10 @@ class FinalAmountWithoutRegularPayments implements CalculateStrategyInterface
         $i = (float)$input->getInterestRatePerYear() / 100;
 
         $finalAmount = $PV * ((1 + $i) ** $n);
+
+        if (is_nan($finalAmount) || is_infinite($finalAmount)) {
+            throw CalculatorException::wrongCalculation();
+        }
 
         return new Result(
             (float)$input->getInitialAmount(),

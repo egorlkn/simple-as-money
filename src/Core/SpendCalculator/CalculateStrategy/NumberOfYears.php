@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Core\SpendCalculator\CalculateStrategy;
 
 use App\Core\SpendCalculator\CalculateStrategyInterface;
+use App\Core\SpendCalculator\Exception\CalculatorException;
 use App\Core\SpendCalculator\Helper\CalculationHelper;
 use App\Core\SpendCalculator\Model\Input;
 use App\Core\SpendCalculator\Model\Result;
@@ -23,6 +24,9 @@ class NumberOfYears implements CalculateStrategyInterface
         return $input->numberOfYearsIsUnknown();
     }
 
+    /**
+     * @throws CalculatorException
+     */
     public function doCalculation(Input $input): Result
     {
         $PV = (float)$input->getInitialAmount();
@@ -67,6 +71,15 @@ class NumberOfYears implements CalculateStrategyInterface
 
                 $numberOfYears = (int)floor($np / $x);
                 $finalAmount = $PV;
+        }
+
+        if (
+            is_nan($finalAmount) ||
+            is_nan($numberOfYears) ||
+            is_infinite($finalAmount) ||
+            is_infinite($numberOfYears)
+        ) {
+            throw CalculatorException::wrongCalculation();
         }
 
         return new Result(

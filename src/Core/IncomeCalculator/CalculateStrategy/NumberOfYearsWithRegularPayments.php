@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Core\IncomeCalculator\CalculateStrategy;
 
 use App\Core\IncomeCalculator\CalculateStrategyInterface;
+use App\Core\IncomeCalculator\Exception\CalculatorException;
 use App\Core\IncomeCalculator\Model\Input;
 use App\Core\IncomeCalculator\Model\Result;
 
@@ -15,6 +16,9 @@ class NumberOfYearsWithRegularPayments implements CalculateStrategyInterface
         return $input->numberOfYearsIsUnknown() && ((float)$input->getRegularPayment() > 0.0);
     }
 
+    /**
+     * @throws CalculatorException
+     */
     public function doCalculation(Input $input): Result
     {
         $PV = (float)$input->getInitialAmount();
@@ -32,6 +36,15 @@ class NumberOfYearsWithRegularPayments implements CalculateStrategyInterface
         $mNew = $numberOfYears * $d;
 
         $finalAmount = ($PV * ((1 + $j) ** $mNew)) + ($A * ((((1 + $j) ** $mNew) - 1) / $j));
+
+        if (
+            is_nan($numberOfYears) ||
+            is_nan($finalAmount) ||
+            is_infinite($numberOfYears) ||
+            is_infinite($finalAmount)
+        ) {
+            throw CalculatorException::wrongCalculation();
+        }
 
         return new Result(
             (float)$input->getInitialAmount(),

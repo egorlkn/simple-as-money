@@ -24,6 +24,9 @@ class InterestRatePerYear implements CalculateStrategyInterface
         return $input->interestRatePerYearIsUnknown();
     }
 
+    /**
+     * @throws CalculatorException
+     */
     public function doCalculation(Input $input): Result
     {
         $PV = (float)$input->getInitialAmount();
@@ -61,6 +64,10 @@ class InterestRatePerYear implements CalculateStrategyInterface
         }
 
         $interestRatePerYear = (((1 + $Sp) ** $x) - 1) * 100;
+
+        if (is_nan($interestRatePerYear) || is_infinite($interestRatePerYear)) {
+            throw CalculatorException::wrongCalculation();
+        }
 
         return new Result(
             (float)$input->getInitialAmount(),

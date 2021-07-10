@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Core\SpendCalculator\CalculateStrategy;
 
 use App\Core\SpendCalculator\CalculateStrategyInterface;
+use App\Core\SpendCalculator\Exception\CalculatorException;
 use App\Core\SpendCalculator\Helper\CalculationHelper;
 use App\Core\SpendCalculator\Model\Input;
 use App\Core\SpendCalculator\Model\Result;
@@ -23,6 +24,9 @@ class PaymentAmount implements CalculateStrategyInterface
         return $input->paymentAmountIsUnknown();
     }
 
+    /**
+     * @throws CalculatorException
+     */
     public function doCalculation(Input $input): Result
     {
         $PV = (float)$input->getInitialAmount();
@@ -55,6 +59,10 @@ class PaymentAmount implements CalculateStrategyInterface
         $PVfinal = $FV / (1 + $Sp) ** (($x * $n) - 1);
 
         $paymentAmount = ($PV - $PVfinal) / array_sum($HspfacList);
+
+        if (is_nan($paymentAmount) || is_infinite($paymentAmount)) {
+            throw CalculatorException::wrongCalculation();
+        }
 
         return new Result(
             (float)$input->getInitialAmount(),

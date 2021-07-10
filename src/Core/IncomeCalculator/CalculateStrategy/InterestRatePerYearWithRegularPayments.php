@@ -50,6 +50,10 @@ class InterestRatePerYearWithRegularPayments implements CalculateStrategyInterfa
 
         $interestRatePerYear = (((1 + $j) ** $d) - 1) * 100;
 
+        if (is_nan($interestRatePerYear) || is_infinite($interestRatePerYear)) {
+            throw CalculatorException::wrongCalculation();
+        }
+
         return new Result(
             (float)$input->getInitialAmount(),
             (float)$input->getRegularPayment(),

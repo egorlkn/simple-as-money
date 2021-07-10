@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Core\IncomeCalculator\CalculateStrategy;
 
 use App\Core\IncomeCalculator\CalculateStrategyInterface;
+use App\Core\IncomeCalculator\Exception\CalculatorException;
 use App\Core\IncomeCalculator\Model\Input;
 use App\Core\IncomeCalculator\Model\Result;
 
@@ -15,6 +16,9 @@ class InitialAmountWithRegularPayments implements CalculateStrategyInterface
         return $input->initialAmountIsUnknown() && ((float)$input->getRegularPayment() > 0.0);
     }
 
+    /**
+     * @throws CalculatorException
+     */
     public function doCalculation(Input $input): Result
     {
         $A = (float)$input->getRegularPayment();
@@ -28,6 +32,10 @@ class InitialAmountWithRegularPayments implements CalculateStrategyInterface
         $j = ((1 + $i) ** (1 / $d)) - 1;
 
         $initialAmount = ($FV - $A * ((((1 + $j) ** $m) - 1) / $j)) / ((1 + $j) ** $m);
+
+        if (is_nan($initialAmount) || is_infinite($initialAmount)) {
+            throw CalculatorException::wrongCalculation();
+        }
 
         return new Result(
             $initialAmount,
