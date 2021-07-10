@@ -349,11 +349,51 @@ const Calculator = {
         setIcInitialAmountValue(value) {
             this.icInitialAmountValue = value;
         },
-        setIcRegularPaymentValue(value) {
-            this.icRegularPaymentValue = value;
+        setIcRegularPaymentValue(regularPayment) {
+            this.icRegularPaymentValue = regularPayment;
+
+            let numberPerYear = this.icNumberOfRegularPaymentsPerYearValue;
+
+            if (numberPerYear !== '') {
+                numberPerYear = parseFloat(numberPerYear);
+            }
+
+            if (regularPayment === '' || parseFloat(regularPayment) > 0.0) {
+                if (numberPerYear === '' || numberPerYear === 0.0) {
+                    this.updateIcNumberOfRegularPaymentsPerYearValue(1);
+                }
+            }
+
+            if (parseFloat(regularPayment) === 0.0) {
+                if (numberPerYear === '' || numberPerYear !== 0.0) {
+                    this.updateIcNumberOfRegularPaymentsPerYearValue(0);
+                }
+            }
         },
-        setIcNumberOfRegularPaymentsPerYearValue(value) {
-            this.icNumberOfRegularPaymentsPerYearValue = value;
+        setIcNumberOfRegularPaymentsPerYearValue(numberPerYear) {
+            this.icNumberOfRegularPaymentsPerYearValue = numberPerYear;
+
+            let regularPayment = this.icRegularPaymentValue;
+
+            if (regularPayment !== '') {
+                regularPayment = parseFloat(regularPayment);
+            }
+
+            if (numberPerYear === '') {
+                return void 0;
+            }
+
+            if (parseFloat(numberPerYear) > 0.0) {
+                if (regularPayment === 0.0) {
+                    this.updateIcRegularPaymentValue('');
+                }
+            }
+
+            if (parseFloat(numberPerYear) === 0.0) {
+                if (regularPayment === '' || regularPayment !== 0.0) {
+                    this.updateIcRegularPaymentValue(0);
+                }
+            }
         },
         setIcNumberOfYearsValue(value) {
             this.icNumberOfYearsValue = value;
