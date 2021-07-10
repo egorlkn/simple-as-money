@@ -12,7 +12,6 @@
 
     --side-gap: 25px;
     --content-gap: 25px;
-    --header-h: 25px;
     --footer-h: 25px;
 
     --font-size: 15px;
@@ -35,7 +34,6 @@
     :root {
         --side-gap: 50px;
         --content-gap: 25px;
-        --header-h: 30px;
         --footer-h: 30px;
 
         --font-size: 19px;

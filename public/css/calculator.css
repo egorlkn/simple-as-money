@@ -326,7 +326,9 @@ button[type="submit"].disabled:active {
 }
 
 @media all and (min-width: 1600px) {
-
+    .form-row .field {
+        font-size: 1em;
+    }
 }
 
 @media all and (min-width: 1900px) {

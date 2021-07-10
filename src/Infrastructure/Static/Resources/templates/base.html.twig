@@ -27,14 +27,26 @@
 
     {% block css %}
         <link rel="stylesheet" href="{{ asset('css/normalize.css?v=8.0.1') }}">
-        <link rel="stylesheet" href="{{ asset('css/base.css?v=18621') }}">
+        <link rel="stylesheet" href="{{ asset('css/base.css?v=10721mm') }}">
     {% endblock %}
 </head>
 <body>
     <header id="main_header">
-        <a href="{{ url('static_homepage') }}">
+        <a id="logo" href="{{ url('static_homepage') }}">
             <img src="{{ asset('images/logo.svg') }}" alt="SimpleAsMoney site logo">
         </a>
+
+        {% if app.request.get('_route') == 'static_homepage' %}
+            <a href="{{ url('static_homepage') }}" class="active">Главная страница</a>
+        {% else %}
+            <a href="{{ url('static_homepage') }}">Главная страница</a>
+        {% endif %}
+
+        {% if app.request.get('_route') == 'static_calculator' %}
+            <a href="{{ url('static_calculator') }}" class="active">Инвестиционный калькулятор</a>
+        {% else %}
+            <a href="{{ url('static_calculator') }}">Инвестиционный калькулятор</a>
+        {% endif %}
     </header>
 
     <main>
