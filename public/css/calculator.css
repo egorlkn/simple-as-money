@@ -52,10 +52,6 @@ main h1 {
     grid-row: 1 / 2;
 }
 
-main h2 {
-    display: none;
-}
-
 .calculator {
     grid-column: 2 / -2;
     grid-row: 2 / 3;
@@ -66,6 +62,10 @@ main h2 {
     display: flex;
     flex-direction: column;
     gap: var(--content-gap);
+}
+
+.calculator h2 {
+    display: none;
 }
 
 .form-row .field-label {
@@ -131,6 +131,7 @@ main h2 {
     display: block;
     width: 100%;
     margin-top: calc(var(--content-gap) / 4);
+    padding: 2px;
     background: transparent;
     border-radius: 0;
     border-top: none;
@@ -216,4 +217,118 @@ button[type="submit"].disabled {
 
 button[type="submit"].disabled:active {
     background-color: var(--color-5);
+}
+
+@media all and (min-width: 576px) {
+    main nav {
+        left: calc(-177px + var(--side-gap) / 2);
+    }
+
+    main nav a {
+        width: 175px;
+        padding-top: 5px;
+    }
+}
+
+@media all and (min-width: 768px) {
+    main nav {
+        left: calc(-202px + var(--side-gap) / 2);
+    }
+
+    main nav a {
+        width: 200px;
+        padding-top: 4px;
+    }
+}
+
+@media all and (min-width: 992px) {
+    main nav a {
+        padding-top: 15px;
+    }
+}
+
+@media all and (min-width: 1200px) {
+    main {
+        grid-column: 1 / -1;
+        padding: 0 calc(var(--side-gap) / 2);
+        margin: 0 calc(var(--side-gap) / 2);
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: min-content auto;
+        row-gap: var(--content-gap);
+        column-gap: calc(var(--side-gap) * 2);
+    }
+
+    main nav {
+        display: none;
+    }
+
+    .calculator#income {
+        display: flex !important;
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+    }
+
+    .calculator#spend {
+        display: flex !important;
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+    }
+
+    .calculator h2 {
+        display: block;
+    }
+
+    .form-row .unknown {
+        margin-top: calc(var(--content-gap) / 2);
+    }
+
+    .form-row .field {
+        background-color: var(--color-6);
+        margin-top: calc(var(--content-gap) / 2);
+        font-size: 1.2em;
+        border: solid 1px var(--color-4);
+        border-bottom: solid 3px var(--color-4);
+    }
+
+    .form-row .field:focus {
+        border: solid 1px var(--color-9);
+        border-bottom: solid 3px var(--color-9);
+        outline: none;
+    }
+
+    .form-row .field:read-only,
+    .form-row .field:read-only:focus {
+        border: solid 1px var(--color-5);
+        border-bottom: solid 3px var(--color-5);
+        color: var(--color-4);
+        outline: none;
+    }
+
+    @keyframes blink {
+        from {
+            background: var(--color-8);
+        }
+
+        to {
+            background: var(--color-6);
+        }
+    }
+
+    @keyframes blink_disabled {
+        from {
+            background: var(--color-8);
+        }
+
+        to {
+            background: var(--color-6);
+        }
+    }
+}
+
+@media all and (min-width: 1600px) {
+
+}
+
+@media all and (min-width: 1900px) {
+
 }

@@ -403,6 +403,10 @@ const Calculator = {
                 return void 0;
             }
 
+            if (this.icRegularPaymentIsUnknown) {
+                return void 0;
+            }
+
             if (parseFloat(numberPerYear) > 0.0) {
                 if (regularPayment === 0.0) {
                     this.updateIcRegularPaymentValue('');
