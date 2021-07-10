@@ -105,7 +105,7 @@ address {
 @media all and (min-width: 1200px) {
     main {
         grid-template-columns: repeat(6, 1fr);
-        grid-template-rows: min-content min-content auto;
+        grid-template-rows: min-content min-content auto var(--footer-h);
         gap: var(--content-gap);
     }
 
@@ -115,6 +115,7 @@ address {
         background-color: var(--color-2-opacity);
         padding-right: var(--content-gap);
         padding-bottom: var(--content-gap);
+        border-radius: 5px;
     }
 
     article h1 {
@@ -131,6 +132,7 @@ address {
         background-color: var(--color-2-opacity);
         padding-right: var(--content-gap);
         padding-bottom: var(--content-gap);
+        border-radius: 5px;
     }
 
     #forbes_list span i {
@@ -145,7 +147,7 @@ address {
 
     #vadim {
         grid-column: 4 / 7;
-        grid-row: 1 / 4;
+        grid-row: 1 / 5;
         position: relative;
     }
 
