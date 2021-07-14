@@ -12,7 +12,8 @@
 
 {% block css %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/calculator.css?v=14721') }}">
+    <link rel="stylesheet" href="{{ asset('css/calculator.css?v=14721d') }}">
+    <link rel="stylesheet" media="print" href="{{ asset('css/calculator-print.css?v=14721d') }}">
 {% endblock %}
 
 {% block main %}
@@ -456,5 +457,5 @@
         <script src="{{ asset('js/vue.global.prod.js?v=3.1.4') }}"></script>
     {% endif %}
 
-    <script src="{{ asset('js/calculator.js?v=14721') }}"></script>
+    <script src="{{ asset('js/calculator.js?v=14721d') }}"></script>
 {% endblock %}

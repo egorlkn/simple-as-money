@@ -1132,3 +1132,33 @@ const chart = new ApexCharts(
 );
 
 chart.render();
+
+window.onbeforeprint = function() {
+    ApexCharts.exec(
+        'mychart',
+        'updateOptions',
+        {
+            chart: {
+                width: '600px'
+            }
+        },
+        false,
+        false,
+        false
+    );
+};
+
+window.onafterprint = function() {
+    ApexCharts.exec(
+        'mychart',
+        'updateOptions',
+        {
+            chart: {
+                width: '100%'
+            }
+        },
+        false,
+        false,
+        false
+    );
+};

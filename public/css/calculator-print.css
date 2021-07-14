@@ -1,0 +1,110 @@
+:root {
+    --font-size: 12px !important;
+}
+
+body {
+    background: none !important;
+    gap: 0 !important;
+}
+
+#main_header {
+    border: none !important;
+}
+
+#main_header a {
+    display: none !important;
+}
+
+#main_header a#logo {
+    display: initial !important;
+}
+
+main {
+    grid-column: 2 / -2 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-rows: repeat(3, min-content) !important;
+    gap: 0 !important;
+}
+
+main h1 {
+    display: none !important;
+}
+
+main > nav {
+    display: none !important;
+}
+
+main #name {
+    grid-column: 1 / -1 !important;
+    grid-row: 1 / 2 !important;
+}
+
+main #chart {
+    grid-column: 1 / -1 !important;
+    grid-row: 2 / 3 !important;
+    display: flex !important;
+    width: 650px !important;
+    overflow: hidden !important;
+}
+
+main #chart h2 {
+    display: none !important;
+}
+
+#chart #chart-item {
+    border: none !important;
+}
+
+main .calculator#income {
+    grid-column: 1 / 2 !important;
+    grid-row: 3 / 4 !important;
+    display: flex !important;
+}
+
+main .calculator#spend {
+    grid-column: 2 / 3 !important;
+    grid-row: 3 / 4 !important;
+    display: flex !important;
+}
+
+main .calculator#income form,
+main .calculator#spend form {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: calc(var(--content-gap) / 4) !important;
+}
+
+main .calculator .unknown {
+    display: none !important;
+}
+
+main .calculator .focused .field-label,
+main .calculator .disabled .field-label,
+main .calculator .field-label {
+    color: var(--color-1) !important;
+    font-weight: 400 !important;
+}
+
+main .calculator .field,
+main .calculator .field:read-only,
+main .calculator .field:active,
+main .calculator .field:focus {
+    border: none !important;
+    outline: none !important;
+    color: var(--color-1) !important;
+    font-size: 1em !important;
+    margin: 0;
+    font-weight: 700 !important;
+    -moz-appearance: textfield;
+}
+
+main .calculator .submit {
+    display: none !important;
+}
+
+#main_footer a {
+    display: none !important;
+}
