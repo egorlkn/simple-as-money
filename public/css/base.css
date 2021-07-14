@@ -85,7 +85,7 @@ body {
 }
 
 #main_header a#logo {
-    max-width: 40%;
+    width: 40%;
 }
 
 #main_header a#logo:active,
@@ -110,7 +110,7 @@ body {
     background-color: var(--color-2-opacity);
 }
 
-@media screen and (min-width: 576px) {
+@media all and (min-width: 576px) {
     body {
         background-image: url('/images/bg-lines-883-min.png');
         background-size: 115vw;
@@ -123,14 +123,19 @@ body {
     }
 }
 
-@media screen and (min-width: 768px) {
+@media all and (min-width: 768px) {
     body {
         background-image: url('/images/bg-lines-892-min.png');
         background-size: 90vw;
     }
+
+    #main_header a#logo {
+        width: 30%;
+        padding: 0;
+    }
 }
 
-@media screen and (min-width: 992px) {
+@media all and (min-width: 992px) {
     body {
         background-image: url('/images/bg-lines-876-min.png');
         background-size: 73vw;
@@ -139,7 +144,9 @@ body {
     #main_header {
         flex-direction: row;
         gap: var(--side-gap);
+        align-items: flex-end;
         justify-content: space-between;
+        line-height: 1;
     }
 
     #main_header a {
@@ -150,12 +157,12 @@ body {
     }
 
     #main_header a#logo {
-        max-width: 25%;
+        width: 25%;
         padding: 0;
     }
 }
 
-@media screen and (min-width: 1200px) {
+@media all and (min-width: 1200px) {
     body {
         background-image: url('/images/bg-lines-1040-min.png');
         background-size: 65vw;
@@ -163,21 +170,35 @@ body {
 
     #main_header {
         gap: var(--side-gap);
-        align-items: flex-end;
         justify-content: flex-start;
+    }
+
+    #main_header a#logo {
+        width: 20%;
+        padding: 0;
     }
 }
 
-@media screen and (min-width: 1600px) {
+@media all and (min-width: 1600px) {
     body {
         background-image: url('/images/bg-lines-1330-min.png');
         background-size: 70vw;
     }
+
+    #main_header a#logo {
+        width: 15%;
+        padding: 0;
+    }
 }
 
-@media screen and (min-width: 1900px) {
+@media all and (min-width: 1900px) {
     body {
         background-image: url('/images/bg-lines-1665-min.png');
         background-size: 70vw;
+    }
+
+    #main_header a#logo {
+        width: 10%;
+        padding: 0;
     }
 }

@@ -84,25 +84,25 @@ address {
     max-width: 100%;
 }
 
-@media screen and (min-width: 576px) {
+@media all and (min-width: 576px) {
     article h1 {
         font-size: 1.65em;
     }
 }
 
-@media screen and (min-width: 768px) {
+@media all and (min-width: 768px) {
     article h1 {
         font-size: 1.75em;
     }
 }
 
-@media screen and (min-width: 992px) {
+@media all and (min-width: 992px) {
     article h1 {
         font-size: 1.9em;
     }
 }
 
-@media screen and (min-width: 1200px) {
+@media all and (min-width: 1200px) {
     main {
         grid-template-columns: repeat(6, 1fr);
         grid-template-rows: min-content min-content auto var(--footer-h);
@@ -160,7 +160,7 @@ address {
     }
 }
 
-@media screen and (min-width: 1600px) {
+@media all and (min-width: 1600px) {
     article h1 {
         font-size: 2.2em;
     }
@@ -171,7 +171,7 @@ address {
     }
 }
 
-@media screen and (min-width: 1900px) {
+@media all and (min-width: 1900px) {
     article h1 {
         font-size: 2.4em;
     }
