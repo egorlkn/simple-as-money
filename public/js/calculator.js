@@ -7,7 +7,6 @@ const Calculator = {
     data() {
         return {
             chartIsActive: false,
-
             icIsActive: true,
             icCalculationIsDisabled: true,
 
@@ -41,12 +40,14 @@ const Calculator = {
             icFinalAmountValue: '',
 
             icLastRequestCash: {
+                isEmpty: true,
                 initialAmount: '',
                 regularPayment: '',
                 numberOfRegularPaymentsPerYear: '',
                 numberOfYears: '',
                 interestRatePerYear: '',
-                finalAmount: ''
+                finalAmount: '',
+                yearly_balances: [],
             },
 
             icIsErrorResult: false,
@@ -93,6 +94,7 @@ const Calculator = {
             scInflationValue: '',
 
             scLastRequestCash: {
+                isEmpty: true,
                 initialAmount: '',
                 paymentAmount: '',
                 numberOfPaymentsPerYear: '',
@@ -100,7 +102,8 @@ const Calculator = {
                 interestRatePerYear: '',
                 finalAmount: '',
                 numberOfYearsUntilFistPayment: '',
-                inflation: ''
+                inflation: '',
+                balances_by_period: []
             },
 
             scIsErrorResult: false,
@@ -762,6 +765,7 @@ const Calculator = {
                 app.updateIcInterestRatePerYearValue(res.data.interest_rate_per_year);
                 app.updateIcFinalAmountValue(res.data.final_amount);
 
+                app.icLastRequestCash.isEmpty = false;
                 app.icLastRequestCash.initialAmount = res.data.initial_amount.toString();
                 app.icLastRequestCash.regularPayment = res.data.regular_payment.toString();
                 app.icLastRequestCash.numberOfRegularPaymentsPerYear =
@@ -769,6 +773,7 @@ const Calculator = {
                 app.icLastRequestCash.numberOfYears = res.data.number_of_years.toString();
                 app.icLastRequestCash.interestRatePerYear = res.data.interest_rate_per_year.toString();
                 app.icLastRequestCash.finalAmount = res.data.final_amount.toString();
+                app.icLastRequestCash.yearly_balances = res.data.yearly_balances;
 
                 // app.icYearlyBalances.splice(0);
                 // app.icYearlyBalances.push(...res.data.yearly_balances);
@@ -778,17 +783,22 @@ const Calculator = {
                 app.icErrors.splice(0);
             })
             .catch(function (error) {
+                app.icLastRequestCash.isEmpty = true;
                 app.icLastRequestCash.initialAmount = '';
                 app.icLastRequestCash.regularPayment = '';
                 app.icLastRequestCash.numberOfRegularPaymentsPerYear = '';
                 app.icLastRequestCash.numberOfYears = '';
                 app.icLastRequestCash.interestRatePerYear = '';
                 app.icLastRequestCash.finalAmount = '';
+                app.icLastRequestCash.yearly_balances = [];
 
                 app.icErrors.splice(0);
                 app.icErrors.push(...error.response.data.errors);
 
                 app.icIsErrorResult = true;
+            })
+            .finally(function () {
+                app.updateChart();
             });
         },
         icReqWasHandledByCache() {
@@ -881,6 +891,7 @@ const Calculator = {
                 app.updateScNumberOfYearsUntilFistPaymentValue(res.data.number_of_years_until_fist_payment);
                 app.updateScInflationValue(res.data.inflation);
 
+                app.scLastRequestCash.isEmpty = false;
                 app.scLastRequestCash.initialAmount = res.data.initial_amount.toString();
                 app.scLastRequestCash.paymentAmount = res.data.payment_amount.toString();
                 app.scLastRequestCash.numberOfPaymentsPerYear = res.data.number_of_payments_per_year.toString();
@@ -890,6 +901,7 @@ const Calculator = {
                 app.scLastRequestCash.numberOfYearsUntilFistPayment =
                     res.data.number_of_years_until_fist_payment.toString();
                 app.scLastRequestCash.inflation = res.data.inflation.toString();
+                app.scLastRequestCash.balances_by_period = res.data.balances_by_period;
 
                 // app.scBalancesByPeriod.splice(0);
                 // app.scBalancesByPeriod.push(...res.data.balances_by_period);
@@ -899,6 +911,7 @@ const Calculator = {
                 app.scErrors.splice(0);
             })
             .catch(function (error) {
+                app.scLastRequestCash.isEmpty = true;
                 app.scLastRequestCash.initialAmount = '';
                 app.scLastRequestCash.paymentAmount = '';
                 app.scLastRequestCash.numberOfPaymentsPerYear = '';
@@ -907,11 +920,15 @@ const Calculator = {
                 app.scLastRequestCash.finalAmount = '';
                 app.scLastRequestCash.numberOfYearsUntilFistPayment = '';
                 app.scLastRequestCash.inflation = '';
+                app.scLastRequestCash.balances_by_period = [];
 
                 app.scErrors.splice(0);
                 app.scErrors.push(...error.response.data.errors);
 
                 app.scIsErrorResult = true;
+            })
+            .finally(function () {
+                app.updateChart();
             });
         },
         scReqWasHandledByCache() {
@@ -975,15 +992,85 @@ const Calculator = {
 
             return true;
         },
+        updateChart() {
+            let icData = [];
+
+            if (!this.icLastRequestCash.isEmpty) {
+                if (this.icLastRequestCash.yearly_balances.length !== 0) {
+                    this.icLastRequestCash.yearly_balances.forEach(
+                        function (balance) {
+                            icData.push([balance.index_of_year, balance.amount]);
+                        }
+                    );
+                }
+            }
+
+
+            let scData = [];
+
+            if (!this.scLastRequestCash.isEmpty) {
+                let firstYear = 0;
+
+                if (parseInt(this.scLastRequestCash.numberOfYearsUntilFistPayment) !== 0) {
+                    firstYear = parseInt(this.scLastRequestCash.numberOfYearsUntilFistPayment);
+                }
+
+                let periodInc = 1 / parseInt(this.scLastRequestCash.numberOfPaymentsPerYear);
+
+                if (this.scLastRequestCash.balances_by_period.length !== 0) {
+                    this.scLastRequestCash.balances_by_period.forEach(
+                        function (balance) {
+                            scData.push([firstYear, balance.amount]);
+
+                            firstYear += periodInc;
+                        }
+                    );
+                }
+
+                scData.pop();
+            }
+
+
+            ApexCharts.exec(
+                'mychart',
+                'updateOptions',
+                {
+                    yaxis: {
+                        labels: {
+                            show: true
+                        }
+                    },
+                    xaxis: {
+                        labels: {
+                            show: true
+                        }
+                    },
+                    series: [
+                        {
+                            name: 'Использование',
+                            data: scData
+                        },
+                        {
+                            name: 'Накопление',
+                            data: icData
+                        }
+                    ]
+                },
+                false,
+                false,
+                false
+            );
+        }
     }
 };
 
-const app = Vue.createApp(Calculator).mount('main');
+Vue.createApp(Calculator).mount('main');
 
 const chart = new ApexCharts(
     document.querySelector('#chart-item'),
     {
         chart: {
+            id: 'mychart',
             type: 'line',
             toolbar: {
                 show: false
@@ -999,15 +1086,18 @@ const chart = new ApexCharts(
             title: {
                 text: 'Размер капитала'
             },
-            min: 0,
-            max: 50000000
+            labels: {
+                show: false
+            }
         },
         xaxis: {
             title: {
                 text: 'Года'
             },
-            min: 0,
-            max: 20
+            type: 'numeric',
+            labels: {
+                show: false
+            }
         },
         series: [
             {
@@ -1022,7 +1112,7 @@ const chart = new ApexCharts(
         colors: ['#de0b0b', '#10a114'],
         dataLabels: {
             enabled: true,
-            textAnchor: 'start'
+            textAnchor: 'end'
         },
         stroke: {
             curve: 'straight'

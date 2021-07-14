@@ -119,7 +119,6 @@ class Result
                 $Hkp *= (1 + $Kp);
             }
 
-            // @todo Period
             $list[] = new BalanceByPeriod($i, $PV);
 
             $PV -= $Hkp;

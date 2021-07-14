@@ -447,14 +447,14 @@
 {% endblock main %}
 
 {% block js %}
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="{{ asset('js/axios.min.js?v=0.21.1') }}"></script>
+    <script src="{{ asset('js/apexcharts.js?v=3.27.2') }}"></script>
 
     {% if app.environment == 'dev' %}
         <script src="https://unpkg.com/vue@3.1.4/dist/vue.global.js"></script>
     {% else %}
-        <script src="https://unpkg.com/vue@3.1.4/dist/vue.global.prod.js"></script>
+        <script src="{{ asset('js/vue.global.prod.js?v=3.1.4') }}"></script>
     {% endif %}
 
-    <script src="{{ asset('js/calculator.js?v=13721') }}"></script>
+    <script src="{{ asset('js/calculator.js?v=13721b') }}"></script>
 {% endblock %}
