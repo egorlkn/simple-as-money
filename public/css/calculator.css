@@ -271,7 +271,7 @@ button[type="submit"].disabled:active {
     background-color: var(--color-5);
 }
 
-@media all and (min-width: 576px) {
+@media screen and (min-width: 576px) {
     main nav {
         left: calc(-177px + var(--side-gap) / 2);
     }
@@ -282,7 +282,7 @@ button[type="submit"].disabled:active {
     }
 }
 
-@media all and (min-width: 768px) {
+@media screen and (min-width: 768px) {
     main nav {
         left: calc(-302px + var(--side-gap) / 2);
     }
@@ -297,13 +297,13 @@ button[type="submit"].disabled:active {
     }
 }
 
-@media all and (min-width: 992px) {
+@media screen and (min-width: 992px) {
     main nav a {
         padding-top: 15px;
     }
 }
 
-@media all and (min-width: 1200px) {
+@media screen and (min-width: 1200px) {
     main {
         grid-column: 1 / -1;
         padding: 0 calc(var(--side-gap) / 2);
@@ -387,7 +387,7 @@ button[type="submit"].disabled:active {
     }
 }
 
-@media all and (min-width: 1600px) {
+@media screen and (min-width: 1600px) {
     .calculator#income {
         grid-column: 1 / 2;
         grid-row: 3 / 4;
@@ -443,6 +443,96 @@ button[type="submit"].disabled:active {
     }
 }
 
-@media all and (min-width: 1900px) {
+@media print {
+    :root {
+        --font-size: 15px !important;
+        --line-height: 1.1 !important;
+    }
 
+    body {
+        background: var(--color-2) !important;
+    }
+
+    #main_header a {
+        display: none !important;
+    }
+
+    #main_header a#logo {
+        display: initial !important;
+    }
+
+    main {
+        grid-column: 2 / -2 !important;
+        padding: 0  !important;
+        margin: 0  !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-rows: repeat(3, min-content) !important;
+    }
+
+    main h1 {
+        display: none !important;
+    }
+
+    main nav {
+        display: none !important;
+    }
+
+    main #name {
+        grid-column: 1 / -1 !important;
+        grid-row: 1 / 2 !important;
+        align-items: flex-start !important;
+    }
+
+    main #name input {
+        border: none !important;
+    }
+
+    main #chart {
+        display: flex !important;
+        grid-column: 1 / -1 !important;
+        grid-row: 2 / 3 !important;
+    }
+
+    #chart #chart-item {
+        border: none !important;
+    }
+
+    main .calculator#income {
+        display: flex !important;
+        grid-column: 1 / 2 !important;
+        grid-row: 3 / 4 !important;
+    }
+
+    main .calculator#spend {
+        display: flex !important;
+        grid-column: 2 / 3 !important;
+        grid-row: 3 / 4 !important;
+    }
+
+    main .calculator#income,
+    main .calculator#spend form {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: var(--content-gap) !important;
+    }
+
+    main .calculator .unknown,
+    main .calculator .submit {
+        display: none !important;
+    }
+
+    main .calculator .field-label {
+        color: var(--color-4) !important;
+    }
+
+    main .calculator .field {
+        border: none !important;
+        outline: none !important;
+        font-size: 1.5em !important;
+        font-weight: 700 !important;
+    }
+
+    #main_footer a {
+        display: none !important;
+    }
 }

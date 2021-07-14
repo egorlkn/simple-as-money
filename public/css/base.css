@@ -110,7 +110,7 @@ body {
     background-color: var(--color-2-opacity);
 }
 
-@media all and (min-width: 576px) {
+@media screen and (min-width: 576px) {
     body {
         background-image: url('/images/bg-lines-883-min.png');
         background-size: 115vw;
@@ -123,14 +123,14 @@ body {
     }
 }
 
-@media all and (min-width: 768px) {
+@media screen and (min-width: 768px) {
     body {
         background-image: url('/images/bg-lines-892-min.png');
         background-size: 90vw;
     }
 }
 
-@media all and (min-width: 992px) {
+@media screen and (min-width: 992px) {
     body {
         background-image: url('/images/bg-lines-876-min.png');
         background-size: 73vw;
@@ -155,7 +155,7 @@ body {
     }
 }
 
-@media all and (min-width: 1200px) {
+@media screen and (min-width: 1200px) {
     body {
         background-image: url('/images/bg-lines-1040-min.png');
         background-size: 65vw;
@@ -168,14 +168,14 @@ body {
     }
 }
 
-@media all and (min-width: 1600px) {
+@media screen and (min-width: 1600px) {
     body {
         background-image: url('/images/bg-lines-1330-min.png');
         background-size: 70vw;
     }
 }
 
-@media all and (min-width: 1900px) {
+@media screen and (min-width: 1900px) {
     body {
         background-image: url('/images/bg-lines-1665-min.png');
         background-size: 70vw;

@@ -12,7 +12,7 @@
 
 {% block css %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/calculator.css?v=13721a') }}">
+    <link rel="stylesheet" href="{{ asset('css/calculator.css?v=14721') }}">
 {% endblock %}
 
 {% block main %}
@@ -44,7 +44,7 @@
     </section>
 
     <section class="calculator" id="income" v-show="icIsActive">
-        <h2>Форма для расчета накопления</h2>
+        <h2>Расчет накопления</h2>
 
         <form v-on:submit.prevent="doIncomeCalc">
             <div class="form-row"
@@ -216,7 +216,7 @@
                 <li v-for="error in icErrors">${ error }</li>
             </ul>
 
-            <div>
+            <div class="submit">
                 <button type="submit"
                         v-bind:class="{ disabled: icCalculationIsDisabled }"
                         v-on:click="doIncomeSubmit($event)"
@@ -228,7 +228,7 @@
     </section>
 
     <section class="calculator" id="spend" style="display: none;" v-show="scIsActive">
-        <h2>Форма для расчета использования</h2>
+        <h2>Расчет использования</h2>
 
         <form v-on:submit.prevent="doSpendCalc">
             <div class="col-1 row-1 form-row"
@@ -434,7 +434,7 @@
                 <li v-for="error in scErrors">${ error }</li>
             </ul>
 
-            <div class="col-2 row-5">
+            <div class="submit col-2 row-5">
                 <button type="submit"
                         v-bind:class="{ disabled: scCalculationIsDisabled }"
                         v-on:click="doSpendSubmit($event)"
@@ -456,5 +456,5 @@
         <script src="{{ asset('js/vue.global.prod.js?v=3.1.4') }}"></script>
     {% endif %}
 
-    <script src="{{ asset('js/calculator.js?v=13721b') }}"></script>
+    <script src="{{ asset('js/calculator.js?v=14721') }}"></script>
 {% endblock %}
