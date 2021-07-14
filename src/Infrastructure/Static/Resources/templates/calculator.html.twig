@@ -26,10 +26,25 @@
         <a href="#spend" v-bind:class="{ active: scIsActive }" @click.prevent="activeSpendCalculator">
             использование
         </a>
+        <div class="separator"></div>
+        <a href="#spend" v-bind:class="{ active: chartIsActive }" @click.prevent="activeChart">
+            график
+        </a>
     </nav>
 
+    <section id="name">
+        <input type="text" placeholder="Название плана">
+        <time>{{ "now"|date("d.m.Y") }}</time>
+    </section>
+
+    <section id="chart" style="display: none;" v-show="chartIsActive">
+        <h2>График накопления/использования</h2>
+
+        <div id="chart-item"></div>
+    </section>
+
     <section class="calculator" id="income" v-show="icIsActive">
-        <h2>Накопление</h2>
+        <h2>Форма для расчета накопления</h2>
 
         <form v-on:submit.prevent="doIncomeCalc">
             <div class="form-row"
@@ -213,10 +228,10 @@
     </section>
 
     <section class="calculator" id="spend" style="display: none;" v-show="scIsActive">
-        <h2>Использование</h2>
+        <h2>Форма для расчета использования</h2>
 
         <form v-on:submit.prevent="doSpendCalc">
-            <div class="form-row"
+            <div class="col-1 row-1 form-row"
                  v-bind:class="{ disabled: scInitialAmountIsUnknown, focused: scInitialAmountIsFocused }"
             >
                 <label class="field-label" for="sc-initial-amount">
@@ -245,7 +260,7 @@
                 >
             </div>
 
-            <div class="form-row"
+            <div class="col-1 row-2 form-row"
                  v-bind:class="{ disabled: scPaymentAmountIsUnknown, focused: scPaymentAmountIsFocused }"
             >
                 <label class="field-label" for="sc-payment-amount">
@@ -274,7 +289,7 @@
                 >
             </div>
 
-            <div class="form-row" v-bind:class="{ focused: scNumberOfPaymentsPerYearIsFocused }">
+            <div class="col-1 row-3 form-row" v-bind:class="{ focused: scNumberOfPaymentsPerYearIsFocused }">
                 <label class="field-label" for="sc-number-of-payments-per-year">
                     Количество выплат в год:
                 </label>
@@ -292,7 +307,7 @@
                 >
             </div>
 
-            <div class="form-row"
+            <div class="col-1 row-4 form-row"
                  v-bind:class="{ disabled: scNumberOfYearsIsUnknown, focused: scNumberOfYearsIsFocused }"
             >
                 <label class="field-label" for="sc-number-of-years">
@@ -321,7 +336,7 @@
                 >
             </div>
 
-            <div class="form-row"
+            <div class="col-2 row-1 form-row"
                  v-bind:class="{ disabled: scInterestRatePerYearIsUnknown, focused: scInterestRatePerYearIsFocused }"
             >
                 <label class="field-label" for="sc-interest-rate-per-year">
@@ -350,7 +365,43 @@
                 >
             </div>
 
-            <div class="form-row"
+            <div class="col-2 row-2 form-row" v-bind:class="{ focused: scInflationIsFocused }">
+                <label class="field-label" for="sc-inflation">
+                    Инфляция в % годовых:
+                </label>
+                <input class="field"
+                       id="sc-inflation"
+                       type="number"
+                       min="0.01"
+                       step="0.01"
+                       v-on:input.prevent="setScInflationValue($event.target.value)"
+                       v-on:focus="scInflationIsFocused = true"
+                       v-on:focusout="scInflationIsFocused = false"
+                       v-bind:value="scInflationValue"
+                       v-bind:class="{ blink: scInflationIsBlinked }"
+                       required
+                >
+            </div>
+
+            <div class="col-2 row-3 form-row" v-bind:class="{ focused: scNumberOfYearsUntilFistPaymentIsFocused }">
+                <label class="field-label" for="sc-number-of-years-until-first-payment">
+                    Количество лет до первой выплаты:
+                </label>
+                <input class="field"
+                       id="sc-number-of-years-until-first-payment"
+                       type="number"
+                       min="0"
+                       step="1"
+                       v-on:input.prevent="setScNumberOfYearsUntilFistPaymentValue($event.target.value)"
+                       v-on:focus="scNumberOfYearsUntilFistPaymentIsFocused = true"
+                       v-on:focusout="scNumberOfYearsUntilFistPaymentIsFocused = false"
+                       v-bind:value="scNumberOfYearsUntilFistPaymentValue"
+                       v-bind:class="{ blink: scNumberOfYearsUntilFistPaymentIsBlinked }"
+                       required
+                >
+            </div>
+
+            <div class="col-2 row-4 form-row"
                  v-bind:class="{ disabled: scFinalAmountIsUnknown, focused: scFinalAmountIsFocused }"
             >
                 <label class="field-label" for="sc-final-amount">
@@ -379,47 +430,11 @@
                 >
             </div>
 
-            <div class="form-row" v-bind:class="{ focused: scNumberOfYearsUntilFistPaymentIsFocused }">
-                <label class="field-label" for="sc-number-of-years-until-first-payment">
-                    Количество лет до первой выплаты:
-                </label>
-                <input class="field"
-                       id="sc-number-of-years-until-first-payment"
-                       type="number"
-                       min="0"
-                       step="1"
-                       v-on:input.prevent="setScNumberOfYearsUntilFistPaymentValue($event.target.value)"
-                       v-on:focus="scNumberOfYearsUntilFistPaymentIsFocused = true"
-                       v-on:focusout="scNumberOfYearsUntilFistPaymentIsFocused = false"
-                       v-bind:value="scNumberOfYearsUntilFistPaymentValue"
-                       v-bind:class="{ blink: scNumberOfYearsUntilFistPaymentIsBlinked }"
-                       required
-                >
-            </div>
-
-            <div class="form-row" v-bind:class="{ focused: scInflationIsFocused }">
-                <label class="field-label" for="sc-inflation">
-                    Инфляция в % годовых:
-                </label>
-                <input class="field"
-                       id="sc-inflation"
-                       type="number"
-                       min="0.01"
-                       step="0.01"
-                       v-on:input.prevent="setScInflationValue($event.target.value)"
-                       v-on:focus="scInflationIsFocused = true"
-                       v-on:focusout="scInflationIsFocused = false"
-                       v-bind:value="scInflationValue"
-                       v-bind:class="{ blink: scInflationIsBlinked }"
-                       required
-                >
-            </div>
-
-            <ul class="errors" style="display: none;" v-show="scIsErrorResult">
+            <ul class="col-1 row-5 errors" style="display: none;" v-show="scIsErrorResult">
                 <li v-for="error in scErrors">${ error }</li>
             </ul>
 
-            <div>
+            <div class="col-2 row-5">
                 <button type="submit"
                         v-bind:class="{ disabled: scCalculationIsDisabled }"
                         v-on:click="doSpendSubmit($event)"
@@ -433,6 +448,7 @@
 
 {% block js %}
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
     {% if app.environment == 'dev' %}
         <script src="https://unpkg.com/vue@3.1.4/dist/vue.global.js"></script>

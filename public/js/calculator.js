@@ -6,6 +6,8 @@ const Calculator = {
     },
     data() {
         return {
+            chartIsActive: false,
+
             icIsActive: true,
             icCalculationIsDisabled: true,
 
@@ -179,12 +181,19 @@ const Calculator = {
     },
     methods: {
         activeIncomeCalculator() {
+            this.chartIsActive = false;
             this.scIsActive = false;
             this.icIsActive = true;
         },
         activeSpendCalculator() {
+            this.chartIsActive = false;
             this.icIsActive = false;
             this.scIsActive = true;
+        },
+        activeChart() {
+            this.icIsActive = false;
+            this.scIsActive = false;
+            this.chartIsActive = true;
         },
         changeIcInitialAmountUnknowing() {
             if (this.icInitialAmountIsUnknown) {
@@ -726,7 +735,7 @@ const Calculator = {
         doIncomeCalc() {
             const app = this;
 
-            if(this.icReqWasHandledByCache()) {
+            if (this.icReqWasHandledByCache()) {
                 return void 0;
             }
 
@@ -841,7 +850,7 @@ const Calculator = {
         doSpendCalc() {
             const app = this;
 
-            if(this.scReqWasHandledByCache()) {
+            if (this.scReqWasHandledByCache()) {
                 return void 0;
             }
 
@@ -969,4 +978,67 @@ const Calculator = {
     }
 };
 
-Vue.createApp(Calculator).mount('main');
+const app = Vue.createApp(Calculator).mount('main');
+
+const chart = new ApexCharts(
+    document.querySelector('#chart-item'),
+    {
+        chart: {
+            type: 'line',
+            toolbar: {
+                show: false
+            },
+            animations: {
+                enabled: false
+            },
+            zoom: {
+                enabled: false
+            }
+        },
+        yaxis: {
+            title: {
+                text: 'Размер капитала'
+            },
+            min: 0,
+            max: 50000000
+        },
+        xaxis: {
+            title: {
+                text: 'Года'
+            },
+            min: 0,
+            max: 20
+        },
+        series: [
+            {
+                name: 'Использование',
+                data: []
+            },
+            {
+                name: 'Накопление',
+                data: []
+            }
+        ],
+        colors: ['#de0b0b', '#10a114'],
+        dataLabels: {
+            enabled: true,
+            textAnchor: 'start'
+        },
+        stroke: {
+            curve: 'straight'
+        },
+        markers: {
+            size: 3,
+            hover: {
+                sizeOffset: 0
+            }
+        },
+        legend: {
+            show: true,
+            position: 'top',
+            horizontalAlign: 'right'
+        }
+    }
+);
+
+chart.render();

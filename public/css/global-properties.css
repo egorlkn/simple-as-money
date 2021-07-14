@@ -48,13 +48,10 @@
 
 @media all and (min-width: 1600px) {
     :root {
-        --font-size: 22px;
+        --font-size: 20px;
     }
 }
 
 @media all and (min-width: 1900px) {
-    :root {
-        --font-size: 24px;
-    }
-}
 
+}
