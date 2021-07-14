@@ -12,7 +12,7 @@
 
 {% block css %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/calculator.css?v=10721mm') }}">
+    <link rel="stylesheet" href="{{ asset('css/calculator.css?v=13721a') }}">
 {% endblock %}
 
 {% block main %}
@@ -26,8 +26,8 @@
         <a href="#spend" v-bind:class="{ active: scIsActive }" @click.prevent="activeSpendCalculator">
             использование
         </a>
-        <div class="separator"></div>
-        <a href="#spend" v-bind:class="{ active: chartIsActive }" @click.prevent="activeChart">
+        <div class="separator not-for-mobile"></div>
+        <a href="#spend" class="not-for-mobile" v-bind:class="{ active: chartIsActive }" @click.prevent="activeChart">
             график
         </a>
     </nav>
@@ -456,5 +456,5 @@
         <script src="https://unpkg.com/vue@3.1.4/dist/vue.global.prod.js"></script>
     {% endif %}
 
-    <script src="{{ asset('js/calculator.js?v=10721f') }}"></script>
+    <script src="{{ asset('js/calculator.js?v=13721') }}"></script>
 {% endblock %}
