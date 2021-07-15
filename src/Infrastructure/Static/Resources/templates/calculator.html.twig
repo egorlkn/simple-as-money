@@ -12,8 +12,14 @@
 
 {% block css %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/calculator.css?v=14721u4') }}">
-    <link rel="stylesheet" media="print" href="{{ asset('css/calculator-print.css?v=14721u4') }}">
+
+    {% if app.environment == 'dev' %}
+        <link rel="stylesheet" href="{{ asset('css/calculator.css?v=15721um') }}">
+        <link rel="stylesheet" media="print" href="{{ asset('css/calculator-print.css?v=15721um') }}">
+    {% else %}
+        <link rel="stylesheet" href="{{ asset('css/prod/calculator.css?v=15721um') }}">
+        <link rel="stylesheet" media="print" href="{{ asset('css/prod/calculator-print.css?v=15721um') }}">
+    {% endif %}
 {% endblock %}
 
 {% block main %}
@@ -461,14 +467,14 @@
 {% endblock main %}
 
 {% block js %}
-    <script src="{{ asset('js/axios.min.js?v=0.21.1') }}"></script>
-    <script src="{{ asset('js/apexcharts.js?v=3.27.2') }}"></script>
+    <script src="{{ asset('js/prod/axios.min.js?v=0.21.1') }}"></script>
+    <script src="{{ asset('js/prod/apexcharts.js?v=3.27.2') }}"></script>
 
     {% if app.environment == 'dev' %}
         <script src="https://unpkg.com/vue@3.1.4/dist/vue.global.js"></script>
-        <script src="{{ asset('js/calculator.js?v=14721u4') }}"></script>
+        <script src="{{ asset('js/calculator.js?v=15721um') }}"></script>
     {% else %}
-        <script src="{{ asset('js/vue.global.prod.js?v=3.1.4') }}"></script>
-        <script src="{{ asset('js/calculator.prod.js?v=14721u4') }}"></script>
+        <script src="{{ asset('js/prod/vue.global.prod.js?v=3.1.4') }}"></script>
+        <script src="{{ asset('js/prod/calculator.prod.js?v=15721um') }}"></script>
     {% endif %}
 {% endblock %}

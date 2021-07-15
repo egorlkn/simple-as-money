@@ -12,7 +12,12 @@
 
 {% block css %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/homepage.css?v=14721u3') }}">
+
+    {% if app.environment == 'dev' %}
+        <link rel="stylesheet" href="{{ asset('css/homepage.css?v=15721um') }}">
+    {% else %}
+        <link rel="stylesheet" href="{{ asset('css/prod/homepage.css?v=15721um') }}">
+    {% endif %}
 {% endblock %}
 
 {% block main %}

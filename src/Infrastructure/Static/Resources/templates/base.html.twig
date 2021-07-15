@@ -26,8 +26,13 @@
     <meta name="theme-color" content="#ffffff">
 
     {% block css %}
-        <link rel="stylesheet" href="{{ asset('css/normalize.css?v=8.0.1u') }}">
-        <link rel="stylesheet" href="{{ asset('css/base.css?v=14721u3') }}">
+        <link rel="stylesheet" href="{{ asset('css/prod/normalize.css?v=8.0.1um') }}">
+
+        {% if app.environment == 'dev' %}
+            <link rel="stylesheet" href="{{ asset('css/base.css?v=15721um') }}">
+        {% else %}
+            <link rel="stylesheet" href="{{ asset('css/prod/base.css?v=15721um') }}">
+        {% endif %}
     {% endblock %}
 </head>
 <body>

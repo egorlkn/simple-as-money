@@ -23,45 +23,10 @@ main {
     grid-column: 2 / -2 !important;
     padding: 0 !important;
     margin: 0 !important;
-    display: -ms-grid !important;
     display: grid !important;
-    -ms-grid-columns: 1fr 0 1fr !important;
     grid-template-columns: repeat(2, 1fr) !important;
-    -ms-grid-rows: -webkit-min-content 0 -webkit-min-content 0 -webkit-min-content !important;
-    -ms-grid-rows: min-content 0 min-content 0 min-content !important;
-    grid-template-rows: repeat(3, -webkit-min-content) !important;
     grid-template-rows: repeat(3, min-content) !important;
     gap: 0 !important;
-}
-
-main > *:nth-child(1) {
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-}
-
-main > *:nth-child(2) {
-    -ms-grid-row: 1;
-    -ms-grid-column: 3;
-}
-
-main > *:nth-child(3) {
-    -ms-grid-row: 3;
-    -ms-grid-column: 1;
-}
-
-main > *:nth-child(4) {
-    -ms-grid-row: 3;
-    -ms-grid-column: 3;
-}
-
-main > *:nth-child(5) {
-    -ms-grid-row: 5;
-    -ms-grid-column: 1;
-}
-
-main > *:nth-child(6) {
-    -ms-grid-row: 5;
-    -ms-grid-column: 3;
 }
 
 main h1 {
@@ -74,20 +39,14 @@ main > nav {
 
 main #name {
     grid-column: 1 / -1 !important;
-    -ms-grid-row: 1 !important;
-    -ms-grid-row-span: 1 !important;
     grid-row: 1 / 2 !important;
 }
 
 main #chart {
     grid-column: 1 / -1 !important;
-    -ms-grid-row: 2 !important;
-    -ms-grid-row-span: 1 !important;
     grid-row: 2 / 3 !important;
-    display: -webkit-box !important;
-    display: -ms-flexbox !important;
     display: flex !important;
-    width: 650px !important;
+    width: 700px !important;
     overflow: hidden !important;
 }
 
@@ -100,37 +59,20 @@ main #chart h2 {
 }
 
 main .calculator#income {
-    -ms-grid-column: 1 !important;
-    -ms-grid-column-span: 1 !important;
     grid-column: 1 / 2 !important;
-    -ms-grid-row: 3 !important;
-    -ms-grid-row-span: 1 !important;
     grid-row: 3 / 4 !important;
-    display: -webkit-box !important;
-    display: -ms-flexbox !important;
     display: flex !important;
 }
 
 main .calculator#spend {
-    -ms-grid-column: 2 !important;
-    -ms-grid-column-span: 1 !important;
     grid-column: 2 / 3 !important;
-    -ms-grid-row: 3 !important;
-    -ms-grid-row-span: 1 !important;
     grid-row: 3 / 4 !important;
-    display: -webkit-box !important;
-    display: -ms-flexbox !important;
     display: flex !important;
 }
 
 main .calculator#income form,
 main .calculator#spend form {
-    display: -webkit-box !important;
-    display: -ms-flexbox !important;
     display: flex !important;
-    -webkit-box-orient: vertical !important;
-    -webkit-box-direction: normal !important;
-    -ms-flex-direction: column !important;
     flex-direction: column !important;
     gap: calc(var(--content-gap) / 4) !important;
 }
@@ -146,16 +88,6 @@ main .calculator .field-label {
     font-weight: 400 !important;
 }
 
-main .calculator .field:-moz-read-only {
-    border: none !important;
-    outline: none !important;
-    color: var(--color-1) !important;
-    font-size: 1em !important;
-    margin: 0;
-    font-weight: 700 !important;
-    -moz-appearance: textfield;
-}
-
 main .calculator .field,
 main .calculator .field:read-only,
 main .calculator .field:active,
@@ -166,7 +98,9 @@ main .calculator .field:focus {
     font-size: 1em !important;
     margin: 0;
     font-weight: 700 !important;
-    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
+       -moz-appearance: textfield;
+            appearance: none;
 }
 
 main .calculator .submit {
