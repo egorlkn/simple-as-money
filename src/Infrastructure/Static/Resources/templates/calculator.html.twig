@@ -453,11 +453,10 @@
 
     {% if app.environment == 'dev' %}
         <script src="https://unpkg.com/vue@3.1.4/dist/vue.global.js"></script>
-{#        <script src="{{ asset('js/calculator.js?v=14721d') }}"></script>#}
-        <script src="{{ asset('js/calculator.bebel.js?v=14721u') }}"></script>
+        <script src="{{ asset('js/calculator.js?v=14721u3') }}"></script>
     {% else %}
         <script src="{{ asset('js/vue.global.prod.js?v=3.1.4') }}"></script>
-        <script src="{{ asset('js/calculator.bebel.js?v=14721u') }}"></script>
+        <script src="{{ asset('js/calculator.bebel.js?v=14721u3') }}"></script>
     {% endif %}
 
 {% endblock %}

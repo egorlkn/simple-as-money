@@ -1015,18 +1015,31 @@ const Calculator = {
                     firstYear = parseInt(this.scLastRequestCash.numberOfYearsUntilFistPayment);
                 }
 
-                let periodInc = 1 / parseInt(this.scLastRequestCash.numberOfPaymentsPerYear);
+                let numberOfPaymentsPerYear = parseInt(this.scLastRequestCash.numberOfPaymentsPerYear);
 
                 if (this.scLastRequestCash.balances_by_period.length !== 0) {
+                    let numberOfPayment = 1;
+
                     this.scLastRequestCash.balances_by_period.forEach(
                         function (balance) {
-                            scData.push([firstYear, balance.amount]);
+                            if (numberOfPayment === numberOfPaymentsPerYear) {
+                                numberOfPayment = 1;
 
-                            firstYear += periodInc;
+                                return void 0;
+                            }
+
+                            if (numberOfPayment === 1) {
+                                scData.push([firstYear, balance.amount]);
+
+                                firstYear++;
+                            }
+
+                            numberOfPayment++;
                         }
                     );
                 }
 
+                //@todo
                 scData.pop();
             }
 
@@ -1092,7 +1105,7 @@ const chart = new ApexCharts(
         },
         xaxis: {
             title: {
-                text: 'Года'
+                text: 'Годы'
             },
             type: 'numeric',
             labels: {
