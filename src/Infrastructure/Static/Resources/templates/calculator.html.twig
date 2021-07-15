@@ -14,16 +14,21 @@
     {{ parent() }}
 
     {% if app.environment == 'dev' %}
-        <link rel="stylesheet" href="{{ asset('css/calculator.css?v=15721-2') }}">
+        <link rel="stylesheet" href="{{ asset('css/calculator.css?v=15721-3') }}">
         <link rel="stylesheet" media="print" href="{{ asset('css/calculator-print.css?v=15721-2') }}">
     {% else %}
-        <link rel="stylesheet" href="{{ asset('css/prod/calculator.css?v=15721-2') }}">
+        <link rel="stylesheet" href="{{ asset('css/prod/calculator.css?v=15721-3') }}">
         <link rel="stylesheet" media="print" href="{{ asset('css/prod/calculator-print.css?v=15721-2') }}">
     {% endif %}
 {% endblock %}
 
 {% block main %}
-    <h1>Инвестиционный калькулятор</h1>
+    <h1>
+        Инвестиционный калькулятор
+        <small>
+            <a href="https://youtu.be/1J9188mr5-Q" target="_blank">(как пользоваться? - видео инструкция на YouTube)</a>
+        </small>
+    </h1>
 
     <nav>
         <a href="#income" v-bind:class="{ active: icIsActive }" @click.prevent="activeIncomeCalculator">
@@ -452,7 +457,8 @@
                 <a href="javascript://"
                    style="display: none;"
                    v-show="scCopyIsEnabled"
-                   v-on:click.prevent="copyScToIc()">
+                   v-on:click.prevent="copyScToIc()"
+                >
                     Скопировать в Накопление
                 </a>
                 <button type="submit"

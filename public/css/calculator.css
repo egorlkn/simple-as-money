@@ -59,6 +59,12 @@ main h1 {
     grid-row: 1 / 2;
 }
 
+main h1 small {
+    display: block;
+    font-size: 0.4em;
+    font-weight: 700;
+}
+
 #name {
     grid-column: 2 / -2;
     grid-row: 2 / 3;
@@ -251,15 +257,15 @@ main h1 {
 
 .submit {
     display: grid;
-    grid-template-columns: repeat(2, auto);
-    grid-template-rows: min-content;
-    align-items: center;
-    justify-content: flex-end;
+    grid-template-columns: auto;
+    grid-template-rows: repeat(2, min-content);
+    align-items: flex-end;
+    justify-content: center;
 }
 
 .submit a {
-    grid-column: 1 / 2;
-    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    grid-row: 2 / 3;
     display: inline-block;
     font-size: 0.75em;
     font-weight: 700;
@@ -267,6 +273,7 @@ main h1 {
     text-decoration: underline;
     text-align: center;
     letter-spacing: 1px;
+    margin-top: var(--content-gap);
 }
 
 .submit a:active,
@@ -275,8 +282,8 @@ main h1 {
 }
 
 .submit button[type="submit"] {
-    grid-column: 2 / 3;
-    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
     display: inline-block;
     background-color: var(--color-1);
     color: var(--color-2);
@@ -289,7 +296,6 @@ main h1 {
     font-family: 'PT Serif', serif;
     letter-spacing: 1px;
     cursor: pointer;
-    margin-left: var(--content-gap);
 }
 
 .submit button[type="submit"]:active {
@@ -312,6 +318,25 @@ main h1 {
     main nav a {
         width: 175px;
         padding-top: 5px;
+    }
+
+    .submit {
+        grid-template-columns: repeat(2, auto);
+        grid-template-rows: min-content;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .submit a {
+        grid-column: 1 / 2;
+        grid-row: 1 / -1;
+        margin: 0;
+    }
+
+    .submit button[type="submit"] {
+        grid-column: 2 / 3;
+        grid-row: 1 / -1;
+        margin-left: var(--content-gap);
     }
 }
 
