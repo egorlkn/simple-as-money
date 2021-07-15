@@ -139,7 +139,6 @@ body {
 
 #main_header a {
     display: block;
-    width: 100%;
     text-align: center;
     font-size: 1.1em;
 }
@@ -149,7 +148,7 @@ body {
 }
 
 #main_header a#logo {
-    width: 40%;
+    height: 1.5em;
 }
 
 #main_header a#logo:active,
@@ -163,7 +162,6 @@ body {
 #main_header a#logo img {
     display: block;
     height: 100%;
-    width: 100%;
 }
 
 #main_footer {
@@ -204,11 +202,6 @@ body {
         background-image: url('/images/bg-lines-892-min.png');
         background-size: 90vw;
     }
-
-    #main_header a#logo {
-        width: 30%;
-        padding: 0;
-    }
 }
 
 @media all and (min-width: 992px) {
@@ -240,7 +233,6 @@ body {
     }
 
     #main_header a#logo {
-        width: 25%;
         padding: 0;
     }
 }
@@ -257,11 +249,6 @@ body {
         -ms-flex-pack: start;
         justify-content: flex-start;
     }
-
-    #main_header a#logo {
-        width: 20%;
-        padding: 0;
-    }
 }
 
 @media all and (min-width: 1600px) {
@@ -269,21 +256,11 @@ body {
         background-image: url('/images/bg-lines-1330-min.png');
         background-size: 70vw;
     }
-
-    #main_header a#logo {
-        width: 15%;
-        padding: 0;
-    }
 }
 
 @media all and (min-width: 1900px) {
     body {
         background-image: url('/images/bg-lines-1665-min.png');
         background-size: 70vw;
-    }
-
-    #main_header a#logo {
-        width: 10%;
-        padding: 0;
     }
 }
