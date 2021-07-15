@@ -12,8 +12,8 @@
 
 {% block css %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/calculator.css?v=14721u3') }}">
-    <link rel="stylesheet" media="print" href="{{ asset('css/calculator-print.css?v=14721u3') }}">
+    <link rel="stylesheet" href="{{ asset('css/calculator.css?v=14721u4') }}">
+    <link rel="stylesheet" media="print" href="{{ asset('css/calculator-print.css?v=14721u4') }}">
 {% endblock %}
 
 {% block main %}
@@ -218,6 +218,13 @@
             </ul>
 
             <div class="submit">
+                <a href="javascript://"
+                   style="display: none;"
+                   v-show="icCopyIsEnabled"
+                   v-on:click.prevent="copyIcToSc()"
+                >
+                    Скопировать в Использование
+                </a>
                 <button type="submit"
                         v-bind:class="{ disabled: icCalculationIsDisabled }"
                         v-on:click="doIncomeSubmit($event)"
@@ -436,6 +443,12 @@
             </ul>
 
             <div class="submit col-2 row-5">
+                <a href="javascript://"
+                   style="display: none;"
+                   v-show="scCopyIsEnabled"
+                   v-on:click.prevent="copyScToIc()">
+                    Скопировать в Накопление
+                </a>
                 <button type="submit"
                         v-bind:class="{ disabled: scCalculationIsDisabled }"
                         v-on:click="doSpendSubmit($event)"
@@ -453,10 +466,9 @@
 
     {% if app.environment == 'dev' %}
         <script src="https://unpkg.com/vue@3.1.4/dist/vue.global.js"></script>
-        <script src="{{ asset('js/calculator.js?v=14721u3') }}"></script>
+        <script src="{{ asset('js/calculator.js?v=14721u4') }}"></script>
     {% else %}
         <script src="{{ asset('js/vue.global.prod.js?v=3.1.4') }}"></script>
-        <script src="{{ asset('js/calculator.bebel.js?v=14721u3') }}"></script>
+        <script src="{{ asset('js/calculator.prod.js?v=14721u4') }}"></script>
     {% endif %}
-
 {% endblock %}

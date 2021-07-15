@@ -378,14 +378,62 @@ main h1 {
     font-weight: 700;
 }
 
-button[type="submit"] {
+.submit {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: (auto) [ 2 ];
+    grid-template-columns: repeat(2, auto);
+    -ms-grid-rows: -webkit-min-content;
+    -ms-grid-rows: min-content;
+    grid-template-rows: -webkit-min-content;
+    grid-template-rows: min-content;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}
+
+.submit > *:nth-child(1) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+}
+
+.submit > *:nth-child(2) {
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
+}
+
+.submit a {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 1;
+    grid-column: 1 / 2;
+    grid-row: 1 / -1;
     display: inline-block;
-    float: right;
+    font-size: 0.75em;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.submit a:active,
+.submit a:focus {
+    text-decoration: underline;
+}
+
+.submit button[type="submit"] {
+    -ms-grid-column: 2;
+    -ms-grid-column-span: 1;
+    grid-column: 2 / 3;
+    grid-row: 1 / -1;
+    display: inline-block;
     background-color: var(--color-1);
     color: var(--color-2);
     border-radius: 25px;
     border: none;
-    line-height: 1;
     font-weight: 700;
     text-transform: uppercase;
     font-size: 1.2em;
@@ -393,17 +441,18 @@ button[type="submit"] {
     font-family: 'PT Serif', serif;
     letter-spacing: 1px;
     cursor: pointer;
+    margin-left: var(--content-gap);
 }
 
-button[type="submit"]:active {
+.submit button[type="submit"]:active {
     background-color: var(--color-3);
 }
 
-button[type="submit"].disabled {
+.submit button[type="submit"].disabled {
     background-color: var(--color-5);
 }
 
-button[type="submit"].disabled:active {
+.submit button[type="submit"].disabled:active {
     background-color: var(--color-5);
 }
 
@@ -436,6 +485,10 @@ button[type="submit"].disabled:active {
 @media all and (min-width: 992px) {
     main nav a {
         padding-top: 15px;
+    }
+
+    .submit a {
+        font-size: 0.7em;
     }
 }
 
@@ -614,6 +667,10 @@ button[type="submit"].disabled:active {
         to {
             background: var(--color-6);
         }
+    }
+
+    .submit a {
+        font-size: 0.6em;
     }
 }
 

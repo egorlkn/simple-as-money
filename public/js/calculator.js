@@ -7,8 +7,10 @@ const Calculator = {
     data() {
         return {
             chartIsActive: false,
+
             icIsActive: true,
             icCalculationIsDisabled: true,
+            icCopyIsEnabled: false,
 
             icInitialAmountIsUnknown: false,
             icInitialAmountIsBlinked: false,
@@ -55,6 +57,7 @@ const Calculator = {
 
             scIsActive: false,
             scCalculationIsDisabled: true,
+            scCopyIsEnabled: false,
 
             scInitialAmountIsUnknown: false,
             scInitialAmountIsBlinked: false,
@@ -781,6 +784,8 @@ const Calculator = {
                 app.icIsErrorResult = false;
 
                 app.icErrors.splice(0);
+
+                app.icCopyIsEnabled = true;
             })
             .catch(function (error) {
                 app.icLastRequestCash.isEmpty = true;
@@ -792,6 +797,8 @@ const Calculator = {
                 app.icLastRequestCash.finalAmount = '';
                 app.icLastRequestCash.yearly_balances = [];
 
+                app.icCopyIsEnabled = false;
+
                 app.icErrors.splice(0);
                 app.icErrors.push(...error.response.data.errors);
 
@@ -800,6 +807,38 @@ const Calculator = {
             .finally(function () {
                 app.updateChart();
             });
+        },
+        copyScToIc() {
+            this.icLastRequestCash.isEmpty = true;
+            this.icLastRequestCash.initialAmount = '';
+            this.icLastRequestCash.regularPayment = '';
+            this.icLastRequestCash.numberOfRegularPaymentsPerYear = '';
+            this.icLastRequestCash.numberOfYears = '';
+            this.icLastRequestCash.interestRatePerYear = '';
+            this.icLastRequestCash.finalAmount = '';
+            this.icLastRequestCash.yearly_balances = [];
+
+            this.icCopyIsEnabled = false;
+
+            this.icIsErrorResult = false;
+
+            this.icInitialAmountIsUnknown = false;
+            this.icRegularPaymentIsUnknown = false;
+            this.icNumberOfYearsIsUnknown = false;
+            this.icInterestRatePerYearIsUnknown = false;
+            this.icFinalAmountIsUnknown = false;
+
+            this.icInitialAmountValue = '';
+            this.icRegularPaymentValue = '';
+            this.icNumberOfRegularPaymentsPerYearValue = '';
+            this.icInterestRatePerYearValue = '';
+
+            this.updateIcNumberOfYearsValue(this.scNumberOfYearsUntilFistPaymentValue);
+            this.updateIcFinalAmountValue(this.scInitialAmountValue);
+
+            this.activeIncomeCalculator();
+
+            this.updateChart();
         },
         icReqWasHandledByCache() {
             let cache = this.icLastRequestCash;
@@ -909,6 +948,8 @@ const Calculator = {
                 app.scIsErrorResult = false;
 
                 app.scErrors.splice(0);
+
+                app.scCopyIsEnabled = true;
             })
             .catch(function (error) {
                 app.scLastRequestCash.isEmpty = true;
@@ -922,6 +963,8 @@ const Calculator = {
                 app.scLastRequestCash.inflation = '';
                 app.scLastRequestCash.balances_by_period = [];
 
+                app.scCopyIsEnabled = false;
+
                 app.scErrors.splice(0);
                 app.scErrors.push(...error.response.data.errors);
 
@@ -930,6 +973,42 @@ const Calculator = {
             .finally(function () {
                 app.updateChart();
             });
+        },
+        copyIcToSc() {
+            this.scLastRequestCash.isEmpty = true;
+            this.scLastRequestCash.initialAmount = '';
+            this.scLastRequestCash.paymentAmount = '';
+            this.scLastRequestCash.numberOfPaymentsPerYear = '';
+            this.scLastRequestCash.numberOfYears = '';
+            this.scLastRequestCash.interestRatePerYear = '';
+            this.scLastRequestCash.finalAmount = '';
+            this.scLastRequestCash.numberOfYearsUntilFistPayment = '';
+            this.scLastRequestCash.inflation = '';
+            this.scLastRequestCash.balances_by_period = [];
+
+            this.scCopyIsEnabled = false;
+
+            this.scIsErrorResult = false;
+
+            this.scInitialAmountIsUnknown = false;
+            this.scPaymentAmountIsUnknown = false;
+            this.scNumberOfYearsIsUnknown = false;
+            this.scInterestRatePerYearIsUnknown = false;
+            this.scFinalAmountIsUnknown = false;
+
+            this.scPaymentAmountValue = '';
+            this.scNumberOfPaymentsPerYearValue = '';
+            this.scNumberOfYearsValue = '';
+            this.scInterestRatePerYearValue = '';
+            this.scFinalAmountValue = '';
+            this.scInflationValue = '';
+
+            this.updateScInitialAmountValue(this.icFinalAmountValue);
+            this.updateScNumberOfYearsUntilFistPaymentValue(this.icNumberOfYearsValue);
+
+            this.activeSpendCalculator();
+
+            this.updateChart();
         },
         scReqWasHandledByCache() {
             let cache = this.scLastRequestCash;
