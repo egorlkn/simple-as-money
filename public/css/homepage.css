@@ -2,6 +2,8 @@ main {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(4, auto);
+    row-gap: var(--content-gap);
+    column-gap: 0;
     gap: var(--content-gap) 0;
 }
 
@@ -11,6 +13,8 @@ article {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(2, auto);
+    row-gap: calc(var(--content-gap) / 2);
+    column-gap: 0;
     gap: calc(var(--content-gap) / 2) 0;
 }
 
@@ -59,11 +63,15 @@ article p {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: calc(var(--content-gap) / 2) 0;
 }
 
 #forbes_list ul li {
     font-weight: 700;
+    margin-top: calc(var(--content-gap) / 2);
+}
+
+#forbes_list ul li:first-child {
+    margin-top: 0;
 }
 
 address {
@@ -104,6 +112,8 @@ address {
     main {
         grid-template-columns: repeat(6, 1fr);
         grid-template-rows: min-content min-content auto var(--footer-h);
+        row-gap: var(--content-gap);
+        column-gap: var(--content-gap);
         gap: var(--content-gap);
     }
 

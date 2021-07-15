@@ -9,11 +9,15 @@ main {
 main article {
     display: flex;
     flex-flow: column;
-    gap: var(--content-gap) 0;
 }
 
-main article h1, h2 {
+main article h1 {
     margin: 0;
+}
+
+main article h2,
+main article p {
+    margin-top: var(--content-gap);
 }
 
 @media all and (min-width: 576px) {

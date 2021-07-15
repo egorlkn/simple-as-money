@@ -48,6 +48,8 @@ main {
     grid-template-columns: var(--side-gap) calc(100% - var(--side-gap) * 2) var(--side-gap);
     grid-template-rows: min-content min-content auto;
     row-gap: var(--content-gap);
+    column-gap: 0;
+    gap: var(--content-gap) 0;
     align-items: flex-start;
 }
 
@@ -63,7 +65,6 @@ main h1 {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: calc(var(--content-gap) / 4);
     font-family: 'PT Serif', serif;
 }
 
@@ -92,6 +93,7 @@ main h1 {
 }
 
 #name time {
+    margin-top: calc(var(--content-gap) / 4);
     font-size: 0.75em;
     font-weight: 700;
 }
@@ -105,19 +107,24 @@ main h1 {
 #chart {
     display: flex;
     flex-direction: column;
-    gap: var(--content-gap);
 }
 
 #chart #chart-item {
     background-color: var(--color-2);
     border: solid 1px var(--color-5);
+    margin-top: var(--content-gap);
 }
 
 .calculator,
 .calculator form {
     display: flex;
     flex-direction: column;
-    gap: var(--content-gap);
+}
+
+.calculator form .form-row,
+.calculator form .errors,
+.calculator form .submit {
+    margin-top: var(--content-gap);
 }
 
 .form-row .field-label {
@@ -340,8 +347,9 @@ main h1 {
         margin: 0 calc(var(--side-gap) / 2);
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(4, min-content);
-        column-gap: var(--side-gap);
         row-gap: var(--content-gap);
+        column-gap: var(--side-gap);
+        gap: var(--content-gap) var(--side-gap);
     }
 
     main nav {
@@ -378,7 +386,7 @@ main h1 {
     .form-row .field {
         background-color: var(--color-6);
         margin-top: calc(var(--content-gap) / 2);
-        font-size: 1.2em;
+        font-size: 1em;
         border: solid 1px var(--color-4);
         border-bottom: solid 3px var(--color-4);
     }
@@ -446,6 +454,9 @@ main h1 {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(5, min-content);
+        row-gap: 0;
+        column-gap: var(--content-gap);
+        gap: 0 var(--content-gap);
         align-items: end;
     }
 
@@ -475,9 +486,5 @@ main h1 {
 
     .calculator#spend form .row-5 {
         grid-row: 5 / 6;
-    }
-
-    .form-row .field {
-        font-size: 1em;
     }
 }

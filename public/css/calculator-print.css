@@ -4,6 +4,8 @@
 
 body {
     background: none !important;
+    row-gap: 0 !important;
+    column-gap: 0 !important;
     gap: 0 !important;
 }
 
@@ -26,6 +28,8 @@ main {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
     grid-template-rows: repeat(3, min-content) !important;
+    row-gap: 0 !important;
+    column-gap: 0 !important;
     gap: 0 !important;
 }
 
@@ -56,25 +60,36 @@ main #chart h2 {
 
 #chart #chart-item {
     border: none !important;
+    margin: 0 !important;
 }
 
 main .calculator#income {
     grid-column: 1 / 2 !important;
     grid-row: 3 / 4 !important;
     display: flex !important;
+    margin-top: var(--content-gap) !important;
 }
 
 main .calculator#spend {
     grid-column: 2 / 3 !important;
     grid-row: 3 / 4 !important;
     display: flex !important;
+    margin-top: var(--content-gap) !important;
 }
 
 main .calculator#income form,
 main .calculator#spend form {
     display: flex !important;
     flex-direction: column !important;
-    gap: calc(var(--content-gap) / 4) !important;
+}
+
+main .calculator#income form .form-row,
+main .calculator#income form .errors,
+main .calculator#income form .submit,
+main .calculator#spend form .form-row,
+main .calculator#spend form .errors,
+main .calculator#spend form .submit {
+    margin-top: calc(var(--content-gap) / 4) !important;
 }
 
 main .calculator .unknown {
@@ -98,9 +113,8 @@ main .calculator .field:focus {
     font-size: 1em !important;
     margin: 0;
     font-weight: 700 !important;
-    -webkit-appearance: textfield;
        -moz-appearance: textfield;
-            appearance: none;
+    -webkit-appearance: textfield;
 }
 
 main .calculator .submit {
