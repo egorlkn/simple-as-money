@@ -12,8 +12,8 @@
 
 {% block css %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/calculator.css?v=14721d') }}">
-    <link rel="stylesheet" media="print" href="{{ asset('css/calculator-print.css?v=14721d') }}">
+    <link rel="stylesheet" href="{{ asset('css/calculator.css?v=14721u') }}">
+    <link rel="stylesheet" media="print" href="{{ asset('css/calculator-print.css?v=14721u') }}">
 {% endblock %}
 
 {% block main %}
@@ -453,9 +453,11 @@
 
     {% if app.environment == 'dev' %}
         <script src="https://unpkg.com/vue@3.1.4/dist/vue.global.js"></script>
+{#        <script src="{{ asset('js/calculator.js?v=14721d') }}"></script>#}
+        <script src="{{ asset('js/calculator.bebel.js?v=14721u') }}"></script>
     {% else %}
         <script src="{{ asset('js/vue.global.prod.js?v=3.1.4') }}"></script>
+        <script src="{{ asset('js/calculator.bebel.js?v=14721u') }}"></script>
     {% endif %}
 
-    <script src="{{ asset('js/calculator.js?v=14721d') }}"></script>
 {% endblock %}
