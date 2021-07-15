@@ -26,12 +26,12 @@
     <meta name="theme-color" content="#ffffff">
 
     {% block css %}
-        <link rel="stylesheet" href="{{ asset('css/prod/normalize.css?v=8.0.1um') }}">
+        <link rel="stylesheet" href="{{ asset('css/prod/normalize.css?v=8.0.1um-1') }}">
 
         {% if app.environment == 'dev' %}
-            <link rel="stylesheet" href="{{ asset('css/base.css?v=15721um') }}">
+            <link rel="stylesheet" href="{{ asset('css/base.css?v=15721um-1') }}">
         {% else %}
-            <link rel="stylesheet" href="{{ asset('css/prod/base.css?v=15721um') }}">
+            <link rel="stylesheet" href="{{ asset('css/prod/base.css?v=15721um-1') }}">
         {% endif %}
     {% endblock %}
 </head>
