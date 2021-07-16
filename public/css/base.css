@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@400&family=Roboto:wght@300;700&display=swap');
 
-@import 'global-properties.css';
+@import 'global-properties.css?v=16721';
 
 * {
     box-sizing: border-box;
