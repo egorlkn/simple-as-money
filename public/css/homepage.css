@@ -22,6 +22,7 @@ article {
     column-gap: 0;
     grid-gap: calc(var(--content-gap) / 2) 0;
     gap: calc(var(--content-gap) / 2) 0;
+    z-index: 200;
 }
 
 article h1 {
@@ -90,6 +91,7 @@ address {
     grid-column: 1;
     grid-row: 4 / 5;
     text-align: right;
+    z-index: 100;
 }
 
 #vadim img {
@@ -137,10 +139,6 @@ address {
 
     article h1 {
         font-size: 1.9em;
-    }
-
-    article p {
-        text-align: left;
     }
 
     #forbes_list {
