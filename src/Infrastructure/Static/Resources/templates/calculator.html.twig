@@ -14,10 +14,10 @@
     {{ parent() }}
 
     {% if app.environment == 'dev' %}
-        <link rel="stylesheet" href="{{ asset('css/calculator.css?v=16721b') }}">
+        <link rel="stylesheet" href="{{ asset('css/calculator.css?v=16721c') }}">
         <link rel="stylesheet" media="print" href="{{ asset('css/calculator-print.css?v=16721') }}">
     {% else %}
-        <link rel="stylesheet" href="{{ asset('css/prod/calculator.css?v=16721b') }}">
+        <link rel="stylesheet" href="{{ asset('css/prod/calculator.css?v=16721c') }}">
         <link rel="stylesheet" media="print" href="{{ asset('css/prod/calculator-print.css?v=16721') }}">
     {% endif %}
 {% endblock %}
@@ -45,7 +45,7 @@
     </nav>
 
     <section id="name">
-        <input type="text" placeholder="Название плана">
+        <input type="text" placeholder="Название плана" form="income-form">
         <time>{{ "now"|date("d.m.Y") }}</time>
     </section>
 
@@ -58,7 +58,7 @@
     <section class="calculator" id="income" v-show="icIsActive">
         <h2>Расчет накопления</h2>
 
-        <form v-on:submit.prevent="doIncomeCalc">
+        <form id="income-form" v-on:submit.prevent="doIncomeCalc">
             <div class="form-row"
                  v-bind:class="{ disabled: icInitialAmountIsUnknown, focused: icInitialAmountIsFocused }"
             >
@@ -249,7 +249,7 @@
     <section class="calculator" id="spend" style="display: none;" v-show="scIsActive">
         <h2>Расчет использования</h2>
 
-        <form v-on:submit.prevent="doSpendCalc">
+        <form id="spend-form" v-on:submit.prevent="doSpendCalc">
             <div class="col-1 row-1 form-row"
                  v-bind:class="{ disabled: scInitialAmountIsUnknown, focused: scInitialAmountIsFocused }"
             >
