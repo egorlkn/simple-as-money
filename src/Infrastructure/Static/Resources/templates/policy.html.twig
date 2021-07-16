@@ -10,9 +10,9 @@
     {{ parent() }}
 
     {% if app.environment == 'dev' %}
-        <link rel="stylesheet" href="{{ asset('css/policy.css?v=15721-2') }}">
+        <link rel="stylesheet" href="{{ asset('css/policy.css?v=16721') }}">
     {% else %}
-        <link rel="stylesheet" href="{{ asset('css/prod/policy.css?v=15721-2') }}">
+        <link rel="stylesheet" href="{{ asset('css/prod/policy.css?v=16721') }}">
     {% endif %}
 {% endblock %}
 

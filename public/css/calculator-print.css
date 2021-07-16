@@ -4,8 +4,11 @@
 
 body {
     background: none !important;
+    grid-row-gap: 0 !important;
     row-gap: 0 !important;
+    grid-column-gap: 0 !important;
     column-gap: 0 !important;
+    grid-gap: 0 !important;
     gap: 0 !important;
 }
 
@@ -28,8 +31,11 @@ main {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
     grid-template-rows: repeat(3, min-content) !important;
+    grid-row-gap: 0 !important;
     row-gap: 0 !important;
+    grid-column-gap: 0 !important;
     column-gap: 0 !important;
+    grid-gap: 0 !important;
     gap: 0 !important;
 }
 

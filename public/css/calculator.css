@@ -47,8 +47,11 @@ main {
     display: grid;
     grid-template-columns: var(--side-gap) calc(100% - var(--side-gap) * 2) var(--side-gap);
     grid-template-rows: min-content min-content auto;
+    grid-row-gap: var(--content-gap);
     row-gap: var(--content-gap);
+    grid-column-gap: 0;
     column-gap: 0;
+    grid-gap: var(--content-gap) 0;
     gap: var(--content-gap) 0;
     align-items: flex-start;
 }
@@ -372,8 +375,11 @@ main h1 small {
         margin: 0 calc(var(--side-gap) / 2);
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(4, min-content);
+        grid-row-gap: var(--content-gap);
         row-gap: var(--content-gap);
+        grid-column-gap: var(--side-gap);
         column-gap: var(--side-gap);
+        grid-gap: var(--content-gap) var(--side-gap);
         gap: var(--content-gap) var(--side-gap);
     }
 
@@ -479,8 +485,11 @@ main h1 small {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(5, min-content);
+        grid-row-gap: 0;
         row-gap: 0;
+        grid-column-gap: var(--content-gap);
         column-gap: var(--content-gap);
+        grid-gap: 0 var(--content-gap);
         gap: 0 var(--content-gap);
         align-items: end;
     }

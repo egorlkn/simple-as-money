@@ -38,8 +38,11 @@ body {
     min-height: 100vh;
     grid-template-columns: var(--side-gap) calc(100vw - var(--side-gap) * 2) var(--side-gap);
     grid-template-rows: min-content auto var(--footer-h);
+    grid-row-gap: var(--content-gap);
     row-gap: var(--content-gap);
+    grid-column-gap: 0;
     column-gap: 0;
+    grid-gap: var(--content-gap) 0;
     gap: var(--content-gap) 0;
 }
 

@@ -2,8 +2,11 @@ main {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(4, auto);
+    grid-row-gap: var(--content-gap);
     row-gap: var(--content-gap);
+    grid-column-gap: 0;
     column-gap: 0;
+    grid-gap: var(--content-gap) 0;
     gap: var(--content-gap) 0;
 }
 
@@ -13,8 +16,11 @@ article {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(2, auto);
+    grid-row-gap: calc(var(--content-gap) / 2);
     row-gap: calc(var(--content-gap) / 2);
+    grid-column-gap: 0;
     column-gap: 0;
+    grid-gap: calc(var(--content-gap) / 2) 0;
     gap: calc(var(--content-gap) / 2) 0;
 }
 
@@ -112,8 +118,11 @@ address {
     main {
         grid-template-columns: repeat(6, 1fr);
         grid-template-rows: min-content min-content auto var(--footer-h);
+        grid-row-gap: var(--content-gap);
         row-gap: var(--content-gap);
+        grid-column-gap: var(--content-gap);
         column-gap: var(--content-gap);
+        grid-gap: var(--content-gap);
         gap: var(--content-gap);
     }
 
