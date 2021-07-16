@@ -58,7 +58,7 @@ main {
 
 main h1 {
     margin: 0;
-    grid-column: 1 / -1;
+    grid-column: 2 / -2;
     grid-row: 1 / 2;
 }
 
@@ -385,6 +385,10 @@ main h1 small {
 
     main nav {
         display: none;
+    }
+
+    main h1 {
+        grid-column: 1 / -1;
     }
 
     #name {
