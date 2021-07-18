@@ -34,7 +34,7 @@ const Calculator = {
             icInterestRatePerYearIsUnknown: false,
             icInterestRatePerYearIsBlinked: false,
             icInterestRatePerYearIsFocused: false,
-            icInterestRatePerYearValue: '',
+            icInterestRatePerYearValue: '10',
 
             icFinalAmountIsUnknown: false,
             icFinalAmountIsBlinked: false,
@@ -81,7 +81,7 @@ const Calculator = {
             scInterestRatePerYearIsUnknown: false,
             scInterestRatePerYearIsBlinked: false,
             scInterestRatePerYearIsFocused: false,
-            scInterestRatePerYearValue: '',
+            scInterestRatePerYearValue: '5',
 
             scFinalAmountIsUnknown: false,
             scFinalAmountIsBlinked: false,
@@ -94,7 +94,7 @@ const Calculator = {
 
             scInflationIsBlinked: false,
             scInflationIsFocused: false,
-            scInflationValue: '',
+            scInflationValue: '2',
 
             scLastRequestCash: {
                 isEmpty: true,
