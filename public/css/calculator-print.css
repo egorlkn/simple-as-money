@@ -30,7 +30,7 @@ main {
     margin: 0 !important;
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
-    grid-template-rows: repeat(3, min-content) !important;
+    grid-template-rows: repeat(2, min-content) !important;
     grid-row-gap: 0 !important;
     row-gap: 0 !important;
     grid-column-gap: 0 !important;
@@ -47,14 +47,9 @@ main > nav {
     display: none !important;
 }
 
-main #name {
-    grid-column: 1 / -1 !important;
-    grid-row: 1 / 2 !important;
-}
-
 main #chart {
     grid-column: 1 / -1 !important;
-    grid-row: 2 / 3 !important;
+    grid-row: 1 / 2 !important;
     display: flex !important;
     width: 700px !important;
     overflow: hidden !important;
@@ -71,14 +66,14 @@ main #chart h2 {
 
 main .calculator#income {
     grid-column: 1 / 2 !important;
-    grid-row: 3 / 4 !important;
+    grid-row: 2 / 3 !important;
     display: flex !important;
     margin-top: var(--content-gap) !important;
 }
 
 main .calculator#spend {
     grid-column: 2 / 3 !important;
-    grid-row: 3 / 4 !important;
+    grid-row: 2 / 3 !important;
     display: flex !important;
     margin-top: var(--content-gap) !important;
 }

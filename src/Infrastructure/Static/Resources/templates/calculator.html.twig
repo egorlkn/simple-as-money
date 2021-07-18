@@ -14,11 +14,11 @@
     {{ parent() }}
 
     {% if app.environment == 'dev' %}
-        <link rel="stylesheet" href="{{ asset('css/calculator.css?v=18721') }}">
-        <link rel="stylesheet" media="print" href="{{ asset('css/calculator-print.css?v=16721') }}">
+        <link rel="stylesheet" href="{{ asset('css/calculator.css?v=18721a') }}">
+        <link rel="stylesheet" media="print" href="{{ asset('css/calculator-print.css?v=18721a') }}">
     {% else %}
-        <link rel="stylesheet" href="{{ asset('css/prod/calculator.css?v=18721') }}">
-        <link rel="stylesheet" media="print" href="{{ asset('css/prod/calculator-print.css?v=16721') }}">
+        <link rel="stylesheet" href="{{ asset('css/prod/calculator.css?v=18721a') }}">
+        <link rel="stylesheet" media="print" href="{{ asset('css/prod/calculator-print.css?v=18721a') }}">
     {% endif %}
 {% endblock %}
 
@@ -26,7 +26,7 @@
     <h1>
         Инвестиционный калькулятор
         <small>
-            <a href="https://youtu.be/1J9188mr5-Q" target="_blank">(как пользоваться? - видео инструкция на YouTube)</a>
+            <a href="https://youtu.be/1J9188mr5-Q" target="_blank">Видео-инструкция на YouTube</a>
         </small>
     </h1>
 
@@ -44,10 +44,10 @@
         </a>
     </nav>
 
-    <section id="name">
-        <input type="text" placeholder="Название плана" form="income-form">
-        <time>{{ "now"|date("d.m.Y") }}</time>
-    </section>
+{#    <section id="name">#}
+{#        <input type="text" placeholder="Название плана" form="income-form">#}
+{#        <time>{{ "now"|date("d.m.Y") }}</time>#}
+{#    </section>#}
 
     <section id="chart" style="display: none;" v-show="chartIsActive">
         <h2>График накопления/использования</h2>
@@ -228,20 +228,24 @@
                 <li v-for="error in icErrors">${ error }</li>
             </ul>
 
-            <div class="submit">
-                <a href="javascript://"
-                   style="display: none;"
-                   v-show="icCopyIsEnabled"
-                   v-on:click.prevent="copyIcToSc()"
-                >
-                    Скопировать в Использование
-                </a>
-                <button type="submit"
-                        v-bind:class="{ disabled: icCalculationIsDisabled }"
-                        v-on:click="doIncomeSubmit($event)"
-                >
-                    Рассчитать
-                </button>
+            <div class="submit" v-bind:class="{ disabled: icCalculationIsDisabled }">
+                <div class="copy">
+                    <a href="javascript://"
+                       style="display: none;"
+                       v-show="icCopyIsEnabled"
+                       v-on:click.prevent="copyIcToSc()"
+                    >
+                        Скопировать в Использование
+                    </a>
+                </div>
+                <div class="button">
+                    <button type="submit" v-on:click="doIncomeSubmit($event)">
+                        Рассчитать
+                    </button>
+                </div>
+                <div class="info">
+                    <small>выберите неизвестную величину</small>
+                </div>
             </div>
         </form>
     </section>
@@ -453,20 +457,24 @@
                 <li v-for="error in scErrors">${ error }</li>
             </ul>
 
-            <div class="submit col-2 row-5">
-                <a href="javascript://"
-                   style="display: none;"
-                   v-show="scCopyIsEnabled"
-                   v-on:click.prevent="copyScToIc()"
-                >
-                    Скопировать в Накопление
-                </a>
-                <button type="submit"
-                        v-bind:class="{ disabled: scCalculationIsDisabled }"
-                        v-on:click="doSpendSubmit($event)"
-                >
-                    Рассчитать
-                </button>
+            <div class="submit col-2 row-5" v-bind:class="{ disabled: scCalculationIsDisabled }">
+                <div class="copy">
+                    <a href="javascript://"
+                       style="display: none;"
+                       v-show="scCopyIsEnabled"
+                       v-on:click.prevent="copyScToIc()"
+                    >
+                        Скопировать в Накопление
+                    </a>
+                </div>
+                <div class="button">
+                    <button type="submit" v-on:click="doSpendSubmit($event)">
+                        Рассчитать
+                    </button>
+                </div>
+                <div class="info" >
+                    <small>выберите неизвестную величину</small>
+                </div>
             </div>
         </form>
     </section>
@@ -478,9 +486,9 @@
 
     {% if app.environment == 'dev' %}
         <script src="https://unpkg.com/vue@3.1.4/dist/vue.global.js"></script>
-        <script src="{{ asset('js/calculator.js?v=15721um-1') }}"></script>
+        <script src="{{ asset('js/calculator.js?v=18721a') }}"></script>
     {% else %}
         <script src="{{ asset('js/prod/vue.global.prod.js?v=3.1.4-1') }}"></script>
-        <script src="{{ asset('js/prod/calculator.prod.js?v=15721um-1') }}"></script>
+        <script src="{{ asset('js/prod/calculator.prod.js?v=18721a') }}"></script>
     {% endif %}
 {% endblock %}
