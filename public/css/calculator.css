@@ -159,11 +159,6 @@ main h1 small {
 
 .form-row .unknown label {
     display: inline-block;
-    background-color: var(--color-6);
-    color: var(--color-4);
-    border: solid 1px var(--color-4);
-    border-radius: 0 12px 12px 0;
-    box-shadow: 1px 1px 3px var(--color-4);
     font-weight: 700;
     text-transform: uppercase;
     font-size: 0.6em;
@@ -172,20 +167,35 @@ main h1 small {
 }
 
 .form-row.focused .unknown label {
-    border-color: var(--color-9);
     color: var(--color-9);
 }
 
 .form-row .unknown span {
     display: inline-block;
-    margin: 5px 10px;
+    user-select: none;
+}
+
+.form-row .unknown span:before {
+    content: '';
+    display: block;
+    float: left;
+    height: 20px;
+    width: 20px;
+    margin-right: 2px;
+    margin-top: -8px;
+    background-image: url(/images/checkbox.svg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 20px;
 }
 
 .form-row .unknown label.checked,
 .form-row.focused .unknown label.checked {
-    background-color: var(--color-3);
-    border-color: var(--color-3);
-    color: var(--color-2);
+    color: var(--color-3);
+}
+
+.form-row .unknown label.checked span:before {
+    background-image: url(/images/checkbox-s.svg);
 }
 
 .form-row .unknown input {
@@ -454,7 +464,9 @@ main h1 small {
 }
 
 @media all and (min-width: 1200px) {
-
+    .form-row .unknown span:before {
+        margin-top: -7px;
+    }
 }
 
 @media all and (min-width: 1600px) {

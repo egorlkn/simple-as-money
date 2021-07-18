@@ -14,10 +14,10 @@
     {{ parent() }}
 
     {% if app.environment == 'dev' %}
-        <link rel="stylesheet" href="{{ asset('css/calculator.css?v=16721d') }}">
+        <link rel="stylesheet" href="{{ asset('css/calculator.css?v=18721') }}">
         <link rel="stylesheet" media="print" href="{{ asset('css/calculator-print.css?v=16721') }}">
     {% else %}
-        <link rel="stylesheet" href="{{ asset('css/prod/calculator.css?v=16721d') }}">
+        <link rel="stylesheet" href="{{ asset('css/prod/calculator.css?v=18721') }}">
         <link rel="stylesheet" media="print" href="{{ asset('css/prod/calculator-print.css?v=16721') }}">
     {% endif %}
 {% endblock %}
@@ -70,7 +70,7 @@
                            v-on:click.prevent="changeIcInitialAmountUnknowing"
                     >
                         <input type="checkbox" v-bind:checked="icInitialAmountIsUnknown">
-                        <span>неизвестная величина</span>
+                        <span>неизвестная величина или:</span>
                     </label>
                 </div>
                 <input class="field"
@@ -99,7 +99,7 @@
                            v-on:click.prevent="changeIcRegularPaymentUnknowing"
                     >
                         <input type="checkbox" v-bind:checked="icRegularPaymentIsUnknown">
-                        <span>неизвестная величина</span>
+                        <span>неизвестная величина или:</span>
                     </label>
                 </div>
                 <input class="field"
@@ -148,7 +148,7 @@
                            v-on:click.prevent="changeIcNumberOfYearsUnknowing"
                     >
                         <input type="checkbox" v-bind:checked="icNumberOfYearsIsUnknown">
-                        <span>неизвестная величина</span>
+                        <span>неизвестная величина или:</span>
                     </label>
                 </div>
                 <input class="field"
@@ -177,7 +177,7 @@
 {#                           v-on:click.prevent="changeIcInterestRatePerYearUnknowing"#}
 {#                    >#}
 {#                        <input type="checkbox" v-bind:checked="icInterestRatePerYearIsUnknown">#}
-{#                        <span>неизвестная величина</span>#}
+{#                        <span>неизвестная величина или:</span>#}
 {#                    </label>#}
 {#                </div>#}
                 <input class="field"
@@ -206,7 +206,7 @@
                            v-on:click.prevent="changeIcFinalAmountUnknowing"
                     >
                         <input type="checkbox" v-bind:checked="icFinalAmountIsUnknown">
-                        <span>неизвестная величина</span>
+                        <span>неизвестная величина или:</span>
                     </label>
                 </div>
                 <input class="field"
@@ -261,7 +261,7 @@
                            v-on:click.prevent="changeScInitialAmountUnknowing"
                     >
                         <input type="checkbox" v-bind:checked="scInitialAmountIsUnknown">
-                        <span>неизвестная величина</span>
+                        <span>неизвестная величина или:</span>
                     </label>
                 </div>
                 <input class="field"
@@ -290,7 +290,7 @@
                            v-on:click.prevent="changeScPaymentAmountUnknowing"
                     >
                         <input type="checkbox" v-bind:checked="scPaymentAmountIsUnknown">
-                        <span>неизвестная величина</span>
+                        <span>неизвестная величина или:</span>
                     </label>
                 </div>
                 <input class="field"
@@ -337,7 +337,7 @@
                            v-on:click.prevent="changeScNumberOfYearsUnknowing"
                     >
                         <input type="checkbox" v-bind:checked="scNumberOfYearsIsUnknown">
-                        <span>неизвестная величина</span>
+                        <span>неизвестная величина или:</span>
                     </label>
                 </div>
                 <input class="field"
@@ -366,7 +366,7 @@
 {#                           v-on:click.prevent="changeScInterestRatePerYearUnknowing"#}
 {#                    >#}
 {#                        <input type="checkbox" v-bind:checked="scInterestRatePerYearIsUnknown">#}
-{#                        <span>неизвестная величина</span>#}
+{#                        <span>неизвестная величина или:</span>#}
 {#                    </label>#}
 {#                </div>#}
                 <input class="field"
@@ -431,7 +431,7 @@
                            v-on:click.prevent="changeScFinalAmountUnknowing"
                     >
                         <input type="checkbox" v-bind:checked="scFinalAmountIsUnknown">
-                        <span>неизвестная величина</span>
+                        <span>неизвестная величина или:</span>
                     </label>
                 </div>
                 <input class="field"
