@@ -1,5 +1,11 @@
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+window.isMobile = screen.width < 992;
+
+window.onresize = function () {
+    window.isMobile = screen.width < 992;
+};
+
 const Calculator = {
     compilerOptions: {
         delimiters: ['${', '}']
@@ -186,20 +192,39 @@ const Calculator = {
         }
     },
     methods: {
+        scrollToHeader() {
+            if (window.isMobile) {
+                let top = document.getElementsByTagName('h1')[0].offsetTop;
+
+                window.scroll(
+                    {
+                        top: top,
+                        left: 0,
+                        behavior: 'smooth'
+                    }
+                );
+            }
+        },
         activeIncomeCalculator() {
             this.chartIsActive = false;
             this.scIsActive = false;
             this.icIsActive = true;
+
+            this.scrollToHeader();
         },
         activeSpendCalculator() {
             this.chartIsActive = false;
             this.icIsActive = false;
             this.scIsActive = true;
+
+            this.scrollToHeader();
         },
         activeChart() {
             this.icIsActive = false;
             this.scIsActive = false;
             this.chartIsActive = true;
+
+            this.scrollToHeader();
         },
         changeIcInitialAmountUnknowing() {
             if (this.icInitialAmountIsUnknown) {
@@ -786,6 +811,32 @@ const Calculator = {
                 app.icErrors.splice(0);
 
                 app.icCopyIsEnabled = true;
+
+                if (!window.isMobile) {
+                    return void 0;
+                }
+
+                let top = 0;
+
+                if (app.icInitialAmountIsUnknown) {
+                    top = document.getElementById('ic-initial-amount').offsetTop;
+                } else if (app.icRegularPaymentIsUnknown) {
+                    top = document.getElementById('ic-regular-payment').offsetTop;
+                } else if (app.icNumberOfYearsIsUnknown) {
+                    top = document.getElementById('ic-number-of-years').offsetTop;
+                } else if (app.icInterestRatePerYearIsUnknown) {
+                    top = document.getElementById('ic-interest-rate-per-year').offsetTop;
+                } else if (app.icFinalAmountIsUnknown) {
+                    top = document.getElementById('ic-final-amount').offsetTop;
+                }
+
+                window.scroll(
+                    {
+                        top: top - 50,
+                        left: 0,
+                        behavior: 'smooth'
+                    }
+                );
             })
             .catch(function (error) {
                 app.icLastRequestCash.isEmpty = true;
@@ -831,9 +882,9 @@ const Calculator = {
             this.icInitialAmountValue = '';
             this.icRegularPaymentValue = '';
             this.icNumberOfRegularPaymentsPerYearValue = '';
-            this.icInterestRatePerYearValue = '';
 
             this.updateIcNumberOfYearsValue(this.scNumberOfYearsUntilFistPaymentValue);
+            this.updateIcInterestRatePerYearValue('10');
             this.updateIcFinalAmountValue(this.scInitialAmountValue);
 
             this.activeIncomeCalculator();
@@ -950,6 +1001,32 @@ const Calculator = {
                 app.scErrors.splice(0);
 
                 app.scCopyIsEnabled = true;
+
+                if (!window.isMobile) {
+                    return void 0;
+                }
+
+                let top = 0;
+
+                if (app.scInitialAmountIsUnknown) {
+                    top = document.getElementById('sc-initial-amount').offsetTop;
+                } else if (app.scPaymentAmountIsUnknown) {
+                    top = document.getElementById('sc-payment-amount').offsetTop;
+                } else if (app.scNumberOfYearsIsUnknown) {
+                    top = document.getElementById('sc-number-of-years').offsetTop;
+                } else if (app.scInterestRatePerYearIsUnknown) {
+                    top = document.getElementById('sc-interest-rate-per-year').offsetTop;
+                } else if (app.icFinalAmountIsUnknown) {
+                    top = document.getElementById('sc-final-amount').offsetTop;
+                }
+
+                window.scroll(
+                    {
+                        top: top - 50,
+                        left: 0,
+                        behavior: 'smooth'
+                    }
+                );
             })
             .catch(function (error) {
                 app.scLastRequestCash.isEmpty = true;
@@ -999,11 +1076,11 @@ const Calculator = {
             this.scPaymentAmountValue = '';
             this.scNumberOfPaymentsPerYearValue = '';
             this.scNumberOfYearsValue = '';
-            this.scInterestRatePerYearValue = '';
             this.scFinalAmountValue = '';
-            this.scInflationValue = '';
 
             this.updateScInitialAmountValue(this.icFinalAmountValue);
+            this.updateScInterestRatePerYearValue('5');
+            this.updateScInflationValue('2');
             this.updateScNumberOfYearsUntilFistPaymentValue(this.icNumberOfYearsValue);
 
             this.activeSpendCalculator();

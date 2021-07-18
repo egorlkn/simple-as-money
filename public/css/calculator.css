@@ -304,6 +304,11 @@ main h1 small {
     color: var(--color-3);
 }
 
+.submit .copy a:active {
+    background-color: var(--color-3);
+    color: var(--color-2);
+}
+
 .submit .button {
     grid-column: 1 / -1;
     grid-row: 2 / 3;
