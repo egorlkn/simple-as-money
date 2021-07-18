@@ -14,10 +14,10 @@
     {{ parent() }}
 
     {% if app.environment == 'dev' %}
-        <link rel="stylesheet" href="{{ asset('css/calculator.css?v=18721a') }}">
+        <link rel="stylesheet" href="{{ asset('css/calculator.css?v=18721b') }}">
         <link rel="stylesheet" media="print" href="{{ asset('css/calculator-print.css?v=18721a') }}">
     {% else %}
-        <link rel="stylesheet" href="{{ asset('css/prod/calculator.css?v=18721a') }}">
+        <link rel="stylesheet" href="{{ asset('css/prod/calculator.css?v=18721b') }}">
         <link rel="stylesheet" media="print" href="{{ asset('css/prod/calculator-print.css?v=18721a') }}">
     {% endif %}
 {% endblock %}
