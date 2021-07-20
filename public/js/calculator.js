@@ -1178,25 +1178,28 @@ const Calculator = {
 
                     this.scLastRequestCash.balances_by_period.forEach(
                         function (balance) {
-                            if (numberOfPayment === numberOfPaymentsPerYear) {
-                                numberOfPayment = 1;
-
-                                return void 0;
-                            }
-
-                            if (numberOfPayment === 1) {
+                            if (numberOfPaymentsPerYear === 1) {
                                 scData.push([firstYear, balance.amount]);
 
                                 firstYear++;
-                            }
+                            } else {
+                                if (numberOfPayment === numberOfPaymentsPerYear) {
+                                    numberOfPayment = 1;
 
-                            numberOfPayment++;
+                                    return void 0;
+                                }
+
+                                if (numberOfPayment === 1) {
+                                    scData.push([firstYear, balance.amount]);
+
+                                    firstYear++;
+                                }
+
+                                numberOfPayment++;
+                            }
                         }
                     );
                 }
-
-                //@todo
-                scData.pop();
             }
 
 
