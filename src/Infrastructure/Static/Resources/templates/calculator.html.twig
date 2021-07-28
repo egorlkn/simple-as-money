@@ -14,10 +14,10 @@
     {{ parent() }}
 
     {% if app.environment == 'dev' %}
-        <link rel="stylesheet" href="{{ asset('css/calculator.css?v=18721d') }}">
+        <link rel="stylesheet" href="{{ asset('css/calculator.css?v=28721') }}">
         <link rel="stylesheet" media="print" href="{{ asset('css/calculator-print.css?v=18721a') }}">
     {% else %}
-        <link rel="stylesheet" href="{{ asset('css/prod/calculator.css?v=18721d') }}">
+        <link rel="stylesheet" href="{{ asset('css/prod/calculator.css?v=28721') }}">
         <link rel="stylesheet" media="print" href="{{ asset('css/prod/calculator-print.css?v=18721a') }}">
     {% endif %}
 {% endblock %}
@@ -26,7 +26,11 @@
     <h1>
         Инвестиционный калькулятор
         <small>
-            <a href="https://youtu.be/1J9188mr5-Q" target="_blank">Видео-инструкция на YouTube</a>
+            <a href="https://youtu.be/1J9188mr5-Q" target="_blank">
+                Видео-инструкция
+                <ion-icon name="logo-youtube"></ion-icon>
+                <ion-icon name="open-outline"></ion-icon>
+            </a>
         </small>
     </h1>
 
@@ -70,7 +74,9 @@
                            v-on:click.prevent="changeIcInitialAmountUnknowing"
                     >
                         <input type="checkbox" v-bind:checked="icInitialAmountIsUnknown">
-                        <span>неизвестная величина или:</span>
+                        <ion-icon name="square-outline" v-show="!icInitialAmountIsUnknown"></ion-icon>
+                        <ion-icon name="checkmark-outline" v-show="icInitialAmountIsUnknown"></ion-icon>
+                        <span>неизвестная величина</span>
                     </label>
                 </div>
                 <input class="field"
@@ -99,7 +105,9 @@
                            v-on:click.prevent="changeIcRegularPaymentUnknowing"
                     >
                         <input type="checkbox" v-bind:checked="icRegularPaymentIsUnknown">
-                        <span>неизвестная величина или:</span>
+                        <ion-icon name="square-outline" v-show="!icRegularPaymentIsUnknown"></ion-icon>
+                        <ion-icon name="checkmark-outline" v-show="icRegularPaymentIsUnknown"></ion-icon>
+                        <span>неизвестная величина</span>
                     </label>
                 </div>
                 <input class="field"
@@ -148,7 +156,9 @@
                            v-on:click.prevent="changeIcNumberOfYearsUnknowing"
                     >
                         <input type="checkbox" v-bind:checked="icNumberOfYearsIsUnknown">
-                        <span>неизвестная величина или:</span>
+                        <ion-icon name="square-outline" v-show="!icNumberOfYearsIsUnknown"></ion-icon>
+                        <ion-icon name="checkmark-outline" v-show="icNumberOfYearsIsUnknown"></ion-icon>
+                        <span>неизвестная величина</span>
                     </label>
                 </div>
                 <input class="field"
@@ -177,7 +187,9 @@
 {#                           v-on:click.prevent="changeIcInterestRatePerYearUnknowing"#}
 {#                    >#}
 {#                        <input type="checkbox" v-bind:checked="icInterestRatePerYearIsUnknown">#}
-{#                        <span>неизвестная величина или:</span>#}
+{#                        <ion-icon name="square-outline" v-show="!icInterestRatePerYearIsUnknown"></ion-icon>#}
+{#                        <ion-icon name="checkmark-outline" v-show="icInterestRatePerYearIsUnknown"></ion-icon>#}
+{#                        <span>неизвестная величина</span>#}
 {#                    </label>#}
 {#                </div>#}
                 <input class="field"
@@ -206,7 +218,9 @@
                            v-on:click.prevent="changeIcFinalAmountUnknowing"
                     >
                         <input type="checkbox" v-bind:checked="icFinalAmountIsUnknown">
-                        <span>неизвестная величина или:</span>
+                        <ion-icon name="square-outline" v-show="!icFinalAmountIsUnknown"></ion-icon>
+                        <ion-icon name="checkmark-outline" v-show="icFinalAmountIsUnknown"></ion-icon>
+                        <span>неизвестная величина</span>
                     </label>
                 </div>
                 <input class="field"
@@ -265,7 +279,9 @@
                            v-on:click.prevent="changeScInitialAmountUnknowing"
                     >
                         <input type="checkbox" v-bind:checked="scInitialAmountIsUnknown">
-                        <span>неизвестная величина или:</span>
+                        <ion-icon name="square-outline" v-show="!scInitialAmountIsUnknown"></ion-icon>
+                        <ion-icon name="checkmark-outline" v-show="scInitialAmountIsUnknown"></ion-icon>
+                        <span>неизвестная величина</span>
                     </label>
                 </div>
                 <input class="field"
@@ -294,7 +310,9 @@
                            v-on:click.prevent="changeScPaymentAmountUnknowing"
                     >
                         <input type="checkbox" v-bind:checked="scPaymentAmountIsUnknown">
-                        <span>неизвестная величина или:</span>
+                        <ion-icon name="square-outline" v-show="!scPaymentAmountIsUnknown"></ion-icon>
+                        <ion-icon name="checkmark-outline" v-show="scPaymentAmountIsUnknown"></ion-icon>
+                        <span>неизвестная величина</span>
                     </label>
                 </div>
                 <input class="field"
@@ -341,7 +359,9 @@
                            v-on:click.prevent="changeScNumberOfYearsUnknowing"
                     >
                         <input type="checkbox" v-bind:checked="scNumberOfYearsIsUnknown">
-                        <span>неизвестная величина или:</span>
+                        <ion-icon name="square-outline" v-show="!scNumberOfYearsIsUnknown"></ion-icon>
+                        <ion-icon name="checkmark-outline" v-show="scNumberOfYearsIsUnknown"></ion-icon>
+                        <span>неизвестная величина</span>
                     </label>
                 </div>
                 <input class="field"
@@ -370,7 +390,9 @@
 {#                           v-on:click.prevent="changeScInterestRatePerYearUnknowing"#}
 {#                    >#}
 {#                        <input type="checkbox" v-bind:checked="scInterestRatePerYearIsUnknown">#}
-{#                        <span>неизвестная величина или:</span>#}
+{#                        <ion-icon name="square-outline" v-show="!scInterestRatePerYearIsUnknown"></ion-icon>#}
+{#                        <ion-icon name="checkmark-outline" v-show="scInterestRatePerYearIsUnknown"></ion-icon>#}
+{#                        <span>неизвестная величина</span>#}
 {#                    </label>#}
 {#                </div>#}
                 <input class="field"
@@ -435,7 +457,9 @@
                            v-on:click.prevent="changeScFinalAmountUnknowing"
                     >
                         <input type="checkbox" v-bind:checked="scFinalAmountIsUnknown">
-                        <span>неизвестная величина или:</span>
+                        <ion-icon name="square-outline" v-show="!scFinalAmountIsUnknown"></ion-icon>
+                        <ion-icon name="checkmark-outline" v-show="scFinalAmountIsUnknown"></ion-icon>
+                        <span>неизвестная величина</span>
                     </label>
                 </div>
                 <input class="field"
@@ -481,6 +505,8 @@
 {% endblock main %}
 
 {% block js %}
+    {{ parent() }}
+
     <script src="{{ asset('js/prod/axios.min.js?v=0.21.1-1') }}"></script>
     <script src="{{ asset('js/prod/apexcharts.js?v=3.27.2-1') }}"></script>
 

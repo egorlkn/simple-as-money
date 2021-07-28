@@ -68,12 +68,25 @@ main h1 {
 
 main h1 small {
     display: block;
-    font-size: 0.3em;
+    font-size: 0.4em;
     font-weight: 700;
     text-transform: uppercase;
-    text-decoration: underline;
     letter-spacing: 1px;
     margin-top: calc(var(--content-gap) / 4);
+}
+
+main h1 small a ion-icon {
+    font-size: 16px;
+    margin-left: 2px;
+}
+
+main h1 small a ion-icon[name="logo-youtube"] {
+    margin-bottom: -3px;
+}
+
+main h1 small a ion-icon[name="open-outline"] {
+    margin-bottom: -2px;
+    --ionicon-stroke-width: 38px;
 }
 
 /*#name {*/
@@ -162,6 +175,7 @@ main h1 small {
 
 .form-row .unknown {
     margin-top: calc(var(--content-gap) / 2);
+    line-height: 1;
 }
 
 .form-row .unknown label {
@@ -180,29 +194,26 @@ main h1 small {
 .form-row .unknown span {
     display: inline-block;
     user-select: none;
+    border-bottom: dotted 1px;
 }
 
-.form-row .unknown span:before {
-    content: '';
-    display: block;
-    float: left;
-    height: 20px;
-    width: 20px;
-    margin-right: 2px;
-    margin-top: -8px;
-    background-image: url(/images/checkbox.svg);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: 20px;
+.form-row .unknown ion-icon {
+    font-size: 12px;
+    margin-right: 3px;
+    margin-bottom: -3px;
+}
+
+.form-row .unknown ion-icon[name="square-outline"] {
+    --ionicon-stroke-width: 48px;
+}
+
+.form-row .unknown ion-icon[name="checkmark-outline"] {
+    --ionicon-stroke-width: 64px;
 }
 
 .form-row .unknown label.checked,
 .form-row.focused .unknown label.checked {
     color: var(--color-3);
-}
-
-.form-row .unknown label.checked span:before {
-    background-image: url(/images/checkbox-s.svg);
 }
 
 .form-row .unknown input {
@@ -415,6 +426,11 @@ main h1 small {
 
     main nav a {
         width: 200px;
+    }
+
+    .form-row .unknown ion-icon {
+        font-size: 16px;
+        margin-bottom: -4px;
     }
 }
 

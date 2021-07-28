@@ -14,9 +14,9 @@
     {{ parent() }}
 
     {% if app.environment == 'dev' %}
-        <link rel="stylesheet" href="{{ asset('css/homepage.css?v=16721b') }}">
+        <link rel="stylesheet" href="{{ asset('css/homepage.css?v=28721') }}">
     {% else %}
-        <link rel="stylesheet" href="{{ asset('css/prod/homepage.css?v=16721b') }}">
+        <link rel="stylesheet" href="{{ asset('css/prod/homepage.css?v=28721') }}">
     {% endif %}
 {% endblock %}
 
@@ -41,18 +41,21 @@
             <li>
                 <a href="https://www.forbes.ru/finansy-i-investicii/422651-cena-straha-pochemu-luchshe-vseh-investiruyut-mertvye-i-neaktivnye"
                    target="_blank">
+                    <ion-icon name="open-outline"></ion-icon>
                     Цена страха: почему лучше всех инвестируют мертвые и неактивные инвесторы
                 </a>
             </li>
             <li>
                 <a href="https://www.forbes.ru/finansy-i-investicii/425123-ipo-s-nulevoy-summoy-kto-platit-za-prazdnik-dohodnostey-na-rynke"
                    target="_blank">
+                    <ion-icon name="open-outline"></ion-icon>
                     IPO с нулевой суммой: кто платит за праздник доходностей на рынке первичных размещений
                 </a>
             </li>
             <li>
                 <a href="https://www.forbes.ru/finansy-i-investicii/428267-glupost-ili-genialnost-pochemu-pokupka-kartinki-v-internete-za-693-mln"
                    target="_blank">
+                    <ion-icon name="open-outline"></ion-icon>
                     Глупость или гениальность: почему покупка картинки в интернете за $69,3 млн может стать
                     лучшей инвестиционной идеей
                 </a>
@@ -60,12 +63,14 @@
             <li>
                 <a href="https://www.forbes.ru/finansy-i-investicii/431781-guru-iz-socsetey-pochemu-investoram-bolshe-ne-nuzhny-znaniya-ob"
                    target="_blank">
+                    <ion-icon name="open-outline"></ion-icon>
                     Гуру из соцсетей: почему инвесторам больше не нужны знания об экономической теории и рынках
                 </a>
             </li>
             <li>
                 <a href="https://www.forbes.ru/finansy-i-investicii/433605-pismo-budushchemu-sebe-kak-ne-popast-v-emocionalnye-lovushki-na-fondovom"
                    target="_blank">
+                    <ion-icon name="open-outline"></ion-icon>
                     Письмо будущему себе: как не попасть в эмоциональные ловушки на фондовом рынке, чтобы не прогореть
                 </a>
             </li>
@@ -75,6 +80,7 @@
         Финансовый консультант,<br>кандидат экономических наук
         <a href="https://www.instagram.com/simpleasmoney/" rel="author" target="_blank">
             Вадим Погосьян
+            <ion-icon name="logo-instagram"></ion-icon>
         </a>
     </address>
     <div id="vadim">
