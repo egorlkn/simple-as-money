@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@400&family=Roboto:wght@300;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap');
 
 @import 'global-properties.css?v=16721';
 
@@ -10,15 +10,14 @@
 
 html {
     background-color: var(--color-2);
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
+    font-family: 'PT Serif', serif;
+    font-weight: 400;
     font-size: var(--font-size);
     line-height: var(--line-height);
     color: var(--color-1);
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'PT Serif', serif;
     font-weight: 400;
 }
 
@@ -112,6 +111,7 @@ body {
     display: flex;
     flex-flow: column;
     align-items: center;
+    justify-content: center;
     font-size: 0.65em;
     background-color: var(--color-2-opacity);
 }

@@ -77,7 +77,6 @@ main h1 small {
 
 main h1 small a ion-icon {
     font-size: 16px;
-    margin-left: 2px;
 }
 
 main h1 small a ion-icon[name="logo-youtube"] {
@@ -85,6 +84,7 @@ main h1 small a ion-icon[name="logo-youtube"] {
 }
 
 main h1 small a ion-icon[name="open-outline"] {
+    margin-left: 3px;
     margin-bottom: -2px;
     --ionicon-stroke-width: 38px;
 }
@@ -428,6 +428,10 @@ main h1 small a ion-icon[name="open-outline"] {
         width: 200px;
     }
 
+    .form-row .unknown label {
+        font-size: 0.7em;
+    }
+
     .form-row .unknown ion-icon {
         font-size: 16px;
         margin-bottom: -4px;
@@ -532,8 +536,16 @@ main h1 small a ion-icon[name="open-outline"] {
 }
 
 @media all and (min-width: 1200px) {
-    .form-row .unknown span:before {
-        margin-top: -7px;
+    .form-row .unknown label {
+        font-size: 0.65em;
+    }
+
+    .form-row .unknown ion-icon {
+        margin-bottom: -4px;
+    }
+
+    main h1 small a ion-icon[name="open-outline"] {
+        margin-left: 4px;
     }
 }
 
@@ -596,6 +608,10 @@ main h1 small a ion-icon[name="open-outline"] {
 
     .calculator#spend form .row-5 {
         grid-row: 5 / 6;
+    }
+
+    .form-row .unknown label {
+        font-size: 0.6em;
     }
 
     .submit a {

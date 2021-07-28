@@ -90,7 +90,7 @@ article p {
 address {
     grid-column: 1;
     grid-row: 3 / 4;
-    font-size: 0.85em;
+    font-size: 0.75em;
 }
 
 address a {
@@ -107,7 +107,9 @@ address ion-icon {
 #vadim {
     grid-column: 1;
     grid-row: 4 / 5;
-    text-align: right;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
     z-index: 100;
 }
 
