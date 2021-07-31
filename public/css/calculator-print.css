@@ -93,6 +93,10 @@ main .calculator#spend form .submit {
     margin-top: calc(var(--content-gap) / 4) !important;
 }
 
+.form-row ion-icon[name="help-circle-outline"] {
+    display: none !important;
+}
+
 main .calculator .unknown {
     display: none !important;
 }

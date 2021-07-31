@@ -14,11 +14,11 @@
     {{ parent() }}
 
     {% if app.environment == 'dev' %}
-        <link rel="stylesheet" href="{{ asset('css/calculator.css?v=28721a') }}">
-        <link rel="stylesheet" media="print" href="{{ asset('css/calculator-print.css?v=18721a') }}">
+        <link rel="stylesheet" href="{{ asset('css/calculator.css?v=31721') }}">
+        <link rel="stylesheet" media="print" href="{{ asset('css/calculator-print.css?v=31721') }}">
     {% else %}
-        <link rel="stylesheet" href="{{ asset('css/prod/calculator.css?v=28721a') }}">
-        <link rel="stylesheet" media="print" href="{{ asset('css/prod/calculator-print.css?v=18721a') }}">
+        <link rel="stylesheet" href="{{ asset('css/prod/calculator.css?v=31721') }}">
+        <link rel="stylesheet" media="print" href="{{ asset('css/prod/calculator-print.css?v=31721') }}">
     {% endif %}
 {% endblock %}
 
@@ -67,8 +67,11 @@
                  v-bind:class="{ disabled: icInitialAmountIsUnknown, focused: icInitialAmountIsFocused }"
             >
                 <label class="field-label" for="ic-initial-amount">
-                    Начальная сумма размещения:
+                    Начальная сумма размещения
                 </label>
+                <ion-icon name="help-circle-outline"
+                          data-tippy-content="Сумма инвестиций, которая у вас уже есть сегодня. Может быть равна 0"
+                ></ion-icon>
                 <div class="unknown">
                     <label v-bind:class="{ checked: icInitialAmountIsUnknown }"
                            v-on:click.prevent="changeIcInitialAmountUnknowing"
@@ -98,8 +101,12 @@
                  v-bind:class="{ disabled: icRegularPaymentIsUnknown, focused: icRegularPaymentIsFocused }"
             >
                 <label class="field-label" for="ic-regular-payment">
-                    Сумма регулярного взноса:
+                    Сумма регулярного взноса
                 </label>
+                <ion-icon name="help-circle-outline"
+                          data-tippy-content="Сумма, на которую вы планируете регулярно пополнять свой инвестиционный
+                          счет. Может быть равна 0"
+                ></ion-icon>
                 <div class="unknown">
                     <label v-bind:class="{ checked: icRegularPaymentIsUnknown }"
                            v-on:click.prevent="changeIcRegularPaymentUnknowing"
@@ -129,8 +136,12 @@
                  v-bind:class="{ focused: icNumberOfRegularPaymentsPerYearIsFocused }"
             >
                 <label class="field-label" for="ic-number-of-regular-payments-per-year">
-                    Количество взносов в год:
+                    Количество взносов в год
                 </label>
+                <ion-icon name="help-circle-outline"
+                          data-tippy-content="Количество раз в год, которое вы будете вносить сумму регулярного взноса
+                          на счет. Например, 12 раз – это ежемесячно, а 4 – ежеквартально"
+                ></ion-icon>
                 <input class="field"
                        id="ic-number-of-regular-payments-per-year"
                        type="number"
@@ -149,8 +160,11 @@
                  v-bind:class="{ disabled: icNumberOfYearsIsUnknown, focused: icNumberOfYearsIsFocused }"
             >
                 <label class="field-label" for="ic-number-of-years">
-                    Количество лет:
+                    Количество лет
                 </label>
+                <ion-icon name="help-circle-outline"
+                          data-tippy-content="Сколько лет вы планируете формировать свой портфель"
+                ></ion-icon>
                 <div class="unknown">
                     <label v-bind:class="{ checked: icNumberOfYearsIsUnknown }"
                            v-on:click.prevent="changeIcNumberOfYearsUnknowing"
@@ -180,8 +194,12 @@
                  v-bind:class="{ disabled: icInterestRatePerYearIsUnknown, focused: icInterestRatePerYearIsFocused }"
             >
                 <label class="field-label" for="ic-interest-rate-per-year">
-                    Ставка размещения в % годовых:
+                    Ставка размещения в % годовых
                 </label>
+                <ion-icon name="help-circle-outline"
+                          data-tippy-content="Примерная средняя доходность в процентах годовых, под которую вы
+                          рассчитываете размещать свои деньги"
+                ></ion-icon>
 {#                <div class="unknown">#}
 {#                    <label v-bind:class="{ checked: icInterestRatePerYearIsUnknown }"#}
 {#                           v-on:click.prevent="changeIcInterestRatePerYearUnknowing"#}
@@ -211,8 +229,11 @@
                  v-bind:class="{ disabled: icFinalAmountIsUnknown, focused: icFinalAmountIsFocused }"
             >
                 <label class="field-label" for="ic-final-amount">
-                    Сумма накопления:
+                    Сумма накопления
                 </label>
+                <ion-icon name="help-circle-outline"
+                          data-tippy-content="Сумма, которую вы будете иметь на счету по результатам инвестиций"
+                ></ion-icon>
                 <div class="unknown">
                     <label v-bind:class="{ checked: icFinalAmountIsUnknown }"
                            v-on:click.prevent="changeIcFinalAmountUnknowing"
@@ -272,8 +293,12 @@
                  v-bind:class="{ disabled: scInitialAmountIsUnknown, focused: scInitialAmountIsFocused }"
             >
                 <label class="field-label" for="sc-initial-amount">
-                    Начальная сумма:
+                    Начальная сумма
                 </label>
+                <ion-icon name="help-circle-outline"
+                          data-tippy-content="Тот размер инвестиционного портфеля, который должен у вас быть к тому
+                          моменту, когда вы начнете тратить деньги"
+                ></ion-icon>
                 <div class="unknown">
                     <label v-bind:class="{ checked: scInitialAmountIsUnknown }"
                            v-on:click.prevent="changeScInitialAmountUnknowing"
@@ -303,8 +328,12 @@
                  v-bind:class="{ disabled: scPaymentAmountIsUnknown, focused: scPaymentAmountIsFocused }"
             >
                 <label class="field-label" for="sc-payment-amount">
-                    Сумма выплаты:
+                    Сумма выплаты
                 </label>
+                <ion-icon name="help-circle-outline"
+                          data-tippy-content="Сумма, которую вы будете получать с заданной регулярностью и с учетом
+                          указанной вами инфляции"
+                ></ion-icon>
                 <div class="unknown">
                     <label v-bind:class="{ checked: scPaymentAmountIsUnknown }"
                            v-on:click.prevent="changeScPaymentAmountUnknowing"
@@ -332,8 +361,12 @@
 
             <div class="col-1 row-3 form-row" v-bind:class="{ focused: scNumberOfPaymentsPerYearIsFocused }">
                 <label class="field-label" for="sc-number-of-payments-per-year">
-                    Количество выплат в год:
+                    Количество выплат в год
                 </label>
+                <ion-icon name="help-circle-outline"
+                          data-tippy-content="Периодичность, с которой вы будете получать выплаты.
+                          Например, 12 – это ежемесячно, а 4 – ежеквартально"
+                ></ion-icon>
                 <input class="field"
                        id="sc-number-of-payments-per-year"
                        type="number"
@@ -352,8 +385,11 @@
                  v-bind:class="{ disabled: scNumberOfYearsIsUnknown, focused: scNumberOfYearsIsFocused }"
             >
                 <label class="field-label" for="sc-number-of-years">
-                    Количество лет:
+                    Количество лет
                 </label>
+                <ion-icon name="help-circle-outline"
+                          data-tippy-content="Срок, в течение которого вы планируете получать регулярные выплаты"
+                ></ion-icon>
                 <div class="unknown">
                     <label v-bind:class="{ checked: scNumberOfYearsIsUnknown }"
                            v-on:click.prevent="changeScNumberOfYearsUnknowing"
@@ -383,8 +419,12 @@
                  v-bind:class="{ disabled: scInterestRatePerYearIsUnknown, focused: scInterestRatePerYearIsFocused }"
             >
                 <label class="field-label" for="sc-interest-rate-per-year">
-                    Ставка размещения в % годовых:
+                    Ставка размещения в % годовых
                 </label>
+                <ion-icon name="help-circle-outline"
+                          data-tippy-content="Примерная средняя доходность в процентах годовых, под которую вы
+                          рассчитываете размещать свои деньги"
+                ></ion-icon>
 {#                <div class="unknown">#}
 {#                    <label v-bind:class="{ checked: scInterestRatePerYearIsUnknown }"#}
 {#                           v-on:click.prevent="changeScInterestRatePerYearUnknowing"#}
@@ -412,8 +452,12 @@
 
             <div class="col-2 row-2 form-row" v-bind:class="{ focused: scInflationIsFocused }">
                 <label class="field-label" for="sc-inflation">
-                    Инфляция в % годовых:
+                    Инфляция в % годовых
                 </label>
+                <ion-icon name="help-circle-outline"
+                          data-tippy-allowHtml="true"
+                          data-tippy-content="Размер предполагаемой вами инфляции"
+                ></ion-icon>
                 <input class="field"
                        id="sc-inflation"
                        type="number"
@@ -432,6 +476,10 @@
                 <label class="field-label" for="sc-number-of-years-until-first-payment">
                     Количество лет до первой выплаты:
                 </label>
+                <ion-icon name="help-circle-outline"
+                          data-tippy-content="Это срок, как правило, от сегодняшнего дня, через который вы начнете не
+                          формировать свой портфель, а использовать его"
+                ></ion-icon>
                 <input class="field"
                        id="sc-number-of-years-until-first-payment"
                        type="number"
@@ -450,8 +498,12 @@
                  v-bind:class="{ disabled: scFinalAmountIsUnknown, focused: scFinalAmountIsFocused }"
             >
                 <label class="field-label" for="sc-final-amount">
-                    Конечная сумма:
+                    Конечная сумма
                 </label>
+                <ion-icon name="help-circle-outline"
+                          data-tippy-content="Сумма, которая останется у вас на счету после того, как вы получите все
+                          выплаты, которые указали в расчете"
+                ></ion-icon>
                 <div class="unknown">
                     <label v-bind:class="{ checked: scFinalAmountIsUnknown }"
                            v-on:click.prevent="changeScFinalAmountUnknowing"
@@ -512,9 +564,9 @@
 
     {% if app.environment == 'dev' %}
         <script src="https://unpkg.com/vue@3.1.4/dist/vue.global.js"></script>
-        <script src="{{ asset('js/calculator.js?v=20721') }}"></script>
+        <script src="{{ asset('js/calculator.js?v=31721') }}"></script>
     {% else %}
         <script src="{{ asset('js/prod/vue.global.prod.js?v=3.1.4-1') }}"></script>
-        <script src="{{ asset('js/prod/calculator.prod.js?v=20721') }}"></script>
+        <script src="{{ asset('js/prod/calculator.prod.js?v=31721') }}"></script>
     {% endif %}
 {% endblock %}

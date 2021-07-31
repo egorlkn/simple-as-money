@@ -1334,3 +1334,11 @@ window.onafterprint = function() {
         false
     );
 };
+
+tippy(
+    '[data-tippy-content]',
+    {
+        trigger: 'click',
+        placement: 'top'
+    }
+);

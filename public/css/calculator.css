@@ -161,6 +161,7 @@ main h1 small a ion-icon[name="open-outline"] {
 .form-row .field-label {
     display: block;
     font-weight: 700;
+    float: left;
 }
 
 .form-row.focused .field-label {
@@ -173,8 +174,16 @@ main h1 small a ion-icon[name="open-outline"] {
     color: var(--color-4);
 }
 
+.form-row ion-icon[name="help-circle-outline"] {
+    font-size: 18px;
+    margin-left: 5px;
+    margin-top: -3px;
+    cursor: pointer;
+    color: var(--color-3);
+}
+
 .form-row .unknown {
-    margin-top: calc(var(--content-gap) / 2);
+    margin-top: calc(var(--content-gap) / 2 - 3px);
     line-height: 1;
 }
 
@@ -371,6 +380,12 @@ main h1 small a ion-icon[name="open-outline"] {
     margin-top: calc(var(--content-gap) / 2);
 }
 
+@media all and (max-width: 359px) {
+    .form-row .field-label {
+        font-size: 0.85em;
+    }
+}
+
 @media all and (min-width: 576px) {
     main nav {
         left: calc(-227px + var(--side-gap) / 2);
@@ -426,6 +441,10 @@ main h1 small a ion-icon[name="open-outline"] {
 
     main nav a {
         width: 200px;
+    }
+
+    .form-row ion-icon[name="help-circle-outline"] {
+        font-size: 21px;
     }
 
     .form-row .unknown label {
@@ -485,7 +504,7 @@ main h1 small a ion-icon[name="open-outline"] {
     }
 
     .form-row .unknown {
-        margin-top: calc(var(--content-gap) / 2);
+        margin-top: calc(var(--content-gap) / 2 - 3px);
     }
 
     .form-row .field {
@@ -536,6 +555,10 @@ main h1 small a ion-icon[name="open-outline"] {
 }
 
 @media all and (min-width: 1200px) {
+    .form-row ion-icon[name="help-circle-outline"] {
+        font-size: 23px;
+    }
+
     .form-row .unknown label {
         font-size: 0.65em;
     }
@@ -616,5 +639,11 @@ main h1 small a ion-icon[name="open-outline"] {
 
     .submit a {
         font-size: 0.65em;
+    }
+}
+
+@media all and (min-width: 1900px) {
+    .form-row ion-icon[name="help-circle-outline"] {
+        font-size: 25px;
     }
 }
