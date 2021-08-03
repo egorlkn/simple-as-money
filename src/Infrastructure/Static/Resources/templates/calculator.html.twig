@@ -14,11 +14,11 @@
     {{ parent() }}
 
     {% if app.environment == 'dev' %}
-        <link rel="stylesheet" href="{{ asset('css/calculator.css?v=31721') }}">
-        <link rel="stylesheet" media="print" href="{{ asset('css/calculator-print.css?v=31721') }}">
+        <link rel="stylesheet" href="{{ asset('css/calculator.css?v=3821') }}">
+        <link rel="stylesheet" media="print" href="{{ asset('css/calculator-print.css?v=3821') }}">
     {% else %}
-        <link rel="stylesheet" href="{{ asset('css/prod/calculator.css?v=31721') }}">
-        <link rel="stylesheet" media="print" href="{{ asset('css/prod/calculator-print.css?v=31721') }}">
+        <link rel="stylesheet" href="{{ asset('css/prod/calculator.css?v=3821') }}">
+        <link rel="stylesheet" media="print" href="{{ asset('css/prod/calculator-print.css?v=3821') }}">
     {% endif %}
 {% endblock %}
 
@@ -575,9 +575,9 @@
 
     {% if app.environment == 'dev' %}
         <script src="https://unpkg.com/vue@3.1.4/dist/vue.global.js"></script>
-        <script src="{{ asset('js/calculator.js?v=31721') }}"></script>
+        <script src="{{ asset('js/calculator.js?v=3821') }}"></script>
     {% else %}
         <script src="{{ asset('js/prod/vue.global.prod.js?v=3.1.4-1') }}"></script>
-        <script src="{{ asset('js/prod/calculator.prod.js?v=31721') }}"></script>
+        <script src="{{ asset('js/prod/calculator.prod.js?v=3821') }}"></script>
     {% endif %}
 {% endblock %}

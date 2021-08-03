@@ -144,6 +144,10 @@ main h1 small a ion-icon[name="open-outline"] {
     border-bottom: dotted 1px;
 }
 
+#control #print a:first-child {
+    margin-bottom: calc(var(--content-gap) / 4);
+}
+
 #control time {
     grid-column: 1 / 2;
     grid-row: 2 / 3;
@@ -424,6 +428,23 @@ main h1 small a ion-icon[name="open-outline"] {
 
     #control #currency {
         font-size: 1.2em;
+    }
+
+    #control #print {
+        flex-flow: row;
+        align-items: center;
+        justify-content: center;
+        font-size: 1em;
+    }
+
+    #control #print a:first-child {
+        margin-bottom: 0;
+        margin-right: var(--side-gap);
+    }
+
+    #control time {
+        font-size: 1em;
+        text-align: center;
     }
 
     #control #plan-name,

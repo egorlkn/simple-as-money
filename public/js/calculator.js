@@ -89,7 +89,7 @@ const Calculator = {
             scInterestRatePerYearIsUnknown: false,
             scInterestRatePerYearIsBlinked: false,
             scInterestRatePerYearIsFocused: false,
-            scInterestRatePerYearValue: '7',
+            scInterestRatePerYearValue: '6',
 
             scFinalAmountIsUnknown: false,
             scFinalAmountIsBlinked: false,
@@ -1297,20 +1297,20 @@ const Calculator = {
             switch (this.currency) {
                 case 1:
                     this.updateIcInterestRatePerYearValue('12');
-                    this.updateScInterestRatePerYearValue('7');
+                    this.updateScInterestRatePerYearValue('6');
                     this.updateScInflationValue('2');
                     break;
 
                 case 2:
                     this.updateIcInterestRatePerYearValue('8');
-                    this.updateScInterestRatePerYearValue('4');
+                    this.updateScInterestRatePerYearValue('3');
                     this.updateScInflationValue('1.5');
                     break;
 
                 case 3:
                     this.updateIcInterestRatePerYearValue('20');
                     this.updateScInterestRatePerYearValue('12');
-                    this.updateScInflationValue('5');
+                    this.updateScInflationValue('7');
                     break;
             }
 
