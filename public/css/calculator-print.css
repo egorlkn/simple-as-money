@@ -30,7 +30,7 @@ main {
     margin: 0 !important;
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
-    grid-template-rows: repeat(2, min-content) !important;
+    grid-template-rows: repeat(3, min-content) !important;
     grid-row-gap: 0 !important;
     row-gap: 0 !important;
     grid-column-gap: 0 !important;
@@ -47,9 +47,33 @@ main > nav {
     display: none !important;
 }
 
-main #chart {
+main #control {
     grid-column: 1 / -1 !important;
     grid-row: 1 / 2 !important;
+    grid-template-columns: 10% calc(90% - var(--side-gap)) !important;
+}
+
+main #control input,
+main #control select {
+    background: #fff !important;
+    border-top: none !important;
+    border-right: none !important;
+    border-left: none !important;
+       -moz-appearance: textfield !important;
+    -webkit-appearance: textfield !important;
+}
+
+main #control time {
+    text-align: center !important;
+}
+
+main #control #print {
+    display: none !important;
+}
+
+main #chart {
+    grid-column: 1 / -1 !important;
+    grid-row: 2 / 3 !important;
     display: flex !important;
     width: 700px !important;
     overflow: hidden !important;
@@ -66,14 +90,14 @@ main #chart h2 {
 
 main .calculator#income {
     grid-column: 1 / 2 !important;
-    grid-row: 2 / 3 !important;
+    grid-row: 3 / 4 !important;
     display: flex !important;
     margin-top: var(--content-gap) !important;
 }
 
 main .calculator#spend {
     grid-column: 2 / 3 !important;
-    grid-row: 2 / 3 !important;
+    grid-row: 3 / 4 !important;
     display: flex !important;
     margin-top: var(--content-gap) !important;
 }
@@ -118,8 +142,8 @@ main .calculator .field:focus {
     font-size: 1em !important;
     margin: 0;
     font-weight: 700 !important;
-       -moz-appearance: textfield;
-    -webkit-appearance: textfield;
+       -moz-appearance: textfield !important;
+    -webkit-appearance: textfield !important;
 }
 
 main .calculator .submit {

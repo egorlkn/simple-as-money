@@ -48,10 +48,21 @@
         </a>
     </nav>
 
-{#    <section id="name">#}
-{#        <input type="text" placeholder="Название плана" form="income-form">#}
-{#        <time>{{ "now"|date("d.m.Y") }}</time>#}
-{#    </section>#}
+    <section id="control">
+        <label for="currency" style="display: inline-block; width: 0; height: 0; overflow: hidden;">Валюта</label>
+        <select id="currency" form="income-form" v-on:change="changeCurrency($event)">
+            <option value="1">USD, $</option>
+            <option value="2">EURO, €</option>
+            <option value="3">RUB, ₽</option>
+        </select>
+        <label for="plan-name" style="display: inline-block; width: 0; height: 0; overflow: hidden;">Название плана</label>
+        <input id="plan-name" type="text" placeholder="Название плана" form="income-form">
+        <div id="print">
+            <a href="javascript:print();">Распечатать/Сохранить в PDF</a>
+            <a href="javascript://;" v-on:click.prevent="fullClear()">Сбросить</a>
+        </div>
+        <time>{{ "now"|date("d.m.Y") }}</time>
+    </section>
 
     <section id="chart" style="display: none;" v-show="chartIsActive">
         <h2>График накопления/использования</h2>

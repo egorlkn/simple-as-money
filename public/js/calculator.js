@@ -12,6 +12,8 @@ const Calculator = {
     },
     data() {
         return {
+            currency: 1,
+
             chartIsActive: false,
 
             icIsActive: true,
@@ -40,7 +42,7 @@ const Calculator = {
             icInterestRatePerYearIsUnknown: false,
             icInterestRatePerYearIsBlinked: false,
             icInterestRatePerYearIsFocused: false,
-            icInterestRatePerYearValue: '10',
+            icInterestRatePerYearValue: '12',
 
             icFinalAmountIsUnknown: false,
             icFinalAmountIsBlinked: false,
@@ -87,7 +89,7 @@ const Calculator = {
             scInterestRatePerYearIsUnknown: false,
             scInterestRatePerYearIsBlinked: false,
             scInterestRatePerYearIsFocused: false,
-            scInterestRatePerYearValue: '5',
+            scInterestRatePerYearValue: '7',
 
             scFinalAmountIsUnknown: false,
             scFinalAmountIsBlinked: false,
@@ -420,7 +422,7 @@ const Calculator = {
 
             if (regularPayment === '' || parseFloat(regularPayment) > 0.0) {
                 if (numberPerYear === '' || numberPerYear === 0.0) {
-                    this.updateIcNumberOfRegularPaymentsPerYearValue(1);
+                    this.updateIcNumberOfRegularPaymentsPerYearValue(12);
                 }
             }
 
@@ -881,9 +883,9 @@ const Calculator = {
 
             this.icInitialAmountValue = '';
             this.icRegularPaymentValue = '';
-            this.icNumberOfRegularPaymentsPerYearValue = '';
 
             this.updateIcNumberOfYearsValue(this.scNumberOfYearsUntilFistPaymentValue);
+            this.updateIcNumberOfRegularPaymentsPerYearValue(this.scNumberOfPaymentsPerYearValue);
             this.updateIcInterestRatePerYearValue('10');
             this.updateIcFinalAmountValue(this.scInitialAmountValue);
 
@@ -1074,11 +1076,11 @@ const Calculator = {
             this.scFinalAmountIsUnknown = false;
 
             this.scPaymentAmountValue = '';
-            this.scNumberOfPaymentsPerYearValue = '';
             this.scNumberOfYearsValue = '';
             this.scFinalAmountValue = '';
 
             this.updateScInitialAmountValue(this.icFinalAmountValue);
+            this.updateScNumberOfPaymentsPerYearValue(this.icNumberOfRegularPaymentsPerYearValue);
             this.updateScInterestRatePerYearValue('5');
             this.updateScInflationValue('2');
             this.updateScNumberOfYearsUntilFistPaymentValue(this.icNumberOfYearsValue);
@@ -1232,6 +1234,87 @@ const Calculator = {
                 false,
                 false
             );
+        },
+        changeCurrency($event) {
+            this.currency = parseInt($event.target.value);
+
+            this.fullClear();
+        },
+        fullClear() {
+            this.icLastRequestCash.isEmpty = true;
+            this.icLastRequestCash.initialAmount = '';
+            this.icLastRequestCash.regularPayment = '';
+            this.icLastRequestCash.numberOfRegularPaymentsPerYear = '';
+            this.icLastRequestCash.numberOfYears = '';
+            this.icLastRequestCash.interestRatePerYear = '';
+            this.icLastRequestCash.finalAmount = '';
+            this.icLastRequestCash.yearly_balances = [];
+
+            this.icCopyIsEnabled = false;
+
+            this.icIsErrorResult = false;
+
+            this.icInitialAmountIsUnknown = false;
+            this.icRegularPaymentIsUnknown = false;
+            this.icNumberOfYearsIsUnknown = false;
+            this.icInterestRatePerYearIsUnknown = false;
+            this.icFinalAmountIsUnknown = false;
+
+            this.icInitialAmountValue = '';
+            this.icRegularPaymentValue = '';
+            this.icNumberOfRegularPaymentsPerYearValue = '';
+            this.icNumberOfYearsValue = '';
+            this.icFinalAmountValue = '';
+
+            this.scLastRequestCash.isEmpty = true;
+            this.scLastRequestCash.initialAmount = '';
+            this.scLastRequestCash.paymentAmount = '';
+            this.scLastRequestCash.numberOfPaymentsPerYear = '';
+            this.scLastRequestCash.numberOfYears = '';
+            this.scLastRequestCash.interestRatePerYear = '';
+            this.scLastRequestCash.finalAmount = '';
+            this.scLastRequestCash.numberOfYearsUntilFistPayment = '';
+            this.scLastRequestCash.inflation = '';
+            this.scLastRequestCash.balances_by_period = [];
+
+            this.scCopyIsEnabled = false;
+
+            this.scIsErrorResult = false;
+
+            this.scInitialAmountIsUnknown = false;
+            this.scPaymentAmountIsUnknown = false;
+            this.scNumberOfYearsIsUnknown = false;
+            this.scInterestRatePerYearIsUnknown = false;
+            this.scFinalAmountIsUnknown = false;
+
+            this.scInitialAmountValue = '';
+            this.scPaymentAmountValue = '';
+            this.scNumberOfPaymentsPerYearValue = '';
+            this.scNumberOfYearsValue = '';
+            this.scNumberOfYearsUntilFistPaymentValue = '';
+            this.scFinalAmountValue = '';
+
+            switch (this.currency) {
+                case 1:
+                    this.updateIcInterestRatePerYearValue('12');
+                    this.updateScInterestRatePerYearValue('7');
+                    this.updateScInflationValue('2');
+                    break;
+
+                case 2:
+                    this.updateIcInterestRatePerYearValue('8');
+                    this.updateScInterestRatePerYearValue('4');
+                    this.updateScInflationValue('1.5');
+                    break;
+
+                case 3:
+                    this.updateIcInterestRatePerYearValue('20');
+                    this.updateScInterestRatePerYearValue('12');
+                    this.updateScInflationValue('5');
+                    break;
+            }
+
+            this.updateChart();
         }
     }
 };

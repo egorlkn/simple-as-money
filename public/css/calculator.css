@@ -47,7 +47,7 @@ main {
     grid-row: 2 / -2;
     display: grid;
     grid-template-columns: var(--side-gap) calc(100% - var(--side-gap) * 2) var(--side-gap);
-    grid-template-rows: min-content auto;
+    grid-template-rows: min-content min-content auto;
     grid-row-gap: var(--content-gap);
     row-gap: var(--content-gap);
     grid-column-gap: 0;
@@ -89,49 +89,72 @@ main h1 small a ion-icon[name="open-outline"] {
     --ionicon-stroke-width: 38px;
 }
 
-/*#name {*/
-/*    grid-column: 2 / -2;*/
-/*    grid-row: 2 / 3;*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    align-items: flex-end;*/
-/*    font-family: 'PT Serif', serif;*/
-/*}*/
+#control {
+    grid-column: 2 / -2;
+    grid-row: 2 / 3;
+    display: grid;
+    grid-template-columns: 30% calc(70% - var(--side-gap));
+    grid-template-rows: repeat(2, min-content);
+    grid-row-gap: calc(var(--content-gap) / 2);
+    row-gap: calc(var(--content-gap) / 2);
+    grid-column-gap: var(--side-gap);
+    column-gap: var(--side-gap);
+    grid-gap: calc(var(--content-gap) / 2) var(--side-gap);
+    gap: calc(var(--content-gap) / 2) var(--side-gap);
+    line-height: 1;
+}
 
-/*#name input {*/
-/*    display: block;*/
-/*    width: 100%;*/
-/*    padding-bottom: 2px;*/
-/*    background: transparent;*/
-/*    border-radius: 0;*/
-/*    border-top: none;*/
-/*    border-left: none;*/
-/*    border-right: none;*/
-/*    border-bottom: solid 2px var(--color-4);*/
-/*    font-size: 2em;*/
-/*    font-weight: 400;*/
-/*    outline: none;*/
-/*}*/
+#control #currency {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    font-size: 1em;
+    background-color: transparent;
+    border: solid 1px var(--color-4);
+    border-radius: 0;
+    padding: 2px;
+}
 
-/*#name input::placeholder {*/
-/*    color: var(--color-5);*/
-/*    font-style: italic;*/
-/*}*/
+#control #plan-name,
+#control #plan-name:focus {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    font-size: 1em;
+    background-color: transparent;
+    border: solid 1px var(--color-4);
+    border-radius: 0;
+    padding: 2px;
+    outline: none;
+}
 
-/*#name input:focus {*/
-/*    outline: solid 1px var(--color-4);*/
-/*}*/
+#control #plan-name::placeholder {
+    color: var(--color-5);
+}
 
-/*#name time {*/
-/*    margin-top: calc(var(--content-gap) / 4);*/
-/*    font-size: 0.75em;*/
-/*    font-weight: 700;*/
-/*}*/
+#control #print {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    display: flex;
+    flex-flow: column;
+    align-items: flex-end;
+    font-size: 0.75em;
+}
+
+#control #print a {
+    display: inline-block;
+    border-bottom: dotted 1px;
+}
+
+#control time {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    font-size: 0.75em;
+    font-weight: 700;
+}
 
 #chart,
 .calculator {
     grid-column: 2 / -2;
-    grid-row: 2 / 3;
+    grid-row: 3 / 4;
 }
 
 #chart {
@@ -395,6 +418,19 @@ main h1 small a ion-icon[name="open-outline"] {
         padding-top: 9px;
     }
 
+    #control {
+        grid-template-columns: 20% calc(80% - var(--side-gap));
+    }
+
+    #control #currency {
+        font-size: 1.2em;
+    }
+
+    #control #plan-name,
+    #control #plan-name:focus {
+        font-size: 1.2em;
+    }
+
     .submit {
         grid-template-columns: repeat(2, auto);
         grid-template-rows: repeat(2, min-content);
@@ -463,7 +499,7 @@ main h1 small a ion-icon[name="open-outline"] {
         padding: 0 calc(var(--side-gap) / 2);
         margin: 0 calc(var(--side-gap) / 2);
         grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(3, min-content);
+        grid-template-rows: repeat(4, min-content);
         grid-row-gap: var(--content-gap);
         row-gap: var(--content-gap);
         grid-column-gap: var(--side-gap);
@@ -480,27 +516,28 @@ main h1 small a ion-icon[name="open-outline"] {
         grid-column: 1 / -1;
     }
 
-    /*#name {*/
-    /*    grid-column: 1 / -1;*/
-    /*    grid-row: 2 / 3;*/
-    /*}*/
+    #control {
+        grid-column: 1 / -1;
+        grid-row: 2 / 3;
+        grid-template-columns: 15% calc(85% - var(--side-gap));
+    }
 
     .calculator#income {
         display: flex !important;
         grid-column: 1 / 2;
-        grid-row: 2 / 3;
+        grid-row: 3 / 4;
     }
 
     .calculator#spend {
         display: flex !important;
         grid-column: 2 / 3;
-        grid-row: 2 / 3;
+        grid-row: 3 / 4;
     }
 
     #chart {
         display: flex !important;
         grid-column: 1 / 3;
-        grid-row: 3 / 4;
+        grid-row: 5 / 6;
     }
 
     .form-row .unknown {
@@ -579,17 +616,17 @@ main h1 small a ion-icon[name="open-outline"] {
 
     .calculator#income {
         grid-column: 1 / 2;
-        grid-row: 2 / 4;
+        grid-row: 3 / 5;
     }
 
     .calculator#spend {
         grid-column: 2 / 4;
-        grid-row: 2 / 3;
+        grid-row: 3 / 4;
     }
 
     #chart {
         grid-column: 2 / 4;
-        grid-row: 3 / 4;
+        grid-row: 4 / 5;
     }
 
     .calculator#spend form {
