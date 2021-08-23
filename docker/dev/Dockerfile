@@ -1,6 +1,8 @@
 FROM composer:2.0.13 AS composer
 FROM php:8.0.3-fpm-alpine
 
+COPY --from=composer /usr/bin/composer /usr/bin/composer
+
 RUN apk update \
     && apk upgrade \
     && apk add icu-dev $PHPIZE_DEPS \
