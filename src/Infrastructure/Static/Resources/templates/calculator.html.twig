@@ -574,10 +574,8 @@
     <script src="{{ asset('js/prod/apexcharts.js?v=3.27.2-1') }}"></script>
 
     {% if app.environment == 'dev' %}
-        <script src="https://unpkg.com/vue@3.1.4/dist/vue.global.js"></script>
         <script src="{{ asset('js/calculator.js?v=3821') }}"></script>
     {% else %}
-        <script src="{{ asset('js/prod/vue.global.prod.js?v=3.1.4-1') }}"></script>
         <script src="{{ asset('js/prod/calculator.prod.js?v=3821') }}"></script>
     {% endif %}
 {% endblock %}

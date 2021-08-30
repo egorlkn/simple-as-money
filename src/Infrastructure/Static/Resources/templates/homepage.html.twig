@@ -14,9 +14,9 @@
     {{ parent() }}
 
     {% if app.environment == 'dev' %}
-        <link rel="stylesheet" href="{{ asset('css/homepage.css?v=28721a') }}">
+        <link rel="stylesheet" href="{{ asset('css/homepage.css?v=30821') }}">
     {% else %}
-        <link rel="stylesheet" href="{{ asset('css/prod/homepage.css?v=28721a') }}">
+        <link rel="stylesheet" href="{{ asset('css/prod/homepage.css?v=30821') }}">
     {% endif %}
 {% endblock %}
 
@@ -35,7 +35,13 @@
             и понять во что вам вкладываться, а во что - нет.
         </p>
     </article>
-    <div id="forbes_list">
+    <section id="calculator">
+        <p>
+            Рассчитайте свой <b>финансовый план</b>, используя наш
+            <a href="{{ url('static_calculator') }}">Инвестиционный калькулятор</a>
+        </p>
+    </section>
+    <section id="forbes_list">
         <span>Читайте мои статьи на <i>Forbes</i></span>
         <ul>
             <li>
@@ -82,7 +88,7 @@
                 </a>
             </li>
         </ul>
-    </div>
+    </section>
     <address>
         Финансовый консультант,<br>кандидат экономических наук
         <a href="https://www.instagram.com/simpleasmoney/" rel="author" target="_blank">

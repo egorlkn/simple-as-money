@@ -1,7 +1,7 @@
 main {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(4, auto);
+    grid-template-rows: repeat(5, auto);
     grid-row-gap: var(--content-gap);
     row-gap: var(--content-gap);
     grid-column-gap: 0;
@@ -43,9 +43,14 @@ article p {
     text-align: justify;
 }
 
-#forbes_list {
+#calculator {
     grid-column: 1;
     grid-row: 2 / 3;
+}
+
+#forbes_list {
+    grid-column: 1;
+    grid-row: 3 / 4;
 }
 
 #forbes_list span {
@@ -89,7 +94,7 @@ article p {
 
 address {
     grid-column: 1;
-    grid-row: 3 / 4;
+    grid-row: 4 / 5;
     font-size: 0.75em;
 }
 
@@ -106,7 +111,7 @@ address ion-icon {
 
 #vadim {
     grid-column: 1;
-    grid-row: 4 / 5;
+    grid-row: 5 / 6;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
@@ -138,7 +143,7 @@ address ion-icon {
 @media all and (min-width: 1200px) {
     main {
         grid-template-columns: repeat(6, 1fr);
-        grid-template-rows: min-content min-content auto var(--footer-h);
+        grid-template-rows: min-content min-content min-content auto var(--footer-h);
         grid-row-gap: var(--content-gap);
         row-gap: var(--content-gap);
         grid-column-gap: var(--content-gap);
@@ -152,7 +157,6 @@ address ion-icon {
         grid-row: 1 / 2;
         background-color: var(--color-2-opacity);
         padding-right: var(--content-gap);
-        padding-bottom: var(--content-gap);
         border-radius: 5px;
     }
 
@@ -160,12 +164,16 @@ address ion-icon {
         font-size: 1.9em;
     }
 
+    #calculator {
+        grid-column: 1 / 5;
+        grid-row: 2 / 3;
+    }
+
     #forbes_list {
         grid-column: 1 / 4;
-        grid-row: 2 / 3;
+        grid-row: 3 / 4;
         background-color: var(--color-2-opacity);
         padding-right: var(--content-gap);
-        padding-bottom: var(--content-gap);
         border-radius: 5px;
     }
 
@@ -176,7 +184,7 @@ address ion-icon {
 
     address {
         grid-column: 1 / 4;
-        grid-row: 3 / 4;
+        grid-row: 4 / 5;
     }
 
     address ion-icon {

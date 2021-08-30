@@ -30,9 +30,9 @@
         <link rel="stylesheet" href="{{ asset('css/prod/normalize.css?v=16721') }}">
 
         {% if app.environment == 'dev' %}
-            <link rel="stylesheet" href="{{ asset('css/base.css?v=28721a') }}">
+            <link rel="stylesheet" href="{{ asset('css/base.css?v=30821') }}">
         {% else %}
-            <link rel="stylesheet" href="{{ asset('css/prod/base.css?v=28721a') }}">
+            <link rel="stylesheet" href="{{ asset('css/prod/base.css?v=30821') }}">
         {% endif %}
     {% endblock %}
 
@@ -78,17 +78,36 @@
             <img src="{{ asset('images/logo.svg') }}" alt="SimpleAsMoney site logo">
         </a>
 
-        {% if app.request.get('_route') == 'static_homepage' %}
-            <a href="{{ url('static_homepage') }}" class="active">Главная страница</a>
-        {% else %}
-            <a href="{{ url('static_homepage') }}">Главная страница</a>
-        {% endif %}
+        <a id="menu-control"
+           href="javascript://"
+           v-bind:class="{ active: menuIsActive }"
+           v-on:click.prevent="toggleMenu()"
+        >
+            <ion-icon name="menu-outline"></ion-icon>
+        </a>
 
-        {% if app.request.get('_route') == 'static_calculator' %}
-            <a href="{{ url('static_calculator') }}" class="active">Инвестиционный калькулятор</a>
-        {% else %}
-            <a href="{{ url('static_calculator') }}">Инвестиционный калькулятор</a>
-        {% endif %}
+        <div id="menu" v-bind:class="{ active: menuIsActive }">
+            <nav>
+                {% if app.request.get('_route') == 'static_homepage' %}
+                    <a href="{{ url('static_homepage') }}" class="active">Главная страница</a>
+                {% else %}
+                    <a href="{{ url('static_homepage') }}">Главная страница</a>
+                {% endif %}
+
+                <div class="soon">
+                    <a  href="javascript://">Всё об инвестициях</a>
+                    <small>скоро на сайте</small>
+                </div>
+
+                {% if app.request.get('_route') == 'static_calculator' %}
+                    <a href="{{ url('static_calculator') }}" class="active">Инвестиционный калькулятор</a>
+                {% else %}
+                    <a href="{{ url('static_calculator') }}">Инвестиционный калькулятор</a>
+                {% endif %}
+            </nav>
+        </div>
+
+        <div id="menu-placeholder" v-bind:class="{ active: menuIsActive }" v-on:click.prevent="closeMenu()"></div>
     </header>
 
     <main>
@@ -109,9 +128,13 @@
         {% if app.environment == 'dev' %}
             <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
             <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+            <script src="https://unpkg.com/vue@3.1.4/dist/vue.global.js"></script>
+            <script src="{{ asset('js/base.js?v=30821') }}"></script>
         {% else %}
             <script src="https://unpkg.com/@popperjs/core@2"></script>
             <script src="https://unpkg.com/tippy.js@6"></script>
+            <script src="{{ asset('js/prod/vue.global.prod.js?v=3.1.4-1') }}"></script>
+            <script src="{{ asset('js/prod/base.prod.js?v=30821') }}"></script>
         {% endif %}
     {% endblock %}
 </body>
