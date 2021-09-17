@@ -14,9 +14,9 @@
     {{ parent() }}
 
     {% if app.environment == 'dev' %}
-        <link rel="stylesheet" href="{{ asset('css/homepage.css?v=30821') }}">
+        <link rel="stylesheet" href="{{ asset('css/homepage.css?v=17921') }}">
     {% else %}
-        <link rel="stylesheet" href="{{ asset('css/prod/homepage.css?v=30821') }}">
+        <link rel="stylesheet" href="{{ asset('css/prod/homepage.css?v=17921') }}">
     {% endif %}
 {% endblock %}
 
@@ -37,13 +37,20 @@
     </article>
     <section id="calculator">
         <p>
-            Рассчитайте свой <b>финансовый план</b>, используя наш
-            <a href="{{ url('static_calculator') }}">Инвестиционный калькулятор</a>
+            Рассчитайте свой <b>финансовый план</b>, используя мой
+            <a href="{{ url('static_calculator') }}">Инвестиционный калькулятор</a>.
         </p>
     </section>
     <section id="forbes_list">
         <span>Читайте мои статьи на <i>Forbes</i></span>
         <ul>
+            <li>
+                <a href="https://www.forbes.ru/finansy/438535-dorogo-nebogato-pocemu-ne-nuzno-hranit-den-gi-v-svejcarskom-banke"
+                   target="_blank">
+                    <ion-icon name="open-outline"></ion-icon>
+                    Дорого-небогато: почему не нужно хранить деньги в швейцарском банке
+                </a>
+            </li>
             <li>
                 <a href="https://www.forbes.ru/milliardery/436463-rokovye-pari-kak-publichnye-spory-milliarderov-otrazhayutsya-na-zarabotkah"
                    target="_blank">

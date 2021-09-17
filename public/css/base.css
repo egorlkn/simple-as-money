@@ -127,10 +127,10 @@ body {
 
 #main_header #menu {
     position: absolute;
+    width: 75%;
     top: 0;
     left: -75%;
     bottom: 0;
-    min-width: 75%;
     background-color: var(--color-3-opacity);
     box-shadow: 0 0 var(--color-5);
     z-index: 500;
